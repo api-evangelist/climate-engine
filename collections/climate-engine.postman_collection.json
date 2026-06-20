@@ -1,0 +1,1023 @@
+{
+  "item": [
+    {
+      "id": "4d1806fd-a459-4ca2-bf71-3a7ec505748c",
+      "name": "Home",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a4dba86-7603-450d-a44f-0a09ee8cbb22",
+          "name": "Validate Token",
+          "request": {
+            "name": "Validate Token",
+            "description": {},
+            "url": {
+              "path": [
+                "home",
+                "validate_key"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ccd8f79-69a4-440e-824e-5c06e4f16b8d",
+          "name": "Key Expiration",
+          "request": {
+            "name": "Key Expiration",
+            "description": {},
+            "url": {
+              "path": [
+                "home",
+                "key_expiration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00ff2bd6-9bcd-4cd4-a68b-efd65586cce0",
+          "name": "User Quotas",
+          "request": {
+            "name": "User Quotas",
+            "description": {},
+            "url": {
+              "path": [
+                "home",
+                "user",
+                "quotas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "29237b7e-7a29-4597-8a20-2f9a8514c7c1",
+      "name": "Metadata",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "17402bdc-13c0-42f4-b573-5e4710473f90",
+          "name": "Metadata Dataset Dates",
+          "request": {
+            "name": "Metadata Dataset Dates",
+            "description": {},
+            "url": {
+              "path": [
+                "metadata",
+                "dataset_dates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataset",
+                  "value": "GRIDMET"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc9d0ff1-e285-4cbc-ab89-56f705c6e6e1",
+          "name": "Metadata Dataset Variables",
+          "request": {
+            "name": "Metadata Dataset Variables",
+            "description": {},
+            "url": {
+              "path": [
+                "metadata",
+                "dataset_variables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataset",
+                  "value": "GRIDMET"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "142d2f26-b7b0-4b1a-bf91-01d88629c862",
+          "name": "County Names",
+          "request": {
+            "name": "County Names",
+            "description": {},
+            "url": {
+              "path": [
+                "metadata",
+                "county_names"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "084746ea-5ffb-4fed-981c-8f8c3e4cb043",
+      "name": "Timeseries",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3c1e457-22b7-4587-99aa-e9450e943f19",
+          "name": "Native Coordinates",
+          "request": {
+            "name": "Native Coordinates",
+            "description": {},
+            "url": {
+              "path": [
+                "timeseries",
+                "native",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"coordinates\": \"[[-121.61,38.78]]\", \"dataset\": \"GRIDMET\", \"variable\": \"tmmn, tmmx\", \"area_reducer\": \"mean\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35f896b9-4225-41cf-a929-eeebd4d1ca1f",
+          "name": "Native Feature Collection",
+          "request": {
+            "name": "Native Feature Collection",
+            "description": {},
+            "url": {
+              "path": [
+                "timeseries",
+                "native",
+                "feature_collection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"feature_collection_id\": \"\", \"dataset\": \"GRIDMET\", \"variable\": \"tmmn, tmmx\", \"area_reducer\": \"mean\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2365e1e-3e85-4942-aac0-d6df30351a8d",
+          "name": "Interannual Coordinates",
+          "request": {
+            "name": "Interannual Coordinates",
+            "description": {},
+            "url": {
+              "path": [
+                "timeseries",
+                "interannual",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"coordinates\": \"[[-121.61,38.78]]\", \"dataset\": \"GRIDMET\", \"variable\": \"pr\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a55b04b8-4095-4871-8c90-8c450c83bb0f",
+          "name": "Regression Coordinates",
+          "request": {
+            "name": "Regression Coordinates",
+            "description": {},
+            "url": {
+              "path": [
+                "timeseries",
+                "regression",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"coordinates\": \"[[-121.61,38.78]]\", \"dataset\": \"GRIDMET\", \"variable\": \"pr, tmmx\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dae3370d-af51-4ec2-bbac-b77c2a5dd9ae",
+          "name": "Standard Index Coordinates",
+          "request": {
+            "name": "Standard Index Coordinates",
+            "description": {},
+            "url": {
+              "path": [
+                "timeseries",
+                "standard_index",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"coordinates\": \"[[-121.61,38.78]]\", \"dataset\": \"GRIDMET\", \"variable\": \"spi\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ffc9bcda-168a-491f-838a-122e7eb896d1",
+      "name": "Zonal Statistics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4ef383cb-9a93-4f67-bf76-b9ea89d59072",
+          "name": "Static Dataset Coordinates",
+          "request": {
+            "name": "Static Dataset Coordinates",
+            "description": {},
+            "url": {
+              "path": [
+                "zonal_stats",
+                "static_dataset",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "coordinates",
+                  "value": "[[-121.61,38.78]]"
+                },
+                {
+                  "key": "dataset",
+                  "value": "USDM"
+                },
+                {
+                  "key": "variable",
+                  "value": "drought"
+                },
+                {
+                  "key": "area_reducer",
+                  "value": "mean"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d66d8bc-a029-481d-b83e-4791a74ea69f",
+          "name": "Pixel Count Coordinates",
+          "request": {
+            "name": "Pixel Count Coordinates",
+            "description": {},
+            "url": {
+              "path": [
+                "zonal_stats",
+                "pixel_count",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "coordinates",
+                  "value": "[[-121.61,38.78]]"
+                },
+                {
+                  "key": "dataset",
+                  "value": "USDM"
+                },
+                {
+                  "key": "variable",
+                  "value": "drought"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4c50d8c-8855-4006-a47a-e877f2061d1b",
+          "name": "Group By Feature Collection",
+          "request": {
+            "name": "Group By Feature Collection",
+            "description": {},
+            "url": {
+              "path": [
+                "zonal_stats",
+                "group_by",
+                "feature_collection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc4e4f4a-1202-44dd-884c-4596ea765634",
+          "name": "Temporal Dataset Coordinates",
+          "request": {
+            "name": "Temporal Dataset Coordinates",
+            "description": {},
+            "url": {
+              "path": [
+                "zonal_stats",
+                "temporal_dataset",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "coordinates",
+                  "value": "[[-121.61,38.78]]"
+                },
+                {
+                  "key": "dataset",
+                  "value": "GRIDMET"
+                },
+                {
+                  "key": "variable",
+                  "value": "pr"
+                },
+                {
+                  "key": "start_date",
+                  "value": "2020-01-01"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2020-12-31"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "56054c98-a2fc-472e-ade3-39e6a2ec1126",
+      "name": "Raster",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4737f525-7cb3-4e7b-81f0-12db28efdba1",
+          "name": "Mapid Values",
+          "request": {
+            "name": "Mapid Values",
+            "description": {},
+            "url": {
+              "path": [
+                "raster",
+                "mapid",
+                "values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "dataset",
+                  "value": "GRIDMET"
+                },
+                {
+                  "key": "variable",
+                  "value": "pr"
+                },
+                {
+                  "key": "temporal_statistic",
+                  "value": "total"
+                },
+                {
+                  "key": "start_date",
+                  "value": "2020-01-01"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2020-12-31"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bdcf19e3-28f5-4a15-afc5-fff284a1727b",
+          "name": "Export Values",
+          "request": {
+            "name": "Export Values",
+            "description": {},
+            "url": {
+              "path": [
+                "raster",
+                "export",
+                "values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f6cafdd-1b3d-4070-8e9c-99718622daea",
+          "name": "Export Task Update",
+          "request": {
+            "name": "Export Task Update",
+            "description": {},
+            "url": {
+              "path": [
+                "raster",
+                "export",
+                "task_update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "task_id",
+                  "value": ""
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57b21dd0-9b24-4690-af9f-281232d1b406",
+          "name": "Export Task Queue",
+          "request": {
+            "name": "Export Task Queue",
+            "description": {},
+            "url": {
+              "path": [
+                "raster",
+                "export",
+                "task_queue"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e1ba0a7f-67d2-4885-82cc-6f028ed14506",
+      "name": "Reports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f3b01f8f-04a4-4f1a-9859-b1456192aa2f",
+          "name": "Drought Coordinates",
+          "request": {
+            "name": "Drought Coordinates",
+            "description": {},
+            "url": {
+              "path": [
+                "reports",
+                "drought",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa3fe68f-ab6e-499b-8201-3451d8ad959b",
+          "name": "Vegetation Production Coordinates",
+          "request": {
+            "name": "Vegetation Production Coordinates",
+            "description": {},
+            "url": {
+              "path": [
+                "reports",
+                "vegetation_production",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4716ace2-b5de-4118-a08c-f59c7a5244c6",
+          "name": "Site Characterization Coordinates",
+          "request": {
+            "name": "Site Characterization Coordinates",
+            "description": {},
+            "url": {
+              "path": [
+                "reports",
+                "site_characterization",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.climateengine.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3e2b95f5-0c70-4c57-8db0-8882bded4c02",
+    "name": "Climate Engine API v1: climate-engine-pro",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine.\n\nContact: Climate Engine\n https://support.climateengine.org",
+      "type": "text/plain"
+    }
+  }
+}

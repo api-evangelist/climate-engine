@@ -1,0 +1,56 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Climate Engine
+providerId: climate-engine
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Climate
+- Geospatial
+- Remote Sensing
+- Satellite
+- Earth Observation
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Climate Engine enforces per-account request quotas on the commercial API.
+  Each API key is provisioned with a quota that caps the number of processing
+  requests over a period; quota usage and remaining allowance are returned by
+  the GET /home/user/quotas endpoint. Because Climate Engine processing runs on
+  Google Earth Engine, requests are also subject to upstream Earth Engine
+  compute behavior. Specific numeric quota values are account-specific and not
+  reconciled in this artifact.
+notes: >-
+  Verify your account quota via GET /home/user/quotas and the API Quota Limit
+  Policy support article. Quota values are assigned per key by the Climate
+  Engine team and change with partner agreements.
+sources:
+- https://support.climateengine.org/article/144-api-quota-policy
+- https://support.climateengine.org/article/12-climate-engine-apis
+- https://api.climateengine.org/docs
+responseCodes:
+  throttled: 429
+limits:
+- name: Request Quota
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Per-key request quota over a period; inspect via GET /home/user/quotas.
+- name: Earth Engine Compute
+  scope: account
+  metric: compute
+  limit: see provider documentation
+  notes: Processing runs on Google Earth Engine and inherits upstream compute behavior.
+policies:
+- name: Quota Provisioning
+  description: Quotas are assigned per API key by the Climate Engine team and vary by agreement.
+- name: Quota Inspection
+  description: Clients can poll GET /home/user/quotas to monitor usage and remaining allowance.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,87 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Climate Engine
+providerId: climate-engine
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Climate
+- Geospatial
+- Remote Sensing
+- Satellite
+- Earth Observation
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Climate Engine commercial API spend. Climate Engine sells API
+  access through partner / sales-led agreements governed by per-account request
+  quotas rather than publicly itemized per-call rates. Cost is therefore driven
+  by the negotiated agreement and the volume of processing requests against the
+  account quota. Because no public rate card is published, the meters below are
+  modeled on the request-quota structure and are not reconciled to dollar rates.
+notes: >-
+  Itemized commercial rates are not published; verify the negotiated agreement
+  and quota allocation with the Climate Engine team during reconciliation.
+sources:
+- https://www.climateengine.com
+- https://support.climateengine.org/article/144-api-quota-policy
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Climate Engine
+serviceCategory: Analytics
+billingModel:
+  pricingCategory: Commitment-Based
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Climate Engine API
+  ServiceCategory: Analytics
+  ProviderName: Climate Engine
+  PublisherName: Climate Engine
+  InvoiceIssuerName: Climate Engine
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Commitment-Based
+meters:
+- name: api_requests
+  description: Processing requests against the per-account request quota.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - api
+- name: raster_export_tasks
+  description: Asynchronous raster export tasks queued and executed on Earth Engine.
+  unit: tasks
+  aggregation: sum
+  dimensions:
+  - account
+- name: quota_allocation
+  description: Provisioned request quota assigned to the API key under the agreement.
+  unit: requests
+  aggregation: max
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Poll GET /home/user/quotas to track request usage and remaining allowance per key.
+- name: Allocation
+  description: Issue separate API keys per workload/team and map them to internal cost centers.
+- name: Optimization
+  description: Prefer feature-collection and zonal-statistics endpoints over per-pixel exports where possible; cache dataset metadata; batch regions to reduce request count.
+- name: Accountability
+  description: Assign owners per key; review quota burn against the partner agreement on a regular cadence.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

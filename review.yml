@@ -1,0 +1,91 @@
+aid: climate-engine
+name: Climate Engine
+review:
+  question: Does Climate Engine expose a documented public streaming (WebSocket or SSE) API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. The Climate Engine commercial API is a
+    synchronous REST API (FastAPI, OpenAPI 0.1.0) served at
+    https://api.climateengine.org. Long-running raster exports are handled
+    with an asynchronous task-queue pattern that the client polls over HTTP
+    (GET /raster/export/task_update, GET /raster/export/task_queue) - there is
+    no server push, Server-Sent Events stream, or WebSocket channel, so no
+    event-driven surface exists to model.
+findings:
+  summary: |
+    Climate Engine does not publish a documented public streaming API. The
+    platform exposes a synchronous REST API under
+    https://api.climateengine.org with an interactive Swagger UI at
+    /docs and an OpenAPI document at /openapi.json. Authentication uses an
+    API key sent in the Authorization header (apiKey, in: header,
+    name: Authorization). Endpoints are grouped into Home (key validation,
+    expiration, quotas), Metadata (dataset dates, variables, county names,
+    raster classifications), Timeseries (native, interannual, standard index,
+    regression, with forecast variants), Zonal Statistics (pixel count, static
+    and temporal datasets, group-by, counts), Raster (Earth Engine map IDs for
+    tiles, plus asynchronous raster exports with task polling), and Reports
+    (drought, vegetation production, site characterization). No realtime,
+    bidirectional, or push transport (ws://, wss://, or SSE) is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.climateengine.org
+      documented: true
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events stream is documented; long jobs use poll-based task endpoints.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the OpenAPI spec or support articles as of the review date.
+  endpointsConfirmedRest:
+    - GET  https://api.climateengine.org/home/validate_key
+    - GET  https://api.climateengine.org/home/key_expiration
+    - GET  https://api.climateengine.org/home/user/quotas
+    - GET  https://api.climateengine.org/metadata/dataset_dates
+    - GET  https://api.climateengine.org/metadata/dataset_variables
+    - GET  https://api.climateengine.org/metadata/county_names
+    - POST https://api.climateengine.org/timeseries/native/coordinates
+    - POST https://api.climateengine.org/timeseries/native/feature_collection
+    - POST https://api.climateengine.org/timeseries/interannual/coordinates
+    - POST https://api.climateengine.org/timeseries/regression/coordinates
+    - POST https://api.climateengine.org/timeseries/standard_index/coordinates
+    - POST https://api.climateengine.org/zonal_stats/static_dataset/coordinates
+    - POST https://api.climateengine.org/zonal_stats/pixel_count/coordinates
+    - POST https://api.climateengine.org/zonal_stats/group_by/feature_collection
+    - GET  https://api.climateengine.org/zonal_stats/temporal_dataset/coordinates
+    - GET  https://api.climateengine.org/raster/mapid/values
+    - POST https://api.climateengine.org/raster/export/values
+    - GET  https://api.climateengine.org/raster/export/task_update
+    - GET  https://api.climateengine.org/raster/export/task_queue
+    - POST https://api.climateengine.org/reports/drought/coordinates
+    - POST https://api.climateengine.org/reports/vegetation_production/coordinates
+    - POST https://api.climateengine.org/reports/site_characterization/coordinates
+sources:
+  - url: https://api.climateengine.org/openapi.json
+    type: OpenAPI
+    note: FastAPI OpenAPI 0.1.0 document; 106 operations; security scheme APIKeyHeader (apiKey, header, Authorization). All HTTPS REST.
+  - url: https://api.climateengine.org/docs
+    type: APIReference
+    note: Interactive Swagger UI for the commercial API.
+  - url: https://support.climateengine.org/article/12-climate-engine-apis
+    type: Documentation
+    note: Describes Maps, Timeseries, Zonal Statistics, and Probabilities endpoint categories; no streaming surface.
+  - url: https://support.climateengine.org/article/31-introduction-to-the-apis
+    type: Documentation
+    note: Introduction to the API; API key required, requests are synchronous HTTPS.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No streaming protocol surface exists. The API is synchronous REST with a
+    poll-based task queue for long-running raster exports, so no AsyncAPI
+    document was authored. apis.yml references the OpenAPI, Postman, and Open
+    Collection artifacts only.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

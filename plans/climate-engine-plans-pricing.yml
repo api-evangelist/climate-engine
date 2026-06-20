@@ -1,0 +1,90 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Climate Engine
+providerId: climate-engine
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Climate
+- Geospatial
+- Remote Sensing
+- Satellite
+- Earth Observation
+- Plans
+description: >-
+  Climate Engine's commercial API (api.climateengine.org) is sold through a
+  partner / sales-led model. Access requires an API key issued by the
+  ClimateEngine.org team, and usage is governed by per-account request quotas
+  rather than publicly published per-call pricing. The non-commercial
+  ClimateEngine.org web application remains free for research, education, and
+  government use. Public, itemized commercial rate cards are not published, so
+  pricing entries below are not reconciled.
+notes: >-
+  Contact the Climate Engine team for commercial / partner pricing and to
+  request an API key. Quota tiers and any per-request pricing are negotiated
+  and are not published on a public pricing page as of the created date.
+sources:
+- https://www.climateengine.com
+- https://support.climateengine.org/article/12-climate-engine-apis
+- https://support.climateengine.org/article/144-api-quota-policy
+plans:
+- id: climate-engine-free-web-app
+  name: ClimateEngine.org Web Application
+  type: free
+  description: >-
+    Free, no-code access to climate and remote-sensing analysis through the
+    ClimateEngine.org web application for research, education, and government
+    users.
+  entries:
+  - label: Web Application Access
+    name: web_app
+    type: flat
+    metric: access
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: Interactive Maps
+  - name: Timeseries Charts
+  - name: Zonal Statistics
+- id: climate-engine-commercial-api
+  name: Commercial API (Partner)
+  type: enterprise
+  description: >-
+    Commercial REST API access with an issued API key, governed by per-account
+    request quotas. Pricing is negotiated with the Climate Engine team.
+  entries:
+  - label: API Requests
+    name: api_requests
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  - label: Partner Agreement
+    name: partner
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Timeseries API
+  - name: Zonal Statistics API
+  - name: Raster API
+  - name: Reports API
+  - name: Dataset Catalog API
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

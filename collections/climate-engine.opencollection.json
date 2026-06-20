@@ -1,0 +1,349 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Climate Engine API v1: climate-engine-pro",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "Authorization",
+        "value": "{{apiKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Home",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/home/validate_key"
+          },
+          "docs": "Validate Token"
+        },
+        {
+          "info": {
+            "name": "Key Expiration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/home/key_expiration"
+          },
+          "docs": "Key Expiration"
+        },
+        {
+          "info": {
+            "name": "User Quotas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/home/user/quotas"
+          },
+          "docs": "User Quotas"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Metadata Dataset Dates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/metadata/dataset_dates?dataset=GRIDMET"
+          },
+          "docs": "Metadata Dataset Dates"
+        },
+        {
+          "info": {
+            "name": "Metadata Dataset Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/metadata/dataset_variables?dataset=GRIDMET"
+          },
+          "docs": "Metadata Dataset Variables"
+        },
+        {
+          "info": {
+            "name": "County Names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/metadata/county_names"
+          },
+          "docs": "County Names"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Timeseries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Native Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/timeseries/native/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{\"coordinates\": \"[[-121.61,38.78]]\", \"dataset\": \"GRIDMET\", \"variable\": \"tmmn, tmmx\", \"area_reducer\": \"mean\"}"
+            }
+          },
+          "docs": "Native Coordinates"
+        },
+        {
+          "info": {
+            "name": "Native Feature Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/timeseries/native/feature_collection",
+            "body": {
+              "type": "json",
+              "data": "{\"feature_collection_id\": \"\", \"dataset\": \"GRIDMET\", \"variable\": \"tmmn, tmmx\", \"area_reducer\": \"mean\"}"
+            }
+          },
+          "docs": "Native Feature Collection"
+        },
+        {
+          "info": {
+            "name": "Interannual Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/timeseries/interannual/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{\"coordinates\": \"[[-121.61,38.78]]\", \"dataset\": \"GRIDMET\", \"variable\": \"pr\"}"
+            }
+          },
+          "docs": "Interannual Coordinates"
+        },
+        {
+          "info": {
+            "name": "Regression Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/timeseries/regression/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{\"coordinates\": \"[[-121.61,38.78]]\", \"dataset\": \"GRIDMET\", \"variable\": \"pr, tmmx\"}"
+            }
+          },
+          "docs": "Regression Coordinates"
+        },
+        {
+          "info": {
+            "name": "Standard Index Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/timeseries/standard_index/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{\"coordinates\": \"[[-121.61,38.78]]\", \"dataset\": \"GRIDMET\", \"variable\": \"spi\"}"
+            }
+          },
+          "docs": "Standard Index Coordinates"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Zonal Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Static Dataset Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/zonal_stats/static_dataset/coordinates?coordinates=[[-121.61,38.78]]&dataset=USDM&variable=drought&area_reducer=mean"
+          },
+          "docs": "Static Dataset Coordinates"
+        },
+        {
+          "info": {
+            "name": "Pixel Count Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/zonal_stats/pixel_count/coordinates?coordinates=[[-121.61,38.78]]&dataset=USDM&variable=drought"
+          },
+          "docs": "Pixel Count Coordinates"
+        },
+        {
+          "info": {
+            "name": "Group By Feature Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/zonal_stats/group_by/feature_collection",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Group By Feature Collection"
+        },
+        {
+          "info": {
+            "name": "Temporal Dataset Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/zonal_stats/temporal_dataset/coordinates?coordinates=[[-121.61,38.78]]&dataset=GRIDMET&variable=pr&start_date=2020-01-01&end_date=2020-12-31"
+          },
+          "docs": "Temporal Dataset Coordinates"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Raster",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mapid Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/raster/mapid/values?dataset=GRIDMET&variable=pr&temporal_statistic=total&start_date=2020-01-01&end_date=2020-12-31"
+          },
+          "docs": "Mapid Values"
+        },
+        {
+          "info": {
+            "name": "Export Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/raster/export/values",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export Values"
+        },
+        {
+          "info": {
+            "name": "Export Task Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/raster/export/task_update?task_id="
+          },
+          "docs": "Export Task Update"
+        },
+        {
+          "info": {
+            "name": "Export Task Queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/raster/export/task_queue"
+          },
+          "docs": "Export Task Queue"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Drought Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/reports/drought/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Drought Coordinates"
+        },
+        {
+          "info": {
+            "name": "Vegetation Production Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/reports/vegetation_production/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Vegetation Production Coordinates"
+        },
+        {
+          "info": {
+            "name": "Site Characterization Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/reports/site_characterization/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Site Characterization Coordinates"
+        }
+      ]
+    }
+  ]
+}
