@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/climate-engine-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: APIKeyHeader
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: API key issued by the Climate Engine team, sent in the Authorization header.
+    Request a key from the ClimateEngine.org team.
+  sources:
+  - openapi/climate-engine-openapi.yml

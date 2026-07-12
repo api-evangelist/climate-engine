@@ -156,6 +156,10 @@ apis:
   description: Validates API keys, reports key expiration, and returns the authenticated
     user's quota usage and limits.
 common:
+- type: DomainSecurity
+  url: security/climate-engine-domain-security.yml
+- type: Authentication
+  url: authentication/climate-engine-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/climate-engine
 - type: Website
