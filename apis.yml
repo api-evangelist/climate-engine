@@ -156,6 +156,8 @@ apis:
   description: Validates API keys, reports key expiration, and returns the authenticated
     user's quota usage and limits.
 common:
+- type: AgenticAccess
+  url: agentic-access/climate-engine-agentic-access.yml
 - type: DomainSecurity
   url: security/climate-engine-domain-security.yml
 - type: Authentication
