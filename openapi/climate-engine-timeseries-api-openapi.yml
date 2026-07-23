@@ -1,0 +1,257 @@
+openapi: 3.0.1
+info:
+  title: 'Climate Engine API v1: climate-engine-pro Home Timeseries API'
+  description: On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.
+  termsOfService: https://www.climateengine.com
+  contact:
+    name: Climate Engine
+    url: https://support.climateengine.org
+  version: 0.1.0
+servers:
+- url: https://api.climateengine.org
+  description: Climate Engine production API
+security:
+- APIKeyHeader: []
+tags:
+- name: Timeseries
+  description: Native, interannual, standard-index, and regression time series.
+paths:
+  /timeseries/native/coordinates:
+    post:
+      operationId: timeseriesNativeCoordinates
+      tags:
+      - Timeseries
+      summary: Native Coordinates
+      description: Generates a raw (native) time series for a dataset over point or polygon coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NativeCoordinates'
+      responses:
+        '200':
+          description: Native time series.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /timeseries/native/feature_collection:
+    post:
+      operationId: timeseriesNativeFeatureCollection
+      tags:
+      - Timeseries
+      summary: Native Feature Collection
+      description: Generates a raw (native) time series for a dataset reduced over a GeoJSON feature collection.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NativeFeatureCollection'
+      responses:
+        '200':
+          description: Native time series.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /timeseries/native/forecasts/coordinates:
+    post:
+      operationId: timeseriesNativeForecastCoordinates
+      tags:
+      - Timeseries
+      summary: Forecast Coordinates
+      description: Generates a forecast time series over point coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NativeCoordinates'
+      responses:
+        '200':
+          description: Forecast time series.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /timeseries/interannual/coordinates:
+    post:
+      operationId: timeseriesInterannualCoordinates
+      tags:
+      - Timeseries
+      summary: Interannual Coordinates
+      description: Generates an interannual time series over point coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NativeCoordinates'
+      responses:
+        '200':
+          description: Interannual time series.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /timeseries/regression/coordinates:
+    post:
+      operationId: timeseriesRegressionCoordinates
+      tags:
+      - Timeseries
+      summary: Regression Coordinates
+      description: Generates a regression time series between two variables over point coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NativeCoordinates'
+      responses:
+        '200':
+          description: Regression time series.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /timeseries/standard_index/coordinates:
+    post:
+      operationId: timeseriesStandardIndexCoordinates
+      tags:
+      - Timeseries
+      summary: Standard Index Coordinates
+      description: Generates a standardized-index (e.g. SPI/SPEI) time series over point coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NativeCoordinates'
+      responses:
+        '200':
+          description: Standard index time series.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+components:
+  responses:
+    ValidationError:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
+  schemas:
+    NativeFeatureCollection:
+      type: object
+      properties:
+        feature_collection_id:
+          type: string
+          nullable: true
+          title: Feature Collection Id
+          description: Earth Engine feature collection asset ID.
+        dataset:
+          type: string
+          title: Dataset
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          default: tmmn, tmmx
+        area_reducer:
+          type: string
+          title: Area Reducer
+          default: mean
+        start_date:
+          type: string
+          nullable: true
+          title: Start Date
+        end_date:
+          type: string
+          nullable: true
+          title: End Date
+    NativeCoordinates:
+      type: object
+      properties:
+        coordinates:
+          type: string
+          title: Coordinates
+          description: Point or polygon coordinates as a JSON-encoded array.
+          default: '[[-121.61,38.78]]'
+        simplify_geometry:
+          type: integer
+          nullable: true
+          title: Simplify Geometry
+          description: maxError in meters for ee.Feature.simplify.
+        buffer:
+          type: integer
+          nullable: true
+          title: Buffer
+          description: Buffer in meters.
+        area_reducer:
+          type: string
+          title: Area Reducer
+          default: mean
+        dataset:
+          type: string
+          title: Dataset
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          default: tmmn, tmmx
+        compute_trends:
+          type: string
+          nullable: true
+          title: Compute Trends
+          description: 'Comma-separated trends to compute. Options: polyfit, sens_slope.'
+          default: ''
+        start_date:
+          type: string
+          nullable: true
+          title: Start Date
+        end_date:
+          type: string
+          nullable: true
+          title: End Date
+    ValidationError:
+      type: object
+      title: ValidationError
+      properties:
+        loc:
+          type: array
+          items:
+            type: string
+        msg:
+          type: string
+        type:
+          type: string
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key issued by the Climate Engine team, sent in the Authorization header. Request a key from the ClimateEngine.org team.

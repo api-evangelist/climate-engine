@@ -1,0 +1,69 @@
+openapi: 3.0.1
+info:
+  title: 'Climate Engine API v1: climate-engine-pro Home API'
+  description: On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.
+  termsOfService: https://www.climateengine.com
+  contact:
+    name: Climate Engine
+    url: https://support.climateengine.org
+  version: 0.1.0
+servers:
+- url: https://api.climateengine.org
+  description: Climate Engine production API
+security:
+- APIKeyHeader: []
+tags:
+- name: Home
+  description: Key validation, expiration, and user quotas.
+paths:
+  /home/validate_key:
+    get:
+      operationId: validateKey
+      tags:
+      - Home
+      summary: Validate Token
+      description: Validates the API key supplied in the Authorization header.
+      responses:
+        '200':
+          description: Key is valid.
+          content:
+            application/json:
+              schema:
+                type: object
+        '403':
+          description: Invalid or missing API key.
+  /home/key_expiration:
+    get:
+      operationId: keyExpiration
+      tags:
+      - Home
+      summary: Key Expiration
+      description: Returns the expiration date of the authenticated API key.
+      responses:
+        '200':
+          description: Expiration information.
+          content:
+            application/json:
+              schema:
+                type: object
+  /home/user/quotas:
+    get:
+      operationId: userQuotas
+      tags:
+      - Home
+      summary: User Quotas
+      description: Returns the authenticated user's quota usage and limits.
+      responses:
+        '200':
+          description: Quota usage and limits.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key issued by the Climate Engine team, sent in the Authorization header. Request a key from the ClimateEngine.org team.

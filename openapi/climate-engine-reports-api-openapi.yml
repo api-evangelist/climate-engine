@@ -1,0 +1,119 @@
+openapi: 3.0.1
+info:
+  title: 'Climate Engine API v1: climate-engine-pro Home Reports API'
+  description: On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.
+  termsOfService: https://www.climateengine.com
+  contact:
+    name: Climate Engine
+    url: https://support.climateengine.org
+  version: 0.1.0
+servers:
+- url: https://api.climateengine.org
+  description: Climate Engine production API
+security:
+- APIKeyHeader: []
+tags:
+- name: Reports
+  description: Pre-built drought, vegetation, and site characterization reports.
+paths:
+  /reports/drought/coordinates:
+    post:
+      operationId: reportsDroughtCoordinates
+      tags:
+      - Reports
+      summary: Drought Coordinates
+      description: Produces a pre-built drought report over point coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Drought report.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /reports/vegetation_production/coordinates:
+    post:
+      operationId: reportsVegetationProductionCoordinates
+      tags:
+      - Reports
+      summary: Vegetation Production Coordinates
+      description: Produces a pre-built vegetation production report over point coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Vegetation production report.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /reports/site_characterization/coordinates:
+    post:
+      operationId: reportsSiteCharacterizationCoordinates
+      tags:
+      - Reports
+      summary: Site Characterization Coordinates
+      description: Produces a pre-built site characterization report over point coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Site characterization report.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+components:
+  schemas:
+    ValidationError:
+      type: object
+      title: ValidationError
+      properties:
+        loc:
+          type: array
+          items:
+            type: string
+        msg:
+          type: string
+        type:
+          type: string
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+  responses:
+    ValidationError:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key issued by the Climate Engine team, sent in the Authorization header. Request a key from the ClimateEngine.org team.

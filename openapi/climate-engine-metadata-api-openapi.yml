@@ -1,0 +1,92 @@
+openapi: 3.0.1
+info:
+  title: 'Climate Engine API v1: climate-engine-pro Home Metadata API'
+  description: On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.
+  termsOfService: https://www.climateengine.com
+  contact:
+    name: Climate Engine
+    url: https://support.climateengine.org
+  version: 0.1.0
+servers:
+- url: https://api.climateengine.org
+  description: Climate Engine production API
+security:
+- APIKeyHeader: []
+tags:
+- name: Metadata
+  description: Dataset dates, variables, county names, and raster classifications.
+paths:
+  /metadata/dataset_dates:
+    get:
+      operationId: metadataDatasetDates
+      tags:
+      - Metadata
+      summary: Metadata Dataset Dates
+      description: Returns the available date range for a dataset.
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - $ref: '#/components/parameters/ExportFormat'
+      responses:
+        '200':
+          description: Date range for the dataset.
+          content:
+            application/json:
+              schema:
+                type: object
+  /metadata/dataset_variables:
+    get:
+      operationId: metadataDatasetVariables
+      tags:
+      - Metadata
+      summary: Metadata Dataset Variables
+      description: Returns the variables available for a dataset.
+      parameters:
+      - $ref: '#/components/parameters/Dataset'
+      - $ref: '#/components/parameters/ExportFormat'
+      responses:
+        '200':
+          description: Variables available for the dataset.
+          content:
+            application/json:
+              schema:
+                type: object
+  /metadata/county_names:
+    get:
+      operationId: metadataCountyNames
+      tags:
+      - Metadata
+      summary: County Names
+      description: Returns county names usable as predefined feature regions.
+      parameters:
+      - $ref: '#/components/parameters/ExportFormat'
+      responses:
+        '200':
+          description: County names.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  parameters:
+    Dataset:
+      name: dataset
+      in: query
+      required: false
+      schema:
+        type: string
+        default: GRIDMET
+      description: Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS).
+    ExportFormat:
+      name: export_format
+      in: query
+      required: false
+      schema:
+        type: string
+        nullable: true
+      description: Optional response/export format.
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key issued by the Climate Engine team, sent in the Authorization header. Request a key from the ClimateEngine.org team.

@@ -1,0 +1,208 @@
+openapi: 3.0.1
+info:
+  title: 'Climate Engine API v1: climate-engine-pro Home Zonal Statistics API'
+  description: On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.
+  termsOfService: https://www.climateengine.com
+  contact:
+    name: Climate Engine
+    url: https://support.climateengine.org
+  version: 0.1.0
+servers:
+- url: https://api.climateengine.org
+  description: Climate Engine production API
+security:
+- APIKeyHeader: []
+tags:
+- name: Zonal Statistics
+  description: Statistics reduced over coordinates and feature collections.
+paths:
+  /zonal_stats/static_dataset/coordinates:
+    post:
+      operationId: zonalStatsStaticDatasetCoordinates
+      tags:
+      - Zonal Statistics
+      summary: Static Dataset Coordinates
+      description: Computes zonal statistics for a static (no time dependence) dataset over coordinates.
+      parameters:
+      - $ref: '#/components/parameters/Coordinates'
+      - $ref: '#/components/parameters/SimplifyGeometry'
+      - $ref: '#/components/parameters/Buffer'
+      - name: area_reducer
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+        description: Spatial reducer applied over the geometry (e.g. mean, max, min).
+      - $ref: '#/components/parameters/Dataset'
+      - $ref: '#/components/parameters/Variable'
+      - $ref: '#/components/parameters/ExportFormat'
+      responses:
+        '200':
+          description: Zonal statistics result.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /zonal_stats/pixel_count/coordinates:
+    post:
+      operationId: zonalStatsPixelCountCoordinates
+      tags:
+      - Zonal Statistics
+      summary: Pixel Count Coordinates
+      description: Computes the number of pixels in each category (e.g. drought category) over coordinates.
+      parameters:
+      - $ref: '#/components/parameters/Coordinates'
+      - $ref: '#/components/parameters/Dataset'
+      - $ref: '#/components/parameters/Variable'
+      responses:
+        '200':
+          description: Pixel count statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /zonal_stats/group_by/feature_collection:
+    post:
+      operationId: zonalStatsGroupByFeatureCollection
+      tags:
+      - Zonal Statistics
+      summary: Group By Feature Collection
+      description: Computes grouped zonal statistics over a GeoJSON feature collection.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Grouped zonal statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /zonal_stats/temporal_dataset/coordinates:
+    get:
+      operationId: zonalStatsTemporalDatasetCoordinates
+      tags:
+      - Zonal Statistics
+      summary: Temporal Dataset Coordinates
+      description: Computes temporal-dataset zonal statistics reduced over coordinate geometries.
+      parameters:
+      - $ref: '#/components/parameters/Coordinates'
+      - $ref: '#/components/parameters/Dataset'
+      - $ref: '#/components/parameters/Variable'
+      - $ref: '#/components/parameters/StartDate'
+      - $ref: '#/components/parameters/EndDate'
+      responses:
+        '200':
+          description: Temporal zonal statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  responses:
+    ValidationError:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
+  parameters:
+    EndDate:
+      name: end_date
+      in: query
+      required: false
+      schema:
+        type: string
+      description: End date (YYYY-MM-DD).
+    Buffer:
+      name: buffer
+      in: query
+      required: false
+      schema:
+        type: integer
+        nullable: true
+      description: Buffer in meters applied to the geometry.
+    ExportFormat:
+      name: export_format
+      in: query
+      required: false
+      schema:
+        type: string
+        nullable: true
+      description: Optional response/export format.
+    Dataset:
+      name: dataset
+      in: query
+      required: false
+      schema:
+        type: string
+        default: GRIDMET
+      description: Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS).
+    StartDate:
+      name: start_date
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Start date (YYYY-MM-DD).
+    Variable:
+      name: variable
+      in: query
+      required: false
+      schema:
+        type: string
+        default: tmmn, tmmx
+      description: Comma-separated variable name(s).
+    SimplifyGeometry:
+      name: simplify_geometry
+      in: query
+      required: false
+      schema:
+        type: string
+        nullable: true
+      description: maxError in meters for geometry simplification.
+    Coordinates:
+      name: coordinates
+      in: query
+      required: false
+      schema:
+        type: string
+        default: '[[-121.61,38.78]]'
+      description: Point or polygon coordinates as a JSON-encoded array.
+  schemas:
+    ValidationError:
+      type: object
+      title: ValidationError
+      properties:
+        loc:
+          type: array
+          items:
+            type: string
+        msg:
+          type: string
+        type:
+          type: string
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key issued by the Climate Engine team, sent in the Authorization header. Request a key from the ClimateEngine.org team.
