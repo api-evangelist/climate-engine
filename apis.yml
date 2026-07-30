@@ -7,7 +7,20 @@ description: Climate Engine is a geospatial climate and remote-sensing data plat
   provides on-demand processing of satellite and gridded climate datasets - Landsat,
   Sentinel, MODIS, GRIDMET, ERA5, CHIRPS and more - returning timeseries, map tiles,
   zonal statistics, and pre-built reports over points, polygons, and feature collections.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/climate-engine.png
 tags:
 - Climate
 - Geospatial
@@ -18,143 +31,138 @@ created: '2026-06-20'
 modified: '2026-06-20'
 specificationVersion: '0.19'
 apis:
-- aid: climate-engine:climate-engine-timeseries-api
-  name: Climate Engine Timeseries API
-  tags:
-  - Timeseries
-  - Climate
-  - Remote Sensing
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: climate-engine:climate-engine-home-api
+  name: Climate Engine Home API
+  description: Key validation, expiration, and user quotas.
   humanURL: https://api.climateengine.org/docs
   baseURL: https://api.climateengine.org
-  properties:
-  - url: https://support.climateengine.org/article/12-climate-engine-apis
-    type: Documentation
-  - url: https://api.climateengine.org/docs
-    type: APIReference
-  - url: openapi/climate-engine-openapi.yml
-    type: OpenAPI
-  - url: collections/climate-engine.postman_collection.json
-    type: PostmanCollection
-  - url: collections/climate-engine.opencollection.json
-    type: OpenCollection
-  description: Generates native, interannual, standard-index, and regression time
-    series for climate and remote-sensing datasets over point coordinates and GeoJSON
-    feature collections, with optional forecast variants.
-- aid: climate-engine:climate-engine-zonal-statistics-api
-  name: Climate Engine Zonal Statistics API
   tags:
-  - Zonal Statistics
-  - Aggregation
-  - Geospatial
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Home
+  properties:
+  - type: OpenAPI
+    url: openapi/climate-engine-home-api-openapi.yml
+  - type: Documentation
+    url: https://support.climateengine.org/article/12-climate-engine-apis
+  - type: APIReference
+    url: https://api.climateengine.org/docs
+  - type: PostmanCollection
+    url: collections/climate-engine.postman_collection.json
+  - type: OpenCollection
+    url: collections/climate-engine.opencollection.json
+  - type: Documentation
+    url: https://docs.climateengine.org
+  - type: Documentation
+    url: https://support.climateengine.org/article/144-api-quota-policy
+- aid: climate-engine:climate-engine-metadata-api
+  name: Climate Engine Metadata API
+  description: Dataset dates, variables, county names, and raster classifications.
   humanURL: https://api.climateengine.org/docs
   baseURL: https://api.climateengine.org
-  properties:
-  - url: https://support.climateengine.org/article/12-climate-engine-apis
-    type: Documentation
-  - url: https://api.climateengine.org/docs
-    type: APIReference
-  - url: openapi/climate-engine-openapi.yml
-    type: OpenAPI
-  - url: collections/climate-engine.postman_collection.json
-    type: PostmanCollection
-  - url: collections/climate-engine.opencollection.json
-    type: OpenCollection
-  description: Computes pixel counts, static- and temporal-dataset statistics, group-by
-    aggregations, and category counts reduced over coordinates or feature-collection
-    geometries.
-- aid: climate-engine:climate-engine-raster-api
-  name: Climate Engine Raster API
-  tags:
-  - Maps
-  - Raster
-  - Tiles
-  - Export
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api.climateengine.org/docs
-  baseURL: https://api.climateengine.org
-  properties:
-  - url: https://support.climateengine.org/article/12-climate-engine-apis
-    type: Documentation
-  - url: https://api.climateengine.org/docs
-    type: APIReference
-  - url: openapi/climate-engine-openapi.yml
-    type: OpenAPI
-  - url: collections/climate-engine.postman_collection.json
-    type: PostmanCollection
-  - url: collections/climate-engine.opencollection.json
-    type: OpenCollection
-  description: Returns Earth Engine map IDs for tile rendering and queues asynchronous
-    raster export jobs across values, anomalies, percentiles, standard index, degree
-    days, and Mann-Kendall trend products, including forecast variants.
-- aid: climate-engine:climate-engine-reports-api
-  name: Climate Engine Reports API
-  tags:
-  - Reports
-  - Drought
-  - Vegetation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api.climateengine.org/docs
-  baseURL: https://api.climateengine.org
-  properties:
-  - url: https://support.climateengine.org/article/12-climate-engine-apis
-    type: Documentation
-  - url: https://api.climateengine.org/docs
-    type: APIReference
-  - url: openapi/climate-engine-openapi.yml
-    type: OpenAPI
-  - url: collections/climate-engine.postman_collection.json
-    type: PostmanCollection
-  - url: collections/climate-engine.opencollection.json
-    type: OpenCollection
-  description: Produces pre-built site characterization, drought, and vegetation production
-    reports over coordinates or feature collections.
-- aid: climate-engine:climate-engine-dataset-catalog-api
-  name: Climate Engine Dataset Catalog API
   tags:
   - Metadata
-  - Catalog
-  - Datasets
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/climate-engine-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://support.climateengine.org/article/12-climate-engine-apis
+  - type: APIReference
+    url: https://api.climateengine.org/docs
+  - type: PostmanCollection
+    url: collections/climate-engine.postman_collection.json
+  - type: OpenCollection
+    url: collections/climate-engine.opencollection.json
+  - type: Documentation
+    url: https://docs.climateengine.org
+  - type: Documentation
+    url: https://support.climateengine.org/article/144-api-quota-policy
+- aid: climate-engine:climate-engine-raster-api
+  name: Climate Engine Raster API
+  description: Earth Engine map IDs and asynchronous raster exports.
   humanURL: https://api.climateengine.org/docs
   baseURL: https://api.climateengine.org
-  properties:
-  - url: https://docs.climateengine.org
-    type: Documentation
-  - url: https://api.climateengine.org/docs
-    type: APIReference
-  - url: openapi/climate-engine-openapi.yml
-    type: OpenAPI
-  - url: collections/climate-engine.postman_collection.json
-    type: PostmanCollection
-  - url: collections/climate-engine.opencollection.json
-    type: OpenCollection
-  description: Exposes dataset metadata - available dates, variables, county names,
-    and the percentile and statistic classifications used to color and classify raster
-    products.
-- aid: climate-engine:climate-engine-account-api
-  name: Climate Engine Account API
   tags:
-  - Account
-  - API Key
-  - Quotas
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Raster
+  properties:
+  - type: OpenAPI
+    url: openapi/climate-engine-raster-api-openapi.yml
+  - type: Documentation
+    url: https://support.climateengine.org/article/12-climate-engine-apis
+  - type: APIReference
+    url: https://api.climateengine.org/docs
+  - type: PostmanCollection
+    url: collections/climate-engine.postman_collection.json
+  - type: OpenCollection
+    url: collections/climate-engine.opencollection.json
+  - type: Documentation
+    url: https://docs.climateengine.org
+  - type: Documentation
+    url: https://support.climateengine.org/article/144-api-quota-policy
+- aid: climate-engine:climate-engine-reports-api
+  name: Climate Engine Reports API
+  description: Pre-built drought, vegetation, and site characterization reports.
   humanURL: https://api.climateengine.org/docs
   baseURL: https://api.climateengine.org
+  tags:
+  - Reports
   properties:
-  - url: https://support.climateengine.org/article/144-api-quota-policy
-    type: Documentation
-  - url: https://api.climateengine.org/docs
-    type: APIReference
-  - url: openapi/climate-engine-openapi.yml
-    type: OpenAPI
-  - url: collections/climate-engine.postman_collection.json
-    type: PostmanCollection
-  - url: collections/climate-engine.opencollection.json
-    type: OpenCollection
-  description: Validates API keys, reports key expiration, and returns the authenticated
-    user's quota usage and limits.
+  - type: OpenAPI
+    url: openapi/climate-engine-reports-api-openapi.yml
+  - type: Documentation
+    url: https://support.climateengine.org/article/12-climate-engine-apis
+  - type: APIReference
+    url: https://api.climateengine.org/docs
+  - type: PostmanCollection
+    url: collections/climate-engine.postman_collection.json
+  - type: OpenCollection
+    url: collections/climate-engine.opencollection.json
+  - type: Documentation
+    url: https://docs.climateengine.org
+  - type: Documentation
+    url: https://support.climateengine.org/article/144-api-quota-policy
+- aid: climate-engine:climate-engine-timeseries-api
+  name: Climate Engine Timeseries API
+  description: Native, interannual, standard-index, and regression time series.
+  humanURL: https://api.climateengine.org/docs
+  baseURL: https://api.climateengine.org
+  tags:
+  - Timeseries
+  properties:
+  - type: OpenAPI
+    url: openapi/climate-engine-timeseries-api-openapi.yml
+  - type: Documentation
+    url: https://support.climateengine.org/article/12-climate-engine-apis
+  - type: APIReference
+    url: https://api.climateengine.org/docs
+  - type: PostmanCollection
+    url: collections/climate-engine.postman_collection.json
+  - type: OpenCollection
+    url: collections/climate-engine.opencollection.json
+  - type: Documentation
+    url: https://docs.climateengine.org
+  - type: Documentation
+    url: https://support.climateengine.org/article/144-api-quota-policy
+- aid: climate-engine:climate-engine-zonal-statistics-api
+  name: Climate Engine Zonal Statistics API
+  description: Statistics reduced over coordinates and feature collections.
+  humanURL: https://api.climateengine.org/docs
+  baseURL: https://api.climateengine.org
+  tags:
+  - Zonal Statistics
+  properties:
+  - type: OpenAPI
+    url: openapi/climate-engine-zonal-statistics-api-openapi.yml
+  - type: Documentation
+    url: https://support.climateengine.org/article/12-climate-engine-apis
+  - type: APIReference
+    url: https://api.climateengine.org/docs
+  - type: PostmanCollection
+    url: collections/climate-engine.postman_collection.json
+  - type: OpenCollection
+    url: collections/climate-engine.opencollection.json
+  - type: Documentation
+    url: https://docs.climateengine.org
+  - type: Documentation
+    url: https://support.climateengine.org/article/144-api-quota-policy
 common:
 - type: AgenticAccess
   url: agentic-access/climate-engine-agentic-access.yml
