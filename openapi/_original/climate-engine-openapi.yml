@@ -1,0 +1,711 @@
+openapi: 3.0.1
+info:
+  title: 'Climate Engine API v1: climate-engine-pro'
+  description: >-
+    On-demand geospatial processing of satellite and gridded climate datasets on
+    Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles
+    (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and
+    dataset metadata over point coordinates and GeoJSON feature collections.
+    Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.
+  termsOfService: https://www.climateengine.com
+  contact:
+    name: Climate Engine
+    url: https://support.climateengine.org
+  version: 0.1.0
+servers:
+  - url: https://api.climateengine.org
+    description: Climate Engine production API
+security:
+  - APIKeyHeader: []
+tags:
+  - name: Home
+    description: Key validation, expiration, and user quotas.
+  - name: Metadata
+    description: Dataset dates, variables, county names, and raster classifications.
+  - name: Timeseries
+    description: Native, interannual, standard-index, and regression time series.
+  - name: Zonal Statistics
+    description: Statistics reduced over coordinates and feature collections.
+  - name: Raster
+    description: Earth Engine map IDs and asynchronous raster exports.
+  - name: Reports
+    description: Pre-built drought, vegetation, and site characterization reports.
+paths:
+  /home/validate_key:
+    get:
+      operationId: validateKey
+      tags:
+        - Home
+      summary: Validate Token
+      description: Validates the API key supplied in the Authorization header.
+      responses:
+        '200':
+          description: Key is valid.
+          content:
+            application/json:
+              schema:
+                type: object
+        '403':
+          description: Invalid or missing API key.
+  /home/key_expiration:
+    get:
+      operationId: keyExpiration
+      tags:
+        - Home
+      summary: Key Expiration
+      description: Returns the expiration date of the authenticated API key.
+      responses:
+        '200':
+          description: Expiration information.
+          content:
+            application/json:
+              schema:
+                type: object
+  /home/user/quotas:
+    get:
+      operationId: userQuotas
+      tags:
+        - Home
+      summary: User Quotas
+      description: Returns the authenticated user's quota usage and limits.
+      responses:
+        '200':
+          description: Quota usage and limits.
+          content:
+            application/json:
+              schema:
+                type: object
+  /metadata/dataset_dates:
+    get:
+      operationId: metadataDatasetDates
+      tags:
+        - Metadata
+      summary: Metadata Dataset Dates
+      description: Returns the available date range for a dataset.
+      parameters:
+        - $ref: '#/components/parameters/Dataset'
+        - $ref: '#/components/parameters/ExportFormat'
+      responses:
+        '200':
+          description: Date range for the dataset.
+          content:
+            application/json:
+              schema:
+                type: object
+  /metadata/dataset_variables:
+    get:
+      operationId: metadataDatasetVariables
+      tags:
+        - Metadata
+      summary: Metadata Dataset Variables
+      description: Returns the variables available for a dataset.
+      parameters:
+        - $ref: '#/components/parameters/Dataset'
+        - $ref: '#/components/parameters/ExportFormat'
+      responses:
+        '200':
+          description: Variables available for the dataset.
+          content:
+            application/json:
+              schema:
+                type: object
+  /metadata/county_names:
+    get:
+      operationId: metadataCountyNames
+      tags:
+        - Metadata
+      summary: County Names
+      description: Returns county names usable as predefined feature regions.
+      parameters:
+        - $ref: '#/components/parameters/ExportFormat'
+      responses:
+        '200':
+          description: County names.
+          content:
+            application/json:
+              schema:
+                type: object
+  /timeseries/native/coordinates:
+    post:
+      operationId: timeseriesNativeCoordinates
+      tags:
+        - Timeseries
+      summary: Native Coordinates
+      description: >-
+        Generates a raw (native) time series for a dataset over point or polygon
+        coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NativeCoordinates'
+      responses:
+        '200':
+          description: Native time series.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /timeseries/native/feature_collection:
+    post:
+      operationId: timeseriesNativeFeatureCollection
+      tags:
+        - Timeseries
+      summary: Native Feature Collection
+      description: >-
+        Generates a raw (native) time series for a dataset reduced over a GeoJSON
+        feature collection.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NativeFeatureCollection'
+      responses:
+        '200':
+          description: Native time series.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /timeseries/native/forecasts/coordinates:
+    post:
+      operationId: timeseriesNativeForecastCoordinates
+      tags:
+        - Timeseries
+      summary: Forecast Coordinates
+      description: Generates a forecast time series over point coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NativeCoordinates'
+      responses:
+        '200':
+          description: Forecast time series.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /timeseries/interannual/coordinates:
+    post:
+      operationId: timeseriesInterannualCoordinates
+      tags:
+        - Timeseries
+      summary: Interannual Coordinates
+      description: Generates an interannual time series over point coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NativeCoordinates'
+      responses:
+        '200':
+          description: Interannual time series.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /timeseries/regression/coordinates:
+    post:
+      operationId: timeseriesRegressionCoordinates
+      tags:
+        - Timeseries
+      summary: Regression Coordinates
+      description: >-
+        Generates a regression time series between two variables over point
+        coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NativeCoordinates'
+      responses:
+        '200':
+          description: Regression time series.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /timeseries/standard_index/coordinates:
+    post:
+      operationId: timeseriesStandardIndexCoordinates
+      tags:
+        - Timeseries
+      summary: Standard Index Coordinates
+      description: >-
+        Generates a standardized-index (e.g. SPI/SPEI) time series over point
+        coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NativeCoordinates'
+      responses:
+        '200':
+          description: Standard index time series.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /zonal_stats/static_dataset/coordinates:
+    post:
+      operationId: zonalStatsStaticDatasetCoordinates
+      tags:
+        - Zonal Statistics
+      summary: Static Dataset Coordinates
+      description: >-
+        Computes zonal statistics for a static (no time dependence) dataset over
+        coordinates.
+      parameters:
+        - $ref: '#/components/parameters/Coordinates'
+        - $ref: '#/components/parameters/SimplifyGeometry'
+        - $ref: '#/components/parameters/Buffer'
+        - name: area_reducer
+          in: query
+          required: false
+          schema:
+            type: string
+            default: mean
+          description: Spatial reducer applied over the geometry (e.g. mean, max, min).
+        - $ref: '#/components/parameters/Dataset'
+        - $ref: '#/components/parameters/Variable'
+        - $ref: '#/components/parameters/ExportFormat'
+      responses:
+        '200':
+          description: Zonal statistics result.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /zonal_stats/pixel_count/coordinates:
+    post:
+      operationId: zonalStatsPixelCountCoordinates
+      tags:
+        - Zonal Statistics
+      summary: Pixel Count Coordinates
+      description: >-
+        Computes the number of pixels in each category (e.g. drought category) over
+        coordinates.
+      parameters:
+        - $ref: '#/components/parameters/Coordinates'
+        - $ref: '#/components/parameters/Dataset'
+        - $ref: '#/components/parameters/Variable'
+      responses:
+        '200':
+          description: Pixel count statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /zonal_stats/group_by/feature_collection:
+    post:
+      operationId: zonalStatsGroupByFeatureCollection
+      tags:
+        - Zonal Statistics
+      summary: Group By Feature Collection
+      description: >-
+        Computes grouped zonal statistics over a GeoJSON feature collection.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Grouped zonal statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /zonal_stats/temporal_dataset/coordinates:
+    get:
+      operationId: zonalStatsTemporalDatasetCoordinates
+      tags:
+        - Zonal Statistics
+      summary: Temporal Dataset Coordinates
+      description: >-
+        Computes temporal-dataset zonal statistics reduced over coordinate
+        geometries.
+      parameters:
+        - $ref: '#/components/parameters/Coordinates'
+        - $ref: '#/components/parameters/Dataset'
+        - $ref: '#/components/parameters/Variable'
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
+      responses:
+        '200':
+          description: Temporal zonal statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+  /raster/mapid/values:
+    get:
+      operationId: rasterMapidValues
+      tags:
+        - Raster
+      summary: Mapid Values
+      description: >-
+        Returns an Earth Engine map ID and tile URL template for the raw values of
+        a dataset variable over a date range, for client-side tile rendering.
+      parameters:
+        - $ref: '#/components/parameters/Dataset'
+        - $ref: '#/components/parameters/Variable'
+        - name: temporal_statistic
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Temporal reducer applied across the date range (e.g. mean, total).
+        - $ref: '#/components/parameters/StartDate'
+        - $ref: '#/components/parameters/EndDate'
+        - name: bounding_box
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+          description: Optional bounding box to constrain the rendered region.
+        - name: colormap_min_max
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+          description: Min,max values for the color map.
+        - name: colormap_palette
+          in: query
+          required: false
+          schema:
+            type: string
+            nullable: true
+          description: Comma-separated hex colors for the color map palette.
+      responses:
+        '200':
+          description: Map ID and tile URL template.
+          content:
+            application/json:
+              schema:
+                type: object
+  /raster/export/values:
+    post:
+      operationId: rasterExportValues
+      tags:
+        - Raster
+      summary: Export Values
+      description: >-
+        Queues an asynchronous raster export of the raw values of a dataset variable
+        over a date range and region. Track progress via the export task endpoints.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Export task accepted.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /raster/export/task_update:
+    get:
+      operationId: rasterExportTaskUpdate
+      tags:
+        - Raster
+      summary: Export Task Update
+      description: Returns the status of a queued raster export task.
+      parameters:
+        - name: task_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Identifier of the export task to check.
+      responses:
+        '200':
+          description: Task status.
+          content:
+            application/json:
+              schema:
+                type: object
+  /raster/export/task_queue:
+    get:
+      operationId: rasterExportTaskQueue
+      tags:
+        - Raster
+      summary: Export Task Queue
+      description: Returns the authenticated user's queued raster export tasks.
+      responses:
+        '200':
+          description: Task queue.
+          content:
+            application/json:
+              schema:
+                type: object
+  /reports/drought/coordinates:
+    post:
+      operationId: reportsDroughtCoordinates
+      tags:
+        - Reports
+      summary: Drought Coordinates
+      description: Produces a pre-built drought report over point coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Drought report.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /reports/vegetation_production/coordinates:
+    post:
+      operationId: reportsVegetationProductionCoordinates
+      tags:
+        - Reports
+      summary: Vegetation Production Coordinates
+      description: Produces a pre-built vegetation production report over point coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Vegetation production report.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+  /reports/site_characterization/coordinates:
+    post:
+      operationId: reportsSiteCharacterizationCoordinates
+      tags:
+        - Reports
+      summary: Site Characterization Coordinates
+      description: Produces a pre-built site characterization report over point coordinates.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Site characterization report.
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          $ref: '#/components/responses/ValidationError'
+components:
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >-
+        API key issued by the Climate Engine team, sent in the Authorization
+        header. Request a key from the ClimateEngine.org team.
+  parameters:
+    Coordinates:
+      name: coordinates
+      in: query
+      required: false
+      schema:
+        type: string
+        default: '[[-121.61,38.78]]'
+      description: Point or polygon coordinates as a JSON-encoded array.
+    Dataset:
+      name: dataset
+      in: query
+      required: false
+      schema:
+        type: string
+        default: GRIDMET
+      description: Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS).
+    Variable:
+      name: variable
+      in: query
+      required: false
+      schema:
+        type: string
+        default: tmmn, tmmx
+      description: Comma-separated variable name(s).
+    StartDate:
+      name: start_date
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Start date (YYYY-MM-DD).
+    EndDate:
+      name: end_date
+      in: query
+      required: false
+      schema:
+        type: string
+      description: End date (YYYY-MM-DD).
+    SimplifyGeometry:
+      name: simplify_geometry
+      in: query
+      required: false
+      schema:
+        type: string
+        nullable: true
+      description: maxError in meters for geometry simplification.
+    Buffer:
+      name: buffer
+      in: query
+      required: false
+      schema:
+        type: integer
+        nullable: true
+      description: Buffer in meters applied to the geometry.
+    ExportFormat:
+      name: export_format
+      in: query
+      required: false
+      schema:
+        type: string
+        nullable: true
+      description: Optional response/export format.
+  responses:
+    ValidationError:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
+  schemas:
+    NativeCoordinates:
+      type: object
+      properties:
+        coordinates:
+          type: string
+          title: Coordinates
+          description: Point or polygon coordinates as a JSON-encoded array.
+          default: '[[-121.61,38.78]]'
+        simplify_geometry:
+          type: integer
+          nullable: true
+          title: Simplify Geometry
+          description: maxError in meters for ee.Feature.simplify.
+        buffer:
+          type: integer
+          nullable: true
+          title: Buffer
+          description: Buffer in meters.
+        area_reducer:
+          type: string
+          title: Area Reducer
+          default: mean
+        dataset:
+          type: string
+          title: Dataset
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          default: tmmn, tmmx
+        compute_trends:
+          type: string
+          nullable: true
+          title: Compute Trends
+          description: 'Comma-separated trends to compute. Options: polyfit, sens_slope.'
+          default: ''
+        start_date:
+          type: string
+          nullable: true
+          title: Start Date
+        end_date:
+          type: string
+          nullable: true
+          title: End Date
+    NativeFeatureCollection:
+      type: object
+      properties:
+        feature_collection_id:
+          type: string
+          nullable: true
+          title: Feature Collection Id
+          description: Earth Engine feature collection asset ID.
+        dataset:
+          type: string
+          title: Dataset
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          default: tmmn, tmmx
+        area_reducer:
+          type: string
+          title: Area Reducer
+          default: mean
+        start_date:
+          type: string
+          nullable: true
+          title: Start Date
+        end_date:
+          type: string
+          nullable: true
+          title: End Date
+    ValidationError:
+      type: object
+      title: ValidationError
+      properties:
+        loc:
+          type: array
+          items:
+            type: string
+        msg:
+          type: string
+        type:
+          type: string
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'

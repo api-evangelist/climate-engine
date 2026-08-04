@@ -1,0 +1,24 @@
+{
+  "provider": "climate-engine",
+  "sources": [
+    "climate-engine-home-api-openapi.yml",
+    "climate-engine-metadata-api-openapi.yml",
+    "climate-engine-raster-api-openapi.yml",
+    "climate-engine-reports-api-openapi.yml",
+    "climate-engine-timeseries-api-openapi.yml",
+    "climate-engine-zonal-statistics-api-openapi.yml"
+  ],
+  "outputs": [
+    "climate-engine-home-api-openapi.yml",
+    "climate-engine-metadata-api-openapi.yml",
+    "climate-engine-raster-api-openapi.yml",
+    "climate-engine-reports-api-openapi.yml",
+    "climate-engine-timeseries-api-openapi.yml",
+    "climate-engine-zonal-statistics-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
