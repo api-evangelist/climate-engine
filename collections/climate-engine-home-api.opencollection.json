@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Climate Engine API v1: climate-engine-pro Home API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Home",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/home/validate_key"
+          },
+          "docs": "Validates the API key supplied in the Authorization header."
+        },
+        {
+          "info": {
+            "name": "Key Expiration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/home/key_expiration"
+          },
+          "docs": "Returns the expiration date of the authenticated API key."
+        },
+        {
+          "info": {
+            "name": "User Quotas",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/home/user/quotas"
+          },
+          "docs": "Returns the authenticated user's quota usage and limits."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

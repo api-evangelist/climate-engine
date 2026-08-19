@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Climate Engine API v1: climate-engine-pro Home Metadata API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Metadata Dataset Dates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/metadata/dataset_dates",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "query",
+                "description": "Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS)."
+              },
+              {
+                "name": "export_format",
+                "value": "",
+                "type": "query",
+                "description": "Optional response/export format."
+              }
+            ]
+          },
+          "docs": "Returns the available date range for a dataset."
+        },
+        {
+          "info": {
+            "name": "Metadata Dataset Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/metadata/dataset_variables",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "query",
+                "description": "Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS)."
+              },
+              {
+                "name": "export_format",
+                "value": "",
+                "type": "query",
+                "description": "Optional response/export format."
+              }
+            ]
+          },
+          "docs": "Returns the variables available for a dataset."
+        },
+        {
+          "info": {
+            "name": "County Names",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/metadata/county_names",
+            "params": [
+              {
+                "name": "export_format",
+                "value": "",
+                "type": "query",
+                "description": "Optional response/export format."
+              }
+            ]
+          },
+          "docs": "Returns county names usable as predefined feature regions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

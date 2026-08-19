@@ -1,0 +1,545 @@
+{
+  "item": [
+    {
+      "id": "e5bd2356-aa82-4e3b-a6e0-dacbd2b7b190",
+      "name": "Raster",
+      "description": {
+        "content": "Earth Engine map IDs and asynchronous raster exports.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "383d1a4e-a334-40d9-adaf-0e1358a472ea",
+          "name": "Mapid Values",
+          "request": {
+            "name": "Mapid Values",
+            "description": {
+              "content": "Returns an Earth Engine map ID and tile URL template for the raw values of a dataset variable over a date range, for client-side tile rendering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "raster",
+                "mapid",
+                "values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dataset",
+                  "value": "GRIDMET",
+                  "description": "Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS)."
+                },
+                {
+                  "disabled": false,
+                  "key": "variable",
+                  "value": "tmmn, tmmx",
+                  "description": "Comma-separated variable name(s)."
+                },
+                {
+                  "disabled": false,
+                  "key": "temporal_statistic",
+                  "value": "<string>",
+                  "description": "Temporal reducer applied across the date range (e.g. mean, total)."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<string>",
+                  "description": "Start date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string>",
+                  "description": "End date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "bounding_box",
+                  "value": "<string>",
+                  "description": "Optional bounding box to constrain the rendered region."
+                },
+                {
+                  "disabled": false,
+                  "key": "colormap_min_max",
+                  "value": "<string>",
+                  "description": "Min,max values for the color map."
+                },
+                {
+                  "disabled": false,
+                  "key": "colormap_palette",
+                  "value": "<string>",
+                  "description": "Comma-separated hex colors for the color map palette."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22cd3837-c720-4f1c-9ca1-9b9e0c65aaab",
+              "name": "Map ID and tile URL template.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "raster",
+                    "mapid",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dataset",
+                      "value": "GRIDMET"
+                    },
+                    {
+                      "key": "variable",
+                      "value": "tmmn, tmmx"
+                    },
+                    {
+                      "key": "temporal_statistic",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bounding_box",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "colormap_min_max",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "colormap_palette",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16aa7d11-7b89-4c28-b466-204bd8d0f6f6",
+          "name": "Export Values",
+          "request": {
+            "name": "Export Values",
+            "description": {
+              "content": "Queues an asynchronous raster export of the raw values of a dataset variable over a date range and region. Track progress via the export task endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "raster",
+                "export",
+                "values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "449aca4f-b005-440a-b556-caf560531284",
+              "name": "Export task accepted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "raster",
+                    "export",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05002a4f-03e0-4e95-9ef1-1aed9b4cf2d2",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "raster",
+                    "export",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49513688-f719-42bc-b822-25ccf89de9d4",
+          "name": "Export Task Update",
+          "request": {
+            "name": "Export Task Update",
+            "description": {
+              "content": "Returns the status of a queued raster export task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "raster",
+                "export",
+                "task_update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "task_id",
+                  "value": "<string>",
+                  "description": "Identifier of the export task to check."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "349d69ca-d501-4883-9c77-32228ea7196d",
+              "name": "Task status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "raster",
+                    "export",
+                    "task_update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "task_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ee836e4-1daf-4ca7-b9be-e09e9ae480c9",
+          "name": "Export Task Queue",
+          "request": {
+            "name": "Export Task Queue",
+            "description": {
+              "content": "Returns the authenticated user's queued raster export tasks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "raster",
+                "export",
+                "task_queue"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fda20b6c-f37c-414d-af86-a52e2b295cfc",
+              "name": "Task queue.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "raster",
+                    "export",
+                    "task_queue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.climateengine.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "93e82d8a-b2b0-4411-930e-0a8d26962f54",
+    "name": "Climate Engine API v1: climate-engine-pro Home Raster API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.\n\nContact Support:\n Name: Climate Engine",
+      "type": "text/plain"
+    }
+  }
+}

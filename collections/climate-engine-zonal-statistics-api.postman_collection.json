@@ -1,0 +1,739 @@
+{
+  "item": [
+    {
+      "id": "4ec08b2f-d893-4eaf-b3a6-b0a5034375d2",
+      "name": "Zonal Statistics",
+      "description": {
+        "content": "Statistics reduced over coordinates and feature collections.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c8dd421a-ea22-4359-a946-5c8b58021944",
+          "name": "Static Dataset Coordinates",
+          "request": {
+            "name": "Static Dataset Coordinates",
+            "description": {
+              "content": "Computes zonal statistics for a static (no time dependence) dataset over coordinates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "zonal_stats",
+                "static_dataset",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "coordinates",
+                  "value": "[[-121.61,38.78]]",
+                  "description": "Point or polygon coordinates as a JSON-encoded array."
+                },
+                {
+                  "disabled": false,
+                  "key": "simplify_geometry",
+                  "value": "<string>",
+                  "description": "maxError in meters for geometry simplification."
+                },
+                {
+                  "disabled": false,
+                  "key": "buffer",
+                  "value": "<integer>",
+                  "description": "Buffer in meters applied to the geometry."
+                },
+                {
+                  "disabled": false,
+                  "key": "area_reducer",
+                  "value": "mean",
+                  "description": "Spatial reducer applied over the geometry (e.g. mean, max, min)."
+                },
+                {
+                  "disabled": false,
+                  "key": "dataset",
+                  "value": "GRIDMET",
+                  "description": "Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS)."
+                },
+                {
+                  "disabled": false,
+                  "key": "variable",
+                  "value": "tmmn, tmmx",
+                  "description": "Comma-separated variable name(s)."
+                },
+                {
+                  "disabled": false,
+                  "key": "export_format",
+                  "value": "<string>",
+                  "description": "Optional response/export format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ac8115e-5ea6-4a8f-bfac-d729ae3051cc",
+              "name": "Zonal statistics result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "zonal_stats",
+                    "static_dataset",
+                    "coordinates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "coordinates",
+                      "value": "[[-121.61,38.78]]"
+                    },
+                    {
+                      "key": "simplify_geometry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buffer",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "area_reducer",
+                      "value": "mean"
+                    },
+                    {
+                      "key": "dataset",
+                      "value": "GRIDMET"
+                    },
+                    {
+                      "key": "variable",
+                      "value": "tmmn, tmmx"
+                    },
+                    {
+                      "key": "export_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d534bc8-2588-4645-aa22-7118eefa9284",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "zonal_stats",
+                    "static_dataset",
+                    "coordinates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "coordinates",
+                      "value": "[[-121.61,38.78]]"
+                    },
+                    {
+                      "key": "simplify_geometry",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buffer",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "area_reducer",
+                      "value": "mean"
+                    },
+                    {
+                      "key": "dataset",
+                      "value": "GRIDMET"
+                    },
+                    {
+                      "key": "variable",
+                      "value": "tmmn, tmmx"
+                    },
+                    {
+                      "key": "export_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a7aa30e-9806-4d75-adb8-3d0f48239d1d",
+          "name": "Pixel Count Coordinates",
+          "request": {
+            "name": "Pixel Count Coordinates",
+            "description": {
+              "content": "Computes the number of pixels in each category (e.g. drought category) over coordinates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "zonal_stats",
+                "pixel_count",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "coordinates",
+                  "value": "[[-121.61,38.78]]",
+                  "description": "Point or polygon coordinates as a JSON-encoded array."
+                },
+                {
+                  "disabled": false,
+                  "key": "dataset",
+                  "value": "GRIDMET",
+                  "description": "Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS)."
+                },
+                {
+                  "disabled": false,
+                  "key": "variable",
+                  "value": "tmmn, tmmx",
+                  "description": "Comma-separated variable name(s)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6ee0e9f9-78cc-4142-a190-c780785ebf60",
+              "name": "Pixel count statistics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "zonal_stats",
+                    "pixel_count",
+                    "coordinates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "coordinates",
+                      "value": "[[-121.61,38.78]]"
+                    },
+                    {
+                      "key": "dataset",
+                      "value": "GRIDMET"
+                    },
+                    {
+                      "key": "variable",
+                      "value": "tmmn, tmmx"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c55d4fc-706f-46a7-9b1f-e6f541cf2bed",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "zonal_stats",
+                    "pixel_count",
+                    "coordinates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "coordinates",
+                      "value": "[[-121.61,38.78]]"
+                    },
+                    {
+                      "key": "dataset",
+                      "value": "GRIDMET"
+                    },
+                    {
+                      "key": "variable",
+                      "value": "tmmn, tmmx"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d075bcff-3106-4107-b4a8-6655d2fcd2d1",
+          "name": "Group By Feature Collection",
+          "request": {
+            "name": "Group By Feature Collection",
+            "description": {
+              "content": "Computes grouped zonal statistics over a GeoJSON feature collection.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "zonal_stats",
+                "group_by",
+                "feature_collection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "47ed293c-1100-4682-8f9c-7742981c14d6",
+              "name": "Grouped zonal statistics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "zonal_stats",
+                    "group_by",
+                    "feature_collection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae36b49d-dd27-4ed7-88c7-299324b20710",
+              "name": "Validation error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "zonal_stats",
+                    "group_by",
+                    "feature_collection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dfd9b4d3-6a93-478c-acba-f21541d25b2f",
+          "name": "Temporal Dataset Coordinates",
+          "request": {
+            "name": "Temporal Dataset Coordinates",
+            "description": {
+              "content": "Computes temporal-dataset zonal statistics reduced over coordinate geometries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "zonal_stats",
+                "temporal_dataset",
+                "coordinates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "coordinates",
+                  "value": "[[-121.61,38.78]]",
+                  "description": "Point or polygon coordinates as a JSON-encoded array."
+                },
+                {
+                  "disabled": false,
+                  "key": "dataset",
+                  "value": "GRIDMET",
+                  "description": "Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS)."
+                },
+                {
+                  "disabled": false,
+                  "key": "variable",
+                  "value": "tmmn, tmmx",
+                  "description": "Comma-separated variable name(s)."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<string>",
+                  "description": "Start date (YYYY-MM-DD)."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string>",
+                  "description": "End date (YYYY-MM-DD)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8158af22-4f1e-4e1b-aa94-297ae079b019",
+              "name": "Temporal zonal statistics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "zonal_stats",
+                    "temporal_dataset",
+                    "coordinates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "coordinates",
+                      "value": "[[-121.61,38.78]]"
+                    },
+                    {
+                      "key": "dataset",
+                      "value": "GRIDMET"
+                    },
+                    {
+                      "key": "variable",
+                      "value": "tmmn, tmmx"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.climateengine.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "70615835-7693-45fd-b804-ba2430fecc90",
+    "name": "Climate Engine API v1: climate-engine-pro Home Zonal Statistics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.\n\nContact Support:\n Name: Climate Engine",
+      "type": "text/plain"
+    }
+  }
+}

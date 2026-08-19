@@ -1,0 +1,170 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Climate Engine API v1: climate-engine-pro Home Zonal Statistics API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Zonal Statistics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Static Dataset Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/zonal_stats/static_dataset/coordinates",
+            "params": [
+              {
+                "name": "coordinates",
+                "value": "",
+                "type": "query",
+                "description": "Point or polygon coordinates as a JSON-encoded array."
+              },
+              {
+                "name": "simplify_geometry",
+                "value": "",
+                "type": "query",
+                "description": "maxError in meters for geometry simplification."
+              },
+              {
+                "name": "buffer",
+                "value": "",
+                "type": "query",
+                "description": "Buffer in meters applied to the geometry."
+              },
+              {
+                "name": "area_reducer",
+                "value": "",
+                "type": "query",
+                "description": "Spatial reducer applied over the geometry (e.g. mean, max, min)."
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "query",
+                "description": "Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS)."
+              },
+              {
+                "name": "variable",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated variable name(s)."
+              },
+              {
+                "name": "export_format",
+                "value": "",
+                "type": "query",
+                "description": "Optional response/export format."
+              }
+            ]
+          },
+          "docs": "Computes zonal statistics for a static (no time dependence) dataset over coordinates."
+        },
+        {
+          "info": {
+            "name": "Pixel Count Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/zonal_stats/pixel_count/coordinates",
+            "params": [
+              {
+                "name": "coordinates",
+                "value": "",
+                "type": "query",
+                "description": "Point or polygon coordinates as a JSON-encoded array."
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "query",
+                "description": "Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS)."
+              },
+              {
+                "name": "variable",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated variable name(s)."
+              }
+            ]
+          },
+          "docs": "Computes the number of pixels in each category (e.g. drought category) over coordinates."
+        },
+        {
+          "info": {
+            "name": "Group By Feature Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/zonal_stats/group_by/feature_collection",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Computes grouped zonal statistics over a GeoJSON feature collection."
+        },
+        {
+          "info": {
+            "name": "Temporal Dataset Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/zonal_stats/temporal_dataset/coordinates",
+            "params": [
+              {
+                "name": "coordinates",
+                "value": "",
+                "type": "query",
+                "description": "Point or polygon coordinates as a JSON-encoded array."
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "query",
+                "description": "Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS)."
+              },
+              {
+                "name": "variable",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated variable name(s)."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)."
+              }
+            ]
+          },
+          "docs": "Computes temporal-dataset zonal statistics reduced over coordinate geometries."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

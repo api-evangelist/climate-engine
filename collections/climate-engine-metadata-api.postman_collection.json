@@ -1,0 +1,345 @@
+{
+  "item": [
+    {
+      "id": "24ab4e15-17c9-4d5f-a845-61fad7a5b3a1",
+      "name": "Metadata",
+      "description": {
+        "content": "Dataset dates, variables, county names, and raster classifications.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd8e41d5-a56c-4b64-ad7a-7c59d69c2628",
+          "name": "Metadata Dataset Dates",
+          "request": {
+            "name": "Metadata Dataset Dates",
+            "description": {
+              "content": "Returns the available date range for a dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "dataset_dates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dataset",
+                  "value": "GRIDMET",
+                  "description": "Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS)."
+                },
+                {
+                  "disabled": false,
+                  "key": "export_format",
+                  "value": "<string>",
+                  "description": "Optional response/export format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd1ae085-761b-4a7b-97b5-9a0178a9d35b",
+              "name": "Date range for the dataset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "dataset_dates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dataset",
+                      "value": "GRIDMET"
+                    },
+                    {
+                      "key": "export_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6daf568c-bff1-4721-af51-4ecdef4a425d",
+          "name": "Metadata Dataset Variables",
+          "request": {
+            "name": "Metadata Dataset Variables",
+            "description": {
+              "content": "Returns the variables available for a dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "dataset_variables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dataset",
+                  "value": "GRIDMET",
+                  "description": "Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS)."
+                },
+                {
+                  "disabled": false,
+                  "key": "export_format",
+                  "value": "<string>",
+                  "description": "Optional response/export format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a2f49216-a658-44b6-9774-b15f0a5ca760",
+              "name": "Variables available for the dataset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "dataset_variables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dataset",
+                      "value": "GRIDMET"
+                    },
+                    {
+                      "key": "export_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f17d186b-3e55-42ba-bcfa-8bd19584abe0",
+          "name": "County Names",
+          "request": {
+            "name": "County Names",
+            "description": {
+              "content": "Returns county names usable as predefined feature regions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "metadata",
+                "county_names"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "export_format",
+                  "value": "<string>",
+                  "description": "Optional response/export format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afeaf994-ea93-41a5-aa45-3b2b315710fb",
+              "name": "County names.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadata",
+                    "county_names"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "export_format",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.climateengine.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "79b0a9ac-f49b-4f8d-bcdb-f89771a15e40",
+    "name": "Climate Engine API v1: climate-engine-pro Home Metadata API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.\n\nContact Support:\n Name: Climate Engine",
+      "type": "text/plain"
+    }
+  }
+}

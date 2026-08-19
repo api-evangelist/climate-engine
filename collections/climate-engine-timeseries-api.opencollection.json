@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Climate Engine API v1: climate-engine-pro Home Timeseries API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Timeseries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Native Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/timeseries/native/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a raw (native) time series for a dataset over point or polygon coordinates."
+        },
+        {
+          "info": {
+            "name": "Native Feature Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/timeseries/native/feature_collection",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a raw (native) time series for a dataset reduced over a GeoJSON feature collection."
+        },
+        {
+          "info": {
+            "name": "Forecast Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/timeseries/native/forecasts/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a forecast time series over point coordinates."
+        },
+        {
+          "info": {
+            "name": "Interannual Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/timeseries/interannual/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates an interannual time series over point coordinates."
+        },
+        {
+          "info": {
+            "name": "Regression Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/timeseries/regression/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a regression time series between two variables over point coordinates."
+        },
+        {
+          "info": {
+            "name": "Standard Index Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/timeseries/standard_index/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a standardized-index (e.g. SPI/SPEI) time series over point coordinates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

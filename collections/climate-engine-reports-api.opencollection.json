@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Climate Engine API v1: climate-engine-pro Home Reports API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Drought Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/reports/drought/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Produces a pre-built drought report over point coordinates."
+        },
+        {
+          "info": {
+            "name": "Vegetation Production Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/reports/vegetation_production/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Produces a pre-built vegetation production report over point coordinates."
+        },
+        {
+          "info": {
+            "name": "Site Characterization Coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/reports/site_characterization/coordinates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Produces a pre-built site characterization report over point coordinates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

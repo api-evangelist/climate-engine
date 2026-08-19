@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Climate Engine API v1: climate-engine-pro Home Raster API",
+    "version": "0.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Raster",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Mapid Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/raster/mapid/values",
+            "params": [
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "query",
+                "description": "Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS)."
+              },
+              {
+                "name": "variable",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated variable name(s)."
+              },
+              {
+                "name": "temporal_statistic",
+                "value": "",
+                "type": "query",
+                "description": "Temporal reducer applied across the date range (e.g. mean, total)."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date (YYYY-MM-DD)."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date (YYYY-MM-DD)."
+              },
+              {
+                "name": "bounding_box",
+                "value": "",
+                "type": "query",
+                "description": "Optional bounding box to constrain the rendered region."
+              },
+              {
+                "name": "colormap_min_max",
+                "value": "",
+                "type": "query",
+                "description": "Min,max values for the color map."
+              },
+              {
+                "name": "colormap_palette",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated hex colors for the color map palette."
+              }
+            ]
+          },
+          "docs": "Returns an Earth Engine map ID and tile URL template for the raw values of a dataset variable over a date range, for client-side tile rendering."
+        },
+        {
+          "info": {
+            "name": "Export Values",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.climateengine.org/raster/export/values",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Queues an asynchronous raster export of the raw values of a dataset variable over a date range and region. Track progress via the export task endpoints."
+        },
+        {
+          "info": {
+            "name": "Export Task Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/raster/export/task_update",
+            "params": [
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "query",
+                "description": "Identifier of the export task to check."
+              }
+            ]
+          },
+          "docs": "Returns the status of a queued raster export task."
+        },
+        {
+          "info": {
+            "name": "Export Task Queue",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.climateengine.org/raster/export/task_queue"
+          },
+          "docs": "Returns the authenticated user's queued raster export tasks."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
