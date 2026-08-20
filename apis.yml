@@ -37,6 +37,8 @@ apis:
   humanURL: https://api.climateengine.org/docs
   baseURL: https://api.climateengine.org
   tags:
+  - Homes
+  tags_raw:
   - Home
   properties:
   - type: OpenAPI
@@ -125,6 +127,8 @@ apis:
   humanURL: https://api.climateengine.org/docs
   baseURL: https://api.climateengine.org
   tags:
+  - Time Series
+  tags_raw:
   - Timeseries
   properties:
   - type: OpenAPI
