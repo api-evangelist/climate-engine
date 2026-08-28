@@ -7,6 +7,18 @@ description: Climate Engine is a geospatial climate and remote-sensing data plat
   provides on-demand processing of satellite and gridded climate datasets - Landsat,
   Sentinel, MODIS, GRIDMET, ERA5, CHIRPS and more - returning timeseries, map tiles,
   zonal statistics, and pre-built reports over points, polygons, and feature collections.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
