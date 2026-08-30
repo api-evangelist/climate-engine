@@ -139,7 +139,7 @@ apis:
   humanURL: https://api.climateengine.org/docs
   baseURL: https://api.climateengine.org
   tags:
-  - Time Series
+  - Timeseries
   tags_raw:
   - Timeseries
   properties:
