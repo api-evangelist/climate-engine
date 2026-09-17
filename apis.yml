@@ -134,18 +134,16 @@ apis:
     url: https://docs.climateengine.org
   - type: Documentation
     url: https://support.climateengine.org/article/144-api-quota-policy
-- aid: climate-engine:climate-engine-timeseries-api
-  name: Climate Engine Timeseries API
-  description: Native, interannual, standard-index, and regression time series.
+- aid: climate-engine:climate-engine-zonal-statistics-api
+  name: Climate Engine Zonal Statistics API
+  description: Statistics reduced over coordinates and feature collections.
   humanURL: https://api.climateengine.org/docs
   baseURL: https://api.climateengine.org
   tags:
-  - Time Series
-  tags_raw:
-  - Timeseries
+  - Zonal Statistics
   properties:
   - type: OpenAPI
-    url: openapi/climate-engine-timeseries-api-openapi.yml
+    url: openapi/climate-engine-zonal-statistics-api-openapi.yml
   - type: Documentation
     url: https://support.climateengine.org/article/12-climate-engine-apis
   - type: APIReference
@@ -158,16 +156,16 @@ apis:
     url: https://docs.climateengine.org
   - type: Documentation
     url: https://support.climateengine.org/article/144-api-quota-policy
-- aid: climate-engine:climate-engine-zonal-statistics-api
-  name: Climate Engine Zonal Statistics API
-  description: Statistics reduced over coordinates and feature collections.
+- aid: climate-engine:climate-engine-time-series-api
+  name: Climate Engine Time Series API
+  description: Native, interannual, standard-index, and regression time series.
   humanURL: https://api.climateengine.org/docs
   baseURL: https://api.climateengine.org
   tags:
-  - Zonal Statistics
+  - Time Series
   properties:
   - type: OpenAPI
-    url: openapi/climate-engine-zonal-statistics-api-openapi.yml
+    url: openapi/climate-engine-time-series-api-openapi.yml
   - type: Documentation
     url: https://support.climateengine.org/article/12-climate-engine-apis
   - type: APIReference
