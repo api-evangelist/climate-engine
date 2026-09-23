@@ -1,12 +1,7 @@
 {
   "provider": "climate-engine",
   "sources": [
-    "climate-engine-home-api-openapi.yml",
-    "climate-engine-metadata-api-openapi.yml",
-    "climate-engine-raster-api-openapi.yml",
-    "climate-engine-reports-api-openapi.yml",
-    "climate-engine-timeseries-api-openapi.yml",
-    "climate-engine-zonal-statistics-api-openapi.yml"
+    "_original/climate-engine-openapi.yml"
   ],
   "outputs": [
     "climate-engine-home-api-openapi.yml",
@@ -16,9 +11,23 @@
     "climate-engine-timeseries-api-openapi.yml",
     "climate-engine-zonal-statistics-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "climate-engine-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "superseded outputs removed: climate-engine-time-series-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 6 total)"
+  ],
+  "skipped": [
+    "climate-engine-home-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "climate-engine-metadata-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "climate-engine-raster-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "climate-engine-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "climate-engine-time-series-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "climate-engine-zonal-statistics-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

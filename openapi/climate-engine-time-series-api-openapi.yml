@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: 'Climate Engine API v1: climate-engine-pro Home Timeseries API'
+  title: 'Climate Engine API v1: climate-engine-pro Timeseries API'
   description: On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.
   termsOfService: https://www.climateengine.com
   contact:
@@ -13,14 +13,14 @@ servers:
 security:
 - APIKeyHeader: []
 tags:
-- name: Timeseries
+- name: Time Series
   description: Native, interannual, standard-index, and regression time series.
 paths:
   /timeseries/native/coordinates:
     post:
       operationId: timeseriesNativeCoordinates
       tags:
-      - Timeseries
+      - Time Series
       summary: Native Coordinates
       description: Generates a raw (native) time series for a dataset over point or polygon coordinates.
       requestBody:
@@ -42,7 +42,7 @@ paths:
     post:
       operationId: timeseriesNativeFeatureCollection
       tags:
-      - Timeseries
+      - Time Series
       summary: Native Feature Collection
       description: Generates a raw (native) time series for a dataset reduced over a GeoJSON feature collection.
       requestBody:
@@ -64,7 +64,7 @@ paths:
     post:
       operationId: timeseriesNativeForecastCoordinates
       tags:
-      - Timeseries
+      - Time Series
       summary: Forecast Coordinates
       description: Generates a forecast time series over point coordinates.
       requestBody:
@@ -86,7 +86,7 @@ paths:
     post:
       operationId: timeseriesInterannualCoordinates
       tags:
-      - Timeseries
+      - Time Series
       summary: Interannual Coordinates
       description: Generates an interannual time series over point coordinates.
       requestBody:
@@ -108,7 +108,7 @@ paths:
     post:
       operationId: timeseriesRegressionCoordinates
       tags:
-      - Timeseries
+      - Time Series
       summary: Regression Coordinates
       description: Generates a regression time series between two variables over point coordinates.
       requestBody:
@@ -130,7 +130,7 @@ paths:
     post:
       operationId: timeseriesStandardIndexCoordinates
       tags:
-      - Timeseries
+      - Time Series
       summary: Standard Index Coordinates
       description: Generates a standardized-index (e.g. SPI/SPEI) time series over point coordinates.
       requestBody:
@@ -149,20 +149,14 @@ paths:
         '422':
           $ref: '#/components/responses/ValidationError'
 components:
-  responses:
-    ValidationError:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
   schemas:
     NativeFeatureCollection:
       type: object
       properties:
         feature_collection_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           title: Feature Collection Id
           description: Earth Engine feature collection asset ID.
         dataset:
@@ -178,13 +172,35 @@ components:
           title: Area Reducer
           default: mean
         start_date:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           title: Start Date
         end_date:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           title: End Date
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ValidationError:
+      type: object
+      title: ValidationError
+      properties:
+        loc:
+          type: array
+          items:
+            type: string
+        msg:
+          type: string
+        type:
+          type: string
     NativeCoordinates:
       type: object
       properties:
@@ -194,13 +210,15 @@ components:
           description: Point or polygon coordinates as a JSON-encoded array.
           default: '[[-121.61,38.78]]'
         simplify_geometry:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           title: Simplify Geometry
           description: maxError in meters for ee.Feature.simplify.
         buffer:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           title: Buffer
           description: Buffer in meters.
         area_reducer:
@@ -216,39 +234,29 @@ components:
           title: Variable
           default: tmmn, tmmx
         compute_trends:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           title: Compute Trends
           description: 'Comma-separated trends to compute. Options: polyfit, sens_slope.'
           default: ''
         start_date:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           title: Start Date
         end_date:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           title: End Date
+  responses:
     ValidationError:
-      type: object
-      title: ValidationError
-      properties:
-        loc:
-          type: array
-          items:
-            type: string
-        msg:
-          type: string
-        type:
-          type: string
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
   securitySchemes:
     APIKeyHeader:
       type: apiKey

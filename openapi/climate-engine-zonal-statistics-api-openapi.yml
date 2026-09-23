@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: 'Climate Engine API v1: climate-engine-pro Home Zonal Statistics API'
+  title: 'Climate Engine API v1: climate-engine-pro Zonal Statistics…'
   description: On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.
   termsOfService: https://www.climateengine.com
   contact:
@@ -109,14 +109,23 @@ paths:
               schema:
                 type: object
 components:
-  responses:
-    ValidationError:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
   parameters:
+    StartDate:
+      name: start_date
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Start date (YYYY-MM-DD).
+    Buffer:
+      name: buffer
+      in: query
+      required: false
+      schema:
+        type:
+        - integer
+        - 'null'
+      description: Buffer in meters applied to the geometry.
     EndDate:
       name: end_date
       in: query
@@ -124,21 +133,30 @@ components:
       schema:
         type: string
       description: End date (YYYY-MM-DD).
-    Buffer:
-      name: buffer
+    Variable:
+      name: variable
       in: query
       required: false
       schema:
-        type: integer
-        nullable: true
-      description: Buffer in meters applied to the geometry.
+        type: string
+        default: tmmn, tmmx
+      description: Comma-separated variable name(s).
+    Coordinates:
+      name: coordinates
+      in: query
+      required: false
+      schema:
+        type: string
+        default: '[[-121.61,38.78]]'
+      description: Point or polygon coordinates as a JSON-encoded array.
     ExportFormat:
       name: export_format
       in: query
       required: false
       schema:
-        type: string
-        nullable: true
+        type:
+        - string
+        - 'null'
       description: Optional response/export format.
     Dataset:
       name: dataset
@@ -148,38 +166,24 @@ components:
         type: string
         default: GRIDMET
       description: Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS).
-    StartDate:
-      name: start_date
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Start date (YYYY-MM-DD).
-    Variable:
-      name: variable
-      in: query
-      required: false
-      schema:
-        type: string
-        default: tmmn, tmmx
-      description: Comma-separated variable name(s).
     SimplifyGeometry:
       name: simplify_geometry
       in: query
       required: false
       schema:
-        type: string
-        nullable: true
+        type:
+        - string
+        - 'null'
       description: maxError in meters for geometry simplification.
-    Coordinates:
-      name: coordinates
-      in: query
-      required: false
-      schema:
-        type: string
-        default: '[[-121.61,38.78]]'
-      description: Point or polygon coordinates as a JSON-encoded array.
   schemas:
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
     ValidationError:
       type: object
       title: ValidationError
@@ -192,14 +196,13 @@ components:
           type: string
         type:
           type: string
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
+  responses:
+    ValidationError:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
   securitySchemes:
     APIKeyHeader:
       type: apiKey

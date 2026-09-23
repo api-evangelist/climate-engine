@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: 'Climate Engine API v1: climate-engine-pro Home Metadata API'
+  title: 'Climate Engine API v1: climate-engine-pro Metadata API'
   description: On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.
   termsOfService: https://www.climateengine.com
   contact:
@@ -68,6 +68,15 @@ paths:
                 type: object
 components:
   parameters:
+    ExportFormat:
+      name: export_format
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: Optional response/export format.
     Dataset:
       name: dataset
       in: query
@@ -76,14 +85,6 @@ components:
         type: string
         default: GRIDMET
       description: Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS).
-    ExportFormat:
-      name: export_format
-      in: query
-      required: false
-      schema:
-        type: string
-        nullable: true
-      description: Optional response/export format.
   securitySchemes:
     APIKeyHeader:
       type: apiKey
