@@ -68,6 +68,14 @@ paths:
                 type: object
 components:
   parameters:
+    Dataset:
+      name: dataset
+      in: query
+      required: false
+      schema:
+        type: string
+        default: GRIDMET
+      description: Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS).
     ExportFormat:
       name: export_format
       in: query
@@ -77,14 +85,6 @@ components:
         - string
         - 'null'
       description: Optional response/export format.
-    Dataset:
-      name: dataset
-      in: query
-      required: false
-      schema:
-        type: string
-        default: GRIDMET
-      description: Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS).
   securitySchemes:
     APIKeyHeader:
       type: apiKey

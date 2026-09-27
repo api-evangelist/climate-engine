@@ -150,6 +150,18 @@ paths:
           $ref: '#/components/responses/ValidationError'
 components:
   schemas:
+    ValidationError:
+      type: object
+      title: ValidationError
+      properties:
+        loc:
+          type: array
+          items:
+            type: string
+        msg:
+          type: string
+        type:
+          type: string
     NativeFeatureCollection:
       type: object
       properties:
@@ -181,26 +193,6 @@ components:
           - string
           - 'null'
           title: End Date
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-    ValidationError:
-      type: object
-      title: ValidationError
-      properties:
-        loc:
-          type: array
-          items:
-            type: string
-        msg:
-          type: string
-        type:
-          type: string
     NativeCoordinates:
       type: object
       properties:
@@ -250,6 +242,14 @@ components:
           - string
           - 'null'
           title: End Date
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
   responses:
     ValidationError:
       description: Validation error.
