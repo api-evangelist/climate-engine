@@ -132,13 +132,6 @@ components:
         type: string
         default: tmmn, tmmx
       description: Comma-separated variable name(s).
-    EndDate:
-      name: end_date
-      in: query
-      required: false
-      schema:
-        type: string
-      description: End date (YYYY-MM-DD).
     Dataset:
       name: dataset
       in: query
@@ -147,6 +140,13 @@ components:
         type: string
         default: GRIDMET
       description: Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS).
+    EndDate:
+      name: end_date
+      in: query
+      required: false
+      schema:
+        type: string
+      description: End date (YYYY-MM-DD).
     StartDate:
       name: start_date
       in: query

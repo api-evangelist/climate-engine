@@ -110,13 +110,6 @@ paths:
                 type: object
 components:
   parameters:
-    StartDate:
-      name: start_date
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Start date (YYYY-MM-DD).
     Variable:
       name: variable
       in: query
@@ -125,13 +118,6 @@ components:
         type: string
         default: tmmn, tmmx
       description: Comma-separated variable name(s).
-    EndDate:
-      name: end_date
-      in: query
-      required: false
-      schema:
-        type: string
-      description: End date (YYYY-MM-DD).
     Dataset:
       name: dataset
       in: query
@@ -140,6 +126,28 @@ components:
         type: string
         default: GRIDMET
       description: Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS).
+    EndDate:
+      name: end_date
+      in: query
+      required: false
+      schema:
+        type: string
+      description: End date (YYYY-MM-DD).
+    Coordinates:
+      name: coordinates
+      in: query
+      required: false
+      schema:
+        type: string
+        default: '[[-121.61,38.78]]'
+      description: Point or polygon coordinates as a JSON-encoded array.
+    StartDate:
+      name: start_date
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Start date (YYYY-MM-DD).
     ExportFormat:
       name: export_format
       in: query
@@ -149,15 +157,6 @@ components:
         - string
         - 'null'
       description: Optional response/export format.
-    SimplifyGeometry:
-      name: simplify_geometry
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: maxError in meters for geometry simplification.
     Buffer:
       name: buffer
       in: query
@@ -167,14 +166,15 @@ components:
         - integer
         - 'null'
       description: Buffer in meters applied to the geometry.
-    Coordinates:
-      name: coordinates
+    SimplifyGeometry:
+      name: simplify_geometry
       in: query
       required: false
       schema:
-        type: string
-        default: '[[-121.61,38.78]]'
-      description: Point or polygon coordinates as a JSON-encoded array.
+        type:
+        - string
+        - 'null'
+      description: maxError in meters for geometry simplification.
   schemas:
     ValidationError:
       type: object
