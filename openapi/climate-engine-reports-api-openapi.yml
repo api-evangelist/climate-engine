@@ -83,6 +83,13 @@ paths:
         '422':
           $ref: '#/components/responses/ValidationError'
 components:
+  responses:
+    ValidationError:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
   schemas:
     ValidationError:
       type: object
@@ -104,13 +111,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ValidationError'
-  responses:
-    ValidationError:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
   securitySchemes:
     APIKeyHeader:
       type: apiKey

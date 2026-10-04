@@ -149,7 +149,65 @@ paths:
         '422':
           $ref: '#/components/responses/ValidationError'
 components:
+  responses:
+    ValidationError:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
   schemas:
+    NativeFeatureCollection:
+      type: object
+      properties:
+        feature_collection_id:
+          type:
+          - string
+          - 'null'
+          title: Feature Collection Id
+          description: Earth Engine feature collection asset ID.
+        dataset:
+          type: string
+          title: Dataset
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          default: tmmn, tmmx
+        area_reducer:
+          type: string
+          title: Area Reducer
+          default: mean
+        start_date:
+          type:
+          - string
+          - 'null'
+          title: Start Date
+        end_date:
+          type:
+          - string
+          - 'null'
+          title: End Date
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ValidationError:
+      type: object
+      title: ValidationError
+      properties:
+        loc:
+          type: array
+          items:
+            type: string
+        msg:
+          type: string
+        type:
+          type: string
     NativeCoordinates:
       type: object
       properties:
@@ -199,64 +257,6 @@ components:
           - string
           - 'null'
           title: End Date
-    NativeFeatureCollection:
-      type: object
-      properties:
-        feature_collection_id:
-          type:
-          - string
-          - 'null'
-          title: Feature Collection Id
-          description: Earth Engine feature collection asset ID.
-        dataset:
-          type: string
-          title: Dataset
-          default: GRIDMET
-        variable:
-          type: string
-          title: Variable
-          default: tmmn, tmmx
-        area_reducer:
-          type: string
-          title: Area Reducer
-          default: mean
-        start_date:
-          type:
-          - string
-          - 'null'
-          title: Start Date
-        end_date:
-          type:
-          - string
-          - 'null'
-          title: End Date
-    ValidationError:
-      type: object
-      title: ValidationError
-      properties:
-        loc:
-          type: array
-          items:
-            type: string
-        msg:
-          type: string
-        type:
-          type: string
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-  responses:
-    ValidationError:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
   securitySchemes:
     APIKeyHeader:
       type: apiKey

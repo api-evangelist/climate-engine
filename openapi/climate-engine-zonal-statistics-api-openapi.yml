@@ -109,63 +109,14 @@ paths:
               schema:
                 type: object
 components:
+  responses:
+    ValidationError:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
   parameters:
-    Variable:
-      name: variable
-      in: query
-      required: false
-      schema:
-        type: string
-        default: tmmn, tmmx
-      description: Comma-separated variable name(s).
-    Dataset:
-      name: dataset
-      in: query
-      required: false
-      schema:
-        type: string
-        default: GRIDMET
-      description: Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS).
-    EndDate:
-      name: end_date
-      in: query
-      required: false
-      schema:
-        type: string
-      description: End date (YYYY-MM-DD).
-    Coordinates:
-      name: coordinates
-      in: query
-      required: false
-      schema:
-        type: string
-        default: '[[-121.61,38.78]]'
-      description: Point or polygon coordinates as a JSON-encoded array.
-    StartDate:
-      name: start_date
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Start date (YYYY-MM-DD).
-    ExportFormat:
-      name: export_format
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: Optional response/export format.
-    Buffer:
-      name: buffer
-      in: query
-      required: false
-      schema:
-        type:
-        - integer
-        - 'null'
-      description: Buffer in meters applied to the geometry.
     SimplifyGeometry:
       name: simplify_geometry
       in: query
@@ -175,7 +126,71 @@ components:
         - string
         - 'null'
       description: maxError in meters for geometry simplification.
+    ExportFormat:
+      name: export_format
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: Optional response/export format.
+    Variable:
+      name: variable
+      in: query
+      required: false
+      schema:
+        type: string
+        default: tmmn, tmmx
+      description: Comma-separated variable name(s).
+    EndDate:
+      name: end_date
+      in: query
+      required: false
+      schema:
+        type: string
+      description: End date (YYYY-MM-DD).
+    Dataset:
+      name: dataset
+      in: query
+      required: false
+      schema:
+        type: string
+        default: GRIDMET
+      description: Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS).
+    Buffer:
+      name: buffer
+      in: query
+      required: false
+      schema:
+        type:
+        - integer
+        - 'null'
+      description: Buffer in meters applied to the geometry.
+    StartDate:
+      name: start_date
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Start date (YYYY-MM-DD).
+    Coordinates:
+      name: coordinates
+      in: query
+      required: false
+      schema:
+        type: string
+        default: '[[-121.61,38.78]]'
+      description: Point or polygon coordinates as a JSON-encoded array.
   schemas:
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
     ValidationError:
       type: object
       title: ValidationError
@@ -188,21 +203,6 @@ components:
           type: string
         type:
           type: string
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-  responses:
-    ValidationError:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
   securitySchemes:
     APIKeyHeader:
       type: apiKey
