@@ -109,40 +109,28 @@ paths:
               schema:
                 type: object
 components:
-  responses:
+  schemas:
     ValidationError:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
+      type: object
+      title: ValidationError
+      properties:
+        loc:
+          type: array
+          items:
+            type: string
+        msg:
+          type: string
+        type:
+          type: string
+    HTTPValidationError:
+      type: object
+      title: HTTPValidationError
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
   parameters:
-    SimplifyGeometry:
-      name: simplify_geometry
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: maxError in meters for geometry simplification.
-    ExportFormat:
-      name: export_format
-      in: query
-      required: false
-      schema:
-        type:
-        - string
-        - 'null'
-      description: Optional response/export format.
-    Variable:
-      name: variable
-      in: query
-      required: false
-      schema:
-        type: string
-        default: tmmn, tmmx
-      description: Comma-separated variable name(s).
     EndDate:
       name: end_date
       in: query
@@ -158,6 +146,47 @@ components:
         type: string
         default: GRIDMET
       description: Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS).
+    ExportFormat:
+      name: export_format
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: Optional response/export format.
+    Coordinates:
+      name: coordinates
+      in: query
+      required: false
+      schema:
+        type: string
+        default: '[[-121.61,38.78]]'
+      description: Point or polygon coordinates as a JSON-encoded array.
+    Variable:
+      name: variable
+      in: query
+      required: false
+      schema:
+        type: string
+        default: tmmn, tmmx
+      description: Comma-separated variable name(s).
+    SimplifyGeometry:
+      name: simplify_geometry
+      in: query
+      required: false
+      schema:
+        type:
+        - string
+        - 'null'
+      description: maxError in meters for geometry simplification.
+    StartDate:
+      name: start_date
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Start date (YYYY-MM-DD).
     Buffer:
       name: buffer
       in: query
@@ -167,42 +196,13 @@ components:
         - integer
         - 'null'
       description: Buffer in meters applied to the geometry.
-    StartDate:
-      name: start_date
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Start date (YYYY-MM-DD).
-    Coordinates:
-      name: coordinates
-      in: query
-      required: false
-      schema:
-        type: string
-        default: '[[-121.61,38.78]]'
-      description: Point or polygon coordinates as a JSON-encoded array.
-  schemas:
-    HTTPValidationError:
-      type: object
-      title: HTTPValidationError
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
+  responses:
     ValidationError:
-      type: object
-      title: ValidationError
-      properties:
-        loc:
-          type: array
-          items:
-            type: string
-        msg:
-          type: string
-        type:
-          type: string
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
   securitySchemes:
     APIKeyHeader:
       type: apiKey

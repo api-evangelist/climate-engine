@@ -149,14 +149,56 @@ paths:
         '422':
           $ref: '#/components/responses/ValidationError'
 components:
-  responses:
-    ValidationError:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
   schemas:
+    NativeCoordinates:
+      type: object
+      properties:
+        coordinates:
+          type: string
+          title: Coordinates
+          description: Point or polygon coordinates as a JSON-encoded array.
+          default: '[[-121.61,38.78]]'
+        simplify_geometry:
+          type:
+          - integer
+          - 'null'
+          title: Simplify Geometry
+          description: maxError in meters for ee.Feature.simplify.
+        buffer:
+          type:
+          - integer
+          - 'null'
+          title: Buffer
+          description: Buffer in meters.
+        area_reducer:
+          type: string
+          title: Area Reducer
+          default: mean
+        dataset:
+          type: string
+          title: Dataset
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          default: tmmn, tmmx
+        compute_trends:
+          type:
+          - string
+          - 'null'
+          title: Compute Trends
+          description: 'Comma-separated trends to compute. Options: polyfit, sens_slope.'
+          default: ''
+        start_date:
+          type:
+          - string
+          - 'null'
+          title: Start Date
+        end_date:
+          type:
+          - string
+          - 'null'
+          title: End Date
     NativeFeatureCollection:
       type: object
       properties:
@@ -208,55 +250,13 @@ components:
           type: string
         type:
           type: string
-    NativeCoordinates:
-      type: object
-      properties:
-        coordinates:
-          type: string
-          title: Coordinates
-          description: Point or polygon coordinates as a JSON-encoded array.
-          default: '[[-121.61,38.78]]'
-        simplify_geometry:
-          type:
-          - integer
-          - 'null'
-          title: Simplify Geometry
-          description: maxError in meters for ee.Feature.simplify.
-        buffer:
-          type:
-          - integer
-          - 'null'
-          title: Buffer
-          description: Buffer in meters.
-        area_reducer:
-          type: string
-          title: Area Reducer
-          default: mean
-        dataset:
-          type: string
-          title: Dataset
-          default: GRIDMET
-        variable:
-          type: string
-          title: Variable
-          default: tmmn, tmmx
-        compute_trends:
-          type:
-          - string
-          - 'null'
-          title: Compute Trends
-          description: 'Comma-separated trends to compute. Options: polyfit, sens_slope.'
-          default: ''
-        start_date:
-          type:
-          - string
-          - 'null'
-          title: Start Date
-        end_date:
-          type:
-          - string
-          - 'null'
-          title: End Date
+  responses:
+    ValidationError:
+      description: Validation error.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HTTPValidationError'
   securitySchemes:
     APIKeyHeader:
       type: apiKey
