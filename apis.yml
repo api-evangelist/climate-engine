@@ -90,28 +90,6 @@ apis:
     url: https://docs.climateengine.org
   - type: Documentation
     url: https://support.climateengine.org/article/144-api-quota-policy
-- aid: climate-engine:climate-engine-raster-api
-  name: Climate Engine Raster API
-  description: Earth Engine map IDs and asynchronous raster exports.
-  humanURL: https://api.climateengine.org/docs
-  baseURL: https://api.climateengine.org
-  tags:
-  - Raster
-  properties:
-  - type: OpenAPI
-    url: openapi/climate-engine-raster-api-openapi.yml
-  - type: Documentation
-    url: https://support.climateengine.org/article/12-climate-engine-apis
-  - type: APIReference
-    url: https://api.climateengine.org/docs
-  - type: PostmanCollection
-    url: collections/climate-engine.postman_collection.json
-  - type: OpenCollection
-    url: collections/climate-engine.opencollection.json
-  - type: Documentation
-    url: https://docs.climateengine.org
-  - type: Documentation
-    url: https://support.climateengine.org/article/144-api-quota-policy
 - aid: climate-engine:climate-engine-reports-api
   name: Climate Engine Reports API
   description: Pre-built drought, vegetation, and site characterization reports.
@@ -134,16 +112,60 @@ apis:
     url: https://docs.climateengine.org
   - type: Documentation
     url: https://support.climateengine.org/article/144-api-quota-policy
-- aid: climate-engine:climate-engine-zonal-statistics-api
-  name: Climate Engine Zonal Statistics API
-  description: Statistics reduced over coordinates and feature collections.
+- aid: climate-engine:climate-engine-raster-export-api
+  name: Climate Engine Raster/export API
+  description: The raster/export API from Climate Engine — 27 operation(s) for raster/export.
   humanURL: https://api.climateengine.org/docs
   baseURL: https://api.climateengine.org
   tags:
-  - Zonal Statistics
+  - raster/export
   properties:
   - type: OpenAPI
-    url: openapi/climate-engine-zonal-statistics-api-openapi.yml
+    url: openapi/climate-engine-raster-export-api-openapi.yml
+  - type: Documentation
+    url: https://support.climateengine.org/article/12-climate-engine-apis
+  - type: APIReference
+    url: https://api.climateengine.org/docs
+  - type: PostmanCollection
+    url: collections/climate-engine.postman_collection.json
+  - type: OpenCollection
+    url: collections/climate-engine.opencollection.json
+  - type: Documentation
+    url: https://docs.climateengine.org
+  - type: Documentation
+    url: https://support.climateengine.org/article/144-api-quota-policy
+- aid: climate-engine:climate-engine-raster-mapid-api
+  name: Climate Engine Raster/mapid API
+  description: The raster/mapid API from Climate Engine — 24 operation(s) for raster/mapid.
+  humanURL: https://api.climateengine.org/docs
+  baseURL: https://api.climateengine.org
+  tags:
+  - raster/mapid
+  properties:
+  - type: OpenAPI
+    url: openapi/climate-engine-raster-mapid-api-openapi.yml
+  - type: Documentation
+    url: https://support.climateengine.org/article/12-climate-engine-apis
+  - type: APIReference
+    url: https://api.climateengine.org/docs
+  - type: PostmanCollection
+    url: collections/climate-engine.postman_collection.json
+  - type: OpenCollection
+    url: collections/climate-engine.opencollection.json
+  - type: Documentation
+    url: https://docs.climateengine.org
+  - type: Documentation
+    url: https://support.climateengine.org/article/144-api-quota-policy
+- aid: climate-engine:climate-engine-zonal-stats-api
+  name: Climate Engine Zonal Stats API
+  description: The zonal_stats API from Climate Engine — 12 operation(s) for zonal_stats.
+  humanURL: https://api.climateengine.org/docs
+  baseURL: https://api.climateengine.org
+  tags:
+  - zonal_stats
+  properties:
+  - type: OpenAPI
+    url: openapi/climate-engine-zonal-stats-api-openapi.yml
   - type: Documentation
     url: https://support.climateengine.org/article/12-climate-engine-apis
   - type: APIReference
@@ -158,7 +180,7 @@ apis:
     url: https://support.climateengine.org/article/144-api-quota-policy
 - aid: climate-engine:climate-engine-time-series-api
   name: Climate Engine Time Series API
-  description: Native, interannual, standard-index, and regression time series.
+  description: The Time Series API from Climate Engine — 8 operation(s) for time series.
   humanURL: https://api.climateengine.org/docs
   baseURL: https://api.climateengine.org
   tags:

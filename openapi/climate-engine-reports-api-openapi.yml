@@ -1,119 +1,633 @@
 openapi: 3.2.0
 info:
   title: 'Climate Engine API v1: climate-engine-pro Reports API'
-  description: On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.
-  termsOfService: https://www.climateengine.com
-  contact:
-    name: Climate Engine
-    url: https://support.climateengine.org
   version: 0.1.0
-servers:
-- url: https://api.climateengine.org
-  description: Climate Engine production API
-security:
-- APIKeyHeader: []
 tags:
 - name: Reports
-  description: Pre-built drought, vegetation, and site characterization reports.
 paths:
-  /reports/drought/coordinates:
-    post:
-      operationId: reportsDroughtCoordinates
-      tags:
-      - Reports
-      summary: Drought Coordinates
-      description: Produces a pre-built drought report over point coordinates.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Drought report.
-          content:
-            application/json:
-              schema:
-                type: object
-        '422':
-          $ref: '#/components/responses/ValidationError'
-  /reports/vegetation_production/coordinates:
-    post:
-      operationId: reportsVegetationProductionCoordinates
-      tags:
-      - Reports
-      summary: Vegetation Production Coordinates
-      description: Produces a pre-built vegetation production report over point coordinates.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Vegetation production report.
-          content:
-            application/json:
-              schema:
-                type: object
-        '422':
-          $ref: '#/components/responses/ValidationError'
   /reports/site_characterization/coordinates:
     post:
-      operationId: reportsSiteCharacterizationCoordinates
       tags:
       - Reports
-      summary: Site Characterization Coordinates
-      description: Produces a pre-built site characterization report over point coordinates.
+      summary: Site Characterization Coordinates Post
+      description: Generate a site characterization report for a specific Polygon
+      operationId: site_characterization_coordinates_post_reports_site_characterization_coordinates_post
+      security:
+      - APIKeyHeader: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
+              $ref: '#/components/schemas/ReportSiteCharacterizationCoordinates'
       responses:
         '200':
-          description: Site characterization report.
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/HTTPValidationError'
+  /reports/site_characterization/feature_collection:
+    post:
+      tags:
+      - Reports
+      summary: Site Characterization Feature Collection Post
+      description: Generate a site characterization report for a feature of an Earth Engine FeatureCollection
+      operationId: site_characterization_feature_collection_post_reports_site_characterization_feature_collection_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportSiteCharacterizationFeatureCollection'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
         '422':
-          $ref: '#/components/responses/ValidationError'
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /reports/drought/coordinates:
+    post:
+      tags:
+      - Reports
+      summary: Drought Coordinates Post
+      description: Generate a drought report for a specific Polygon
+      operationId: drought_coordinates_post_reports_drought_coordinates_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportDroughtCoordinates'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /reports/drought/feature_collection:
+    post:
+      tags:
+      - Reports
+      summary: Drought Feature Collection Post
+      description: Generate a site characterization report for a feature of an Earth Engine FeatureCollection
+      operationId: drought_feature_collection_post_reports_drought_feature_collection_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportDroughtFeatureCollection'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /reports/vegetation_production/coordinates:
+    post:
+      tags:
+      - Reports
+      summary: Vegetation Production Coordinates Post
+      description: Generate a vegetation production report for a specific Polygon
+      operationId: vegetation_production_coordinates_post_reports_vegetation_production_coordinates_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportVegetationProductionCoordinates'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /reports/vegetation_production/feature_collection:
+    post:
+      tags:
+      - Reports
+      summary: Vegetation Production Feature Collection Post
+      description: Generate a vegetation production report for a feature of an Earth Engine FeatureCollection
+      operationId: vegetation_production_feature_collection_post_reports_vegetation_production_feature_collection_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportVegetationProductionFeatureCollection'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
     ValidationError:
-      type: object
-      title: ValidationError
       properties:
         loc:
-          type: array
           items:
-            type: string
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
         msg:
           type: string
+          title: Message
         type:
           type: string
-    HTTPValidationError:
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
       type: object
-      title: HTTPValidationError
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ReportDroughtFeatureCollection:
+      properties:
+        feature_collection_asset_id:
+          type: string
+          title: Feature Collection Asset Id
+          description: Earth Engine FeatureCollection asset ID
+          default: USGS/WBD/2017/HUC12
+        sub_choices:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Choices
+          description: Column attribute value.
+          default: '140300051008'
+        filter_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filter By
+          description: Column attribute to use as filter.
+          default: huc12
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        report_version:
+          type: string
+          title: Report Version
+          description: 'Report Version: v1 (gridMET Drought) or v2 (U.S. Drought Monitor, gridMET, and gridMET Drought)'
+          default: v2
+        end_date:
+          type: string
+          title: End Date
+          description: The end date of the reporting period. Format yyyy-mm-dd.
+          default: '2026-10-13'
+        user_email:
+          type: string
+          title: User Email
+          description: Valid email address
+          default: ''
+        site_name:
+          type: string
+          title: Site Name
+          description: Site name, no special characters allowed
+          default: example_site
+        site_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Type
+          description: Site type, no special characters allowed
+        site_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Description
+          description: Site description, no special characters allowed
+        mask_landcover:
+          type: string
+          title: Mask Landcover
+          description: 'Apply landcover mask: True or False'
+          default: 'False'
+        mask_ownership:
+          type: string
+          title: Mask Ownership
+          description: Apply land ownership mask. One of ['None', 'BIA', 'BLM', 'DOD', 'FWS', 'NPS', 'USFS']
+          default: None
+        batch:
+          anyOf:
+          - type: string
+          - type: boolean
+          title: Batch
+          description: Returns the link prior to processing the report if True
+          default: 'True'
+      type: object
+      title: ReportDroughtFeatureCollection
+    ReportSiteCharacterizationCoordinates:
+      properties:
+        coordinates:
+          type: string
+          title: Coordinates
+          description: point or polygon coordinates, see [Formatting Coordinates](https://support.climateengine.org/article/152-formatting-coordinates-for-api-requests)
+          default: '[[[-115.7326, 39.3643], [-115.7326, 39.3637], [-115.7320, 39.3637], [-115.7320, 39.3643]]]'
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        start_year:
+          type: string
+          title: Start Year
+          description: The start year of the reporting period.
+          default: '1986'
+        end_year:
+          type: string
+          title: End Year
+          description: The end year of the reporting period.
+          default: '2025'
+        user_email:
+          type: string
+          title: User Email
+          description: Valid email address
+          default: ''
+        site_name:
+          type: string
+          title: Site Name
+          description: Site name, no special characters allowed
+          default: example_site
+        site_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Type
+          description: Site type, no special characters allowed
+        site_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Description
+          description: Site description, no special characters allowed
+        mask_landcover:
+          type: string
+          title: Mask Landcover
+          description: 'Apply landcover mask: True or False'
+          default: 'False'
+        mask_ownership:
+          type: string
+          title: Mask Ownership
+          description: Apply land ownership mask. One of ['None', 'BIA', 'BLM', 'DOD', 'FWS', 'NPS', 'USFS']
+          default: None
+        batch:
+          anyOf:
+          - type: string
+          - type: boolean
+          title: Batch
+          description: Returns the link prior to processing the report if True
+          default: 'True'
+      type: object
+      title: ReportSiteCharacterizationCoordinates
+    ReportVegetationProductionCoordinates:
+      properties:
+        coordinates:
+          type: string
+          title: Coordinates
+          description: point or polygon coordinates, see [Formatting Coordinates](https://support.climateengine.org/article/152-formatting-coordinates-for-api-requests)
+          default: '[[[-115.7326, 39.3643], [-115.7326, 39.3637], [-115.7320, 39.3637], [-115.7320, 39.3643]]]'
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        end_date:
+          type: string
+          title: End Date
+          description: The end date of the reporting period. Format yyyy-mm-dd.
+          default: '2026-10-13'
+        user_email:
+          type: string
+          title: User Email
+          description: Valid email address
+          default: ''
+        site_name:
+          type: string
+          title: Site Name
+          description: Site name, no special characters allowed
+          default: example_site
+        site_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Type
+          description: Site type, no special characters allowed
+        site_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Description
+          description: Site description, no special characters allowed
+        mask_landcover:
+          type: string
+          title: Mask Landcover
+          description: 'Apply landcover mask: True or False'
+          default: 'False'
+        mask_ownership:
+          type: string
+          title: Mask Ownership
+          description: Apply land ownership mask. One of ['None', 'BIA', 'BLM', 'DOD', 'FWS', 'NPS', 'USFS']
+          default: None
+        batch:
+          anyOf:
+          - type: string
+          - type: boolean
+          title: Batch
+          description: Returns the link prior to processing the report if True
+          default: 'True'
+      type: object
+      title: ReportVegetationProductionCoordinates
+    ReportDroughtCoordinates:
+      properties:
+        coordinates:
+          type: string
+          title: Coordinates
+          description: point or polygon coordinates, see [Formatting Coordinates](https://support.climateengine.org/article/152-formatting-coordinates-for-api-requests)
+          default: '[[[-115.7326, 39.3643], [-115.7326, 39.3637], [-115.7320, 39.3637], [-115.7320, 39.3643]]]'
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        report_version:
+          type: string
+          title: Report Version
+          description: 'Report Version: v1 (gridMET Drought) or v2 (U.S. Drought Monitor, gridMET, and gridMET Drought)'
+          default: v2
+        end_date:
+          type: string
+          title: End Date
+          description: The end date of the reporting period. Format yyyy-mm-dd.
+          default: '2026-10-13'
+        user_email:
+          type: string
+          title: User Email
+          description: Valid email address
+          default: ''
+        site_name:
+          type: string
+          title: Site Name
+          description: Site name, no special characters allowed
+          default: example_site
+        site_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Type
+          description: Site type, no special characters allowed
+        site_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Description
+          description: Site description, no special characters allowed
+        mask_landcover:
+          type: string
+          title: Mask Landcover
+          description: 'Apply landcover mask: True or False'
+          default: 'False'
+        mask_ownership:
+          type: string
+          title: Mask Ownership
+          description: Apply land ownership mask. One of ['None', 'BIA', 'BLM', 'DOD', 'FWS', 'NPS', 'USFS']
+          default: None
+        batch:
+          anyOf:
+          - type: string
+          - type: boolean
+          title: Batch
+          description: Returns the link prior to processing the report if True
+          default: 'True'
+      type: object
+      title: ReportDroughtCoordinates
+    ReportVegetationProductionFeatureCollection:
+      properties:
+        feature_collection_asset_id:
+          type: string
+          title: Feature Collection Asset Id
+          description: Earth Engine FeatureCollection asset ID
+          default: USGS/WBD/2017/HUC12
+        sub_choices:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Choices
+          description: Column attribute value.
+          default: '140300051008'
+        filter_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filter By
+          description: Column attribute to use as filter.
+          default: huc12
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        end_date:
+          type: string
+          title: End Date
+          description: The end date of the reporting period. Format yyyy-mm-dd.
+          default: '2026-10-13'
+        user_email:
+          type: string
+          title: User Email
+          description: Valid email address
+          default: ''
+        site_name:
+          type: string
+          title: Site Name
+          description: Site name, no special characters allowed
+          default: example_site
+        site_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Type
+          description: Site type, no special characters allowed
+        site_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Description
+          description: Site description, no special characters allowed
+        mask_landcover:
+          type: string
+          title: Mask Landcover
+          description: 'Apply landcover mask: True or False'
+          default: 'False'
+        mask_ownership:
+          type: string
+          title: Mask Ownership
+          description: Apply land ownership mask. One of ['None', 'BIA', 'BLM', 'DOD', 'FWS', 'NPS', 'USFS']
+          default: None
+        batch:
+          anyOf:
+          - type: string
+          - type: boolean
+          title: Batch
+          description: Returns the link prior to processing the report if True
+          default: 'True'
+      type: object
+      title: ReportVegetationProductionFeatureCollection
+    HTTPValidationError:
       properties:
         detail:
-          type: array
           items:
             $ref: '#/components/schemas/ValidationError'
-  responses:
-    ValidationError:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ReportSiteCharacterizationFeatureCollection:
+      properties:
+        feature_collection_asset_id:
+          type: string
+          title: Feature Collection Asset Id
+          description: Earth Engine FeatureCollection asset ID
+          default: USGS/WBD/2017/HUC12
+        sub_choices:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Choices
+          description: Column attribute value.
+          default: '140300051008'
+        filter_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filter By
+          description: Column attribute to use as filter.
+          default: huc12
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        start_year:
+          type: string
+          title: Start Year
+          description: The start year of the reporting period.
+          default: '1986'
+        end_year:
+          type: string
+          title: End Year
+          description: The end year of the reporting period.
+          default: '2025'
+        user_email:
+          type: string
+          title: User Email
+          description: Valid email address
+          default: ''
+        site_name:
+          type: string
+          title: Site Name
+          description: Site name, no special characters allowed
+          default: example_site
+        site_type:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Type
+          description: Site type, no special characters allowed
+        site_description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Site Description
+          description: Site description, no special characters allowed
+        mask_landcover:
+          type: string
+          title: Mask Landcover
+          description: 'Apply landcover mask: True or False'
+          default: 'False'
+        mask_ownership:
+          type: string
+          title: Mask Ownership
+          description: Apply land ownership mask. One of ['None', 'BIA', 'BLM', 'DOD', 'FWS', 'NPS', 'USFS']
+          default: None
+        batch:
+          anyOf:
+          - type: string
+          - type: boolean
+          title: Batch
+          description: Returns the link prior to processing the report if True
+          default: 'True'
+      type: object
+      title: ReportSiteCharacterizationFeatureCollection
   securitySchemes:
     APIKeyHeader:
       type: apiKey
       in: header
       name: Authorization
-      description: API key issued by the Climate Engine team, sent in the Authorization header. Request a key from the ClimateEngine.org team.

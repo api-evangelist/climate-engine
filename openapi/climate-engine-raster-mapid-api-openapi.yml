@@ -1,0 +1,3404 @@
+openapi: 3.2.0
+info:
+  title: 'Climate Engine API v1: climate-engine-pro Raster/mapid API'
+  version: 0.1.0
+tags:
+- name: raster/mapid
+paths:
+  /raster/mapid/values:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Values Get
+      description: Gets map id for values
+      operationId: mapid_values_get_raster_mapid_values_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: forecast_model
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Forecast Model
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-30'
+          title: End Date
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/climatologies:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Climatologies Get
+      description: Gets map id for climatologies
+      operationId: mapid_climatologies_get_raster_mapid_climatologies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 08-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 10-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/anomalies:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Anomalies Get
+      description: Gets map id for anomalies
+      operationId: mapid_anomalies_get_raster_mapid_anomalies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: forecast_model
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Forecast Model
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-30'
+          title: End Date
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: anom
+          title: Calculation
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/stdev:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Stdev Get
+      description: Gets map id for standard deviation
+      operationId: mapid_stdev_get_raster_mapid_stdev_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-30'
+          title: End Date
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/percentiles:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Percentiles Get
+      description: Gets map id of percentiles
+      operationId: mapid_percentiles_get_raster_mapid_percentiles_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: forecast_model
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Forecast Model
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-30'
+          title: End Date
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/ranks:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Ranks Get
+      description: Gets map id of ranks
+      operationId: mapid_ranks_get_raster_mapid_ranks_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: forecast_model
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Forecast Model
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-30'
+          title: End Date
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      - name: precision
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '0.0000001'
+          title: Precision
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/standard_index:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Standard Index Get
+      description: Gets map id of standard index
+      operationId: mapid_standard_index_get_raster_mapid_standard_index_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: distribution
+        in: query
+        required: false
+        schema:
+          type: string
+          default: nonparametric
+          title: Distribution
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: eddi
+          title: Variable
+      - name: forecast_model
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Forecast Model
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-30'
+          title: End Date
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/mann_kendall:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Mann Kendall Get
+      description: Gets map id for mann kendall
+      operationId: mapid_mann_kendall_get_raster_mapid_mann_kendall_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+          default: '2010-06-30'
+          title: End Date
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mk_tau
+          title: Calculation
+      - name: p_value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: 0.5
+          title: P Value
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 08-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 10-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/counts:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Counts Get
+      description: Gets map id for counts
+      operationId: mapid_counts_get_raster_mapid_counts_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: operator
+        in: query
+        required: false
+        schema:
+          type: string
+          default: threshold_gte
+          title: Operator
+      - name: output
+        in: query
+        required: false
+        schema:
+          type: string
+          default: counts
+          title: Output
+      - name: value_1
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '25'
+          title: Value 1
+      - name: value_2
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Value 2
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-01-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-12-31'
+          title: End Date
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/count_climatologies:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Count Climatologies Get
+      description: Gets map id for count climatologies
+      operationId: mapid_count_climatologies_get_raster_mapid_count_climatologies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: operator
+        in: query
+        required: false
+        schema:
+          type: string
+          default: threshold_gte
+          title: Operator
+      - name: output
+        in: query
+        required: false
+        schema:
+          type: string
+          default: counts
+          title: Output
+      - name: value_1
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '25'
+          title: Value 1
+      - name: value_2
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Value 2
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 01-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 12-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2001
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2020
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/count_anomalies:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Count Anomalies Get
+      description: Gets map id for count anomalies
+      operationId: mapid_count_anomalies_get_raster_mapid_count_anomalies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: operator
+        in: query
+        required: false
+        schema:
+          type: string
+          default: threshold_gte
+          title: Operator
+      - name: output
+        in: query
+        required: false
+        schema:
+          type: string
+          default: counts
+          title: Output
+      - name: value_1
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '25'
+          title: Value 1
+      - name: value_2
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Value 2
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: anom
+          title: Calculation
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-01-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-12-31'
+          title: End Date
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2001
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2020
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/count_mann_kendall:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Count Mann Kendall Get
+      description: Gets map id for count mann kendall
+      operationId: mapid_count_mann_kendall_get_raster_mapid_count_mann_kendall_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: operator
+        in: query
+        required: false
+        schema:
+          type: string
+          default: threshold_gte
+          title: Operator
+      - name: output
+        in: query
+        required: false
+        schema:
+          type: string
+          default: counts
+          title: Output
+      - name: value_1
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '25'
+          title: Value 1
+      - name: value_2
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Value 2
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mk_tau
+          title: Calculation
+      - name: p_value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: 0.5
+          title: P Value
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 01-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 12-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2001
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2020
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/date_threshold:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Date Threshold Get
+      description: Gets map id for date_threshold
+      operationId: mapid_date_threshold_get_raster_mapid_date_threshold_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: operator
+        in: query
+        required: false
+        schema:
+          type: string
+          default: threshold_max
+          title: Operator
+      - name: occurrence
+        in: query
+        required: false
+        schema:
+          type: string
+          default: first
+          title: Occurrence
+      - name: value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Value
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-01-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-12-31'
+          title: End Date
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/date_threshold_climatologies:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Date Threshold Climatologies Get
+      description: Gets map id for date threshold climatologies
+      operationId: mapid_date_threshold_climatologies_get_raster_mapid_date_threshold_climatologies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: operator
+        in: query
+        required: false
+        schema:
+          type: string
+          default: threshold_max
+          title: Operator
+      - name: occurrence
+        in: query
+        required: false
+        schema:
+          type: string
+          default: first
+          title: Occurrence
+      - name: value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Value
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 01-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 12-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2001
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2020
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/date_threshold_anomalies:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Date Threshold Anomalies Get
+      description: Gets map id for date threshold anomalies
+      operationId: mapid_date_threshold_anomalies_get_raster_mapid_date_threshold_anomalies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: operator
+        in: query
+        required: false
+        schema:
+          type: string
+          default: threshold_max
+          title: Operator
+      - name: occurrence
+        in: query
+        required: false
+        schema:
+          type: string
+          default: first
+          title: Occurrence
+      - name: value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Value
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: anom
+          title: Calculation
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-01-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-12-31'
+          title: End Date
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2001
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2020
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/date_threshold_mann_kendall:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Date Threshold Mann Kendall Get
+      description: Gets map id for date threshold mann kendall
+      operationId: mapid_date_threshold_mann_kendall_get_raster_mapid_date_threshold_mann_kendall_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: operator
+        in: query
+        required: false
+        schema:
+          type: string
+          default: threshold_max
+          title: Operator
+      - name: occurrence
+        in: query
+        required: false
+        schema:
+          type: string
+          default: first
+          title: Occurrence
+      - name: value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Value
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mk_tau
+          title: Calculation
+      - name: p_value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: 0.5
+          title: P Value
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 01-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 12-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2001
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2020
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/degree_days:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Degree Days Get
+      description: Gets map id for degree days
+      operationId: mapid_degree_days_get_raster_mapid_degree_days_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmean
+          title: Variable
+      - name: dd_type
+        in: query
+        required: false
+        schema:
+          type: string
+          default: hdd
+          title: Dd Type
+      - name: value
+        in: query
+        required: false
+        schema:
+          type: number
+          default: 18.3
+          title: Value
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-01-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-12-31'
+          title: End Date
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/degree_days/climatologies:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Degree Days Climatologies Get
+      description: Gets map id for degree days climatologies
+      operationId: mapid_degree_days_climatologies_get_raster_mapid_degree_days_climatologies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmean
+          title: Variable
+      - name: dd_type
+        in: query
+        required: false
+        schema:
+          type: string
+          default: hdd
+          title: Dd Type
+      - name: value
+        in: query
+        required: false
+        schema:
+          type: number
+          default: 18.3
+          title: Value
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 01-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 12-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2001
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2020
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/degree_days/anomalies:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Degree Days Anomalies Get
+      description: Gets map id for degree days anomalies
+      operationId: mapid_degree_days_anomalies_get_raster_mapid_degree_days_anomalies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmean
+          title: Variable
+      - name: dd_type
+        in: query
+        required: false
+        schema:
+          type: string
+          default: hdd
+          title: Dd Type
+      - name: value
+        in: query
+        required: false
+        schema:
+          type: number
+          default: 18.3
+          title: Value
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: anom
+          title: Calculation
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-01-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-12-31'
+          title: End Date
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2001
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2020
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/degree_days/mann_kendall:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Degree Days Mann Kendall Get
+      description: Gets map id for degree days mann kendall
+      operationId: mapid_degree_days_mann_kendall_get_raster_mapid_degree_days_mann_kendall_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmean
+          title: Variable
+      - name: dd_type
+        in: query
+        required: false
+        schema:
+          type: string
+          default: hdd
+          title: Dd Type
+      - name: value
+        in: query
+        required: false
+        schema:
+          type: number
+          default: 18.3
+          title: Value
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mk_tau
+          title: Calculation
+      - name: p_value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: 0.5
+          title: P Value
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 01-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 12-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2001
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2020
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/growing_degree_days:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Growing Degree Days Get
+      description: Gets map id for growing degree days
+      operationId: mapid_growing_degree_days_get_raster_mapid_growing_degree_days_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable_tmax
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable Tmax
+      - name: variable_tmin
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmn
+          title: Variable Tmin
+      - name: base_threshold
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 10
+          title: Base Threshold
+      - name: cutoff_threshold
+        in: query
+        required: false
+        schema:
+          type: number
+          default: 30
+          title: Cutoff Threshold
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-01-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-12-31'
+          title: End Date
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/growing_degree_days/climatologies:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Growing Degree Days Climatologies Get
+      description: Gets map id for growing degree days climatologies
+      operationId: mapid_growing_degree_days_climatologies_get_raster_mapid_growing_degree_days_climatologies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable_tmax
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable Tmax
+      - name: variable_tmin
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmn
+          title: Variable Tmin
+      - name: base_threshold
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 10
+          title: Base Threshold
+      - name: cutoff_threshold
+        in: query
+        required: false
+        schema:
+          type: number
+          default: 30
+          title: Cutoff Threshold
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 01-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 12-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2001
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2020
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/growing_degree_days/anomalies:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Growing Degree Days Anomalies Get
+      description: Gets map id for growing degree days anomalies
+      operationId: mapid_growing_degree_days_anomalies_get_raster_mapid_growing_degree_days_anomalies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable_tmax
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable Tmax
+      - name: variable_tmin
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmn
+          title: Variable Tmin
+      - name: base_threshold
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 10
+          title: Base Threshold
+      - name: cutoff_threshold
+        in: query
+        required: false
+        schema:
+          type: number
+          default: 30
+          title: Cutoff Threshold
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: anom
+          title: Calculation
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-01-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-12-31'
+          title: End Date
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2001
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2020
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/mapid/growing_degree_days/mann_kendall:
+    get:
+      tags:
+      - raster/mapid
+      summary: Mapid Growing Degree Days Mann Kendall Get
+      description: Gets map id for growing degree days mann kendall
+      operationId: mapid_growing_degree_days_mann_kendall_get_raster_mapid_growing_degree_days_mann_kendall_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable_tmax
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable Tmax
+      - name: variable_tmin
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmn
+          title: Variable Tmin
+      - name: base_threshold
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 10
+          title: Base Threshold
+      - name: cutoff_threshold
+        in: query
+        required: false
+        schema:
+          type: number
+          default: 30
+          title: Cutoff Threshold
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mk_tau
+          title: Calculation
+      - name: p_value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: 0.5
+          title: P Value
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 01-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 12-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2001
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2020
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Bounding Box
+      - name: colormap_min_max
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Min Max
+      - name: colormap_palette
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Palette
+      - name: colormap_mask
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Colormap Mask
+      - name: colormap_opacity
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          default: 0.7
+          title: Colormap Opacity
+      - name: colormap_type
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: continuous
+          title: Colormap Type
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: Authorization

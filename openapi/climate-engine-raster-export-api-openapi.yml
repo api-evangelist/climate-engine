@@ -1,0 +1,2939 @@
+openapi: 3.2.0
+info:
+  title: 'Climate Engine API v1: climate-engine-pro Raster/export API'
+  version: 0.1.0
+tags:
+- name: raster/export
+paths:
+  /raster/export/values:
+    post:
+      tags:
+      - raster/export
+      summary: Export Values Post
+      description: Export values
+      operationId: export_values_post_raster_export_values_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportValues'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/climatologies:
+    post:
+      tags:
+      - raster/export
+      summary: Export Climatologies Post
+      description: Export climatologies
+      operationId: export_climatologies_post_raster_export_climatologies_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportClimatologies'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/anomalies:
+    post:
+      tags:
+      - raster/export
+      summary: Export Anomalies Post
+      description: Export anomalies
+      operationId: export_anomalies_post_raster_export_anomalies_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportAnomalies'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/stdev:
+    post:
+      tags:
+      - raster/export
+      summary: Export Std Dev Post
+      description: Export standard deviation
+      operationId: export_std_dev_post_raster_export_stdev_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportStdDev'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/percentiles:
+    post:
+      tags:
+      - raster/export
+      summary: Export Percentiles Post
+      description: Export percentiles map
+      operationId: export_percentiles_post_raster_export_percentiles_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportPercentiles'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/ranks:
+    post:
+      tags:
+      - raster/export
+      summary: Export Ranks Post
+      description: Export ranks map
+      operationId: export_ranks_post_raster_export_ranks_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportRanks'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/standard_index:
+    post:
+      tags:
+      - raster/export
+      summary: Export Std Index Post
+      description: Export standard index
+      operationId: export_std_index_post_raster_export_standard_index_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportStdIndex'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/standard_index_distribution:
+    post:
+      tags:
+      - raster/export
+      summary: Export Std Index Distribution Post
+      description: Export standard index distribution
+      operationId: export_std_index_distribution_post_raster_export_standard_index_distribution_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportStdIndexDistribution'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/mann_kendall:
+    post:
+      tags:
+      - raster/export
+      summary: Export Mann Kendall Post
+      description: Exports map for mann kendallx
+      operationId: export_mann_kendall_post_raster_export_mann_kendall_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportMannKendall'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/counts:
+    post:
+      tags:
+      - raster/export
+      summary: Export Counts Post
+      description: Export coutns
+      operationId: export_counts_post_raster_export_counts_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportCounts'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/count_climatologies:
+    post:
+      tags:
+      - raster/export
+      summary: Export Count Climatologies Post
+      description: Export count climatologies
+      operationId: export_count_climatologies_post_raster_export_count_climatologies_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportCountClimatologies'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/count_anomalies:
+    post:
+      tags:
+      - raster/export
+      summary: Export Count Anomalies Post
+      description: Export count anomalies
+      operationId: export_count_anomalies_post_raster_export_count_anomalies_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportCountAnomalies'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/count_mann_kendall:
+    post:
+      tags:
+      - raster/export
+      summary: Export Count Mann Kendall Post
+      description: Exports counts for mann kendallx
+      operationId: export_count_mann_kendall_post_raster_export_count_mann_kendall_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportCountMannKendall'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/date_threshold:
+    post:
+      tags:
+      - raster/export
+      summary: Export Date Threshold Post
+      description: Export Date Threshold
+      operationId: export_date_threshold_post_raster_export_date_threshold_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportDateThreshold'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/date_threshold_climatologies:
+    post:
+      tags:
+      - raster/export
+      summary: Export Date Threshold Climatologies Post
+      description: Export date threshold climatologies
+      operationId: export_date_threshold_climatologies_post_raster_export_date_threshold_climatologies_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportDateThresholdClimatologies'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/date_threshold_anomalies:
+    post:
+      tags:
+      - raster/export
+      summary: Export Date Threshold Anomalies Post
+      description: Export date_threshold anomalies
+      operationId: export_date_threshold_anomalies_post_raster_export_date_threshold_anomalies_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportDateThresholdAnomalies'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/date_threshold_mann_kendall:
+    post:
+      tags:
+      - raster/export
+      summary: Export Date Threshold Mann Kendall Post
+      description: Exports date threshold for mann kendall
+      operationId: export_date_threshold_mann_kendall_post_raster_export_date_threshold_mann_kendall_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportDateThresholdMannKendall'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/degree_days:
+    post:
+      tags:
+      - raster/export
+      summary: Export Degree Days Post
+      description: Export degree days
+      operationId: export_degree_days_post_raster_export_degree_days_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportDegreeDays'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/degree_days/climatologies:
+    post:
+      tags:
+      - raster/export
+      summary: Export Degree Days Climatologies Post
+      description: Export degree days climatologies
+      operationId: export_degree_days_climatologies_post_raster_export_degree_days_climatologies_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportDegreeDaysClimatologies'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/degree_days/anomalies:
+    post:
+      tags:
+      - raster/export
+      summary: Export Degree Days Anomalies Post
+      description: Export degree days anomalies
+      operationId: export_degree_days_anomalies_post_raster_export_degree_days_anomalies_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportDegreeDaysAnomalies'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/degree_days/mann_kendall:
+    post:
+      tags:
+      - raster/export
+      summary: Export Degree Days Mann Kendall Post
+      description: Exports degree days for mann kendall
+      operationId: export_degree_days_mann_kendall_post_raster_export_degree_days_mann_kendall_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportDegreeDaysMannKendall'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/growing_degree_days:
+    post:
+      tags:
+      - raster/export
+      summary: Export Growing Degree Days Post
+      description: Export growing degree days
+      operationId: export_growing_degree_days_post_raster_export_growing_degree_days_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportGrowingDegreeDays'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/growing_degree_days/climatologies:
+    post:
+      tags:
+      - raster/export
+      summary: Exportt Growing Degree Days Climatologies Post
+      description: Export growing degree days climatologies
+      operationId: exportt_growing_degree_days_climatologies_post_raster_export_growing_degree_days_climatologies_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportGrowingDegreeDaysClimatologies'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/growing_degree_days/anomalies:
+    post:
+      tags:
+      - raster/export
+      summary: Export Growing Degree Days Anomalies Post
+      description: Export growing degree days anomalies
+      operationId: export_growing_degree_days_anomalies_post_raster_export_growing_degree_days_anomalies_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportGrowingDegreeDaysAnomalies'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/growing_degree_days/mann_kendall:
+    post:
+      tags:
+      - raster/export
+      summary: Export Growing Degree Days Mann Kendall Post
+      description: Exports growing degree days for mann kendall
+      operationId: export_growing_degree_days_mann_kendall_post_raster_export_growing_degree_days_mann_kendall_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportGrowingDegreeDaysMannKendall'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/task_update:
+    get:
+      tags:
+      - raster/export
+      summary: Export Task Update Get
+      description: Check status of task
+      operationId: export_task_update_get_raster_export_task_update_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: task_id
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Task Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /raster/export/task_queue:
+    get:
+      tags:
+      - raster/export
+      summary: Export Task Queue Get
+      description: Check task queue for user
+      operationId: export_task_queue_get_raster_export_task_queue_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: task_states
+        in: query
+        required: false
+        schema:
+          type: string
+          default: RUNNING, PENDING, FAILED, SUCCEEDED
+          title: Task States
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    ExportStdDev:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        temporal_statistic:
+          type: string
+          title: Temporal Statistic
+          description: temporal aggregation
+          default: mean
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+          description: Start date
+          default: '2010-06-01'
+        end_date:
+          type: string
+          format: date
+          title: End Date
+          description: Start date
+          default: '2010-06-30'
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2016
+        end_year:
+          type: integer
+          title: End Year
+          default: 2018
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportStdDev
+      description: Base Model for ExportStdDev
+    ExportDegreeDays:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmean
+        dd_type:
+          type: string
+          title: Dd Type
+          description: heating or cooling
+          default: hdd
+        value:
+          type: number
+          title: Value
+          description: standard threshold
+          default: 18.3
+        start_date:
+          type: string
+          title: Start Date
+          description: yyyy-mm-dd
+          default: '2010-01-01'
+        end_date:
+          type: string
+          title: End Date
+          description: yyyy-mm-dd
+          default: '2010-12-31'
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportDegreeDays
+      description: Base Model for ExportDegreeDays
+    ExportDegreeDaysClimatologies:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmean
+        dd_type:
+          type: string
+          title: Dd Type
+          description: heating or cooling
+          default: hdd
+        value:
+          type: number
+          title: Value
+          description: standard threshold
+          default: 18.3
+        start_season:
+          type: string
+          title: Start Season
+          description: mm-dd
+          default: 01-01
+        end_season:
+          type: string
+          title: End Season
+          description: mm-dd
+          default: 12-31
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2001
+        end_year:
+          type: integer
+          title: End Year
+          default: 2020
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportDegreeDaysClimatologies
+      description: Base Model for ExportDegreeDaysClimatologies
+    ExportDateThresholdMannKendall:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        operator:
+          type: string
+          title: Operator
+          default: threshold_max
+        occurrence:
+          type: string
+          title: Occurrence
+          default: first
+        value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Value
+          default: ''
+        calculation:
+          type: string
+          title: Calculation
+          description: Kendall calculation
+          default: mk_tau
+        p_value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: P Value
+          default: 0.5
+        start_season:
+          type: string
+          title: Start Season
+          description: mm-dd
+          default: 01-01
+        end_season:
+          type: string
+          title: End Season
+          description: mm-dd
+          default: 12-31
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2001
+        end_year:
+          type: integer
+          title: End Year
+          default: 2020
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportDateThresholdMannKendall
+      description: Base Model for ExportDateThresholdMannKendall
+    ExportGrowingDegreeDays:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable_tmax:
+          type: string
+          title: Variable Tmax
+          description: Tmax variable name
+          default: tmmx
+        variable_tmin:
+          type: string
+          title: Variable Tmin
+          description: Tmin variable name
+          default: tmmn
+        base_threshold:
+          type: string
+          title: Base Threshold
+          description: Base Threshold Temperature
+          default: 10
+        cutoff_threshold:
+          type: number
+          title: Cutoff Threshold
+          description: Cutoff Threshold Temperature
+          default: 30
+        start_date:
+          type: string
+          title: Start Date
+          description: yyyy-mm-dd
+          default: '2010-01-01'
+        end_date:
+          type: string
+          title: End Date
+          description: yyyy-mm-dd
+          default: '2010-12-31'
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportGrowingDegreeDays
+      description: Base Model for ExportGrowingDegreeDays
+    ExportValues:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        forecast_model:
+          type: string
+          title: Forecast Model
+          description: Forecast model
+          default: ''
+        temporal_statistic:
+          type: string
+          title: Temporal Statistic
+          description: temporal aggregation
+          default: mean
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+          description: Start date
+          default: '2010-06-01'
+        end_date:
+          type: string
+          format: date
+          title: End Date
+          description: Start date
+          default: '2010-06-30'
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportValues
+      description: Base Model for ExportValues
+    ExportGrowingDegreeDaysClimatologies:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable_tmax:
+          type: string
+          title: Variable Tmax
+          description: Tmax variable name
+          default: tmmx
+        variable_tmin:
+          type: string
+          title: Variable Tmin
+          description: Tmin variable name
+          default: tmmn
+        base_threshold:
+          type: string
+          title: Base Threshold
+          description: Base Threshold Temperature
+          default: 10
+        cutoff_threshold:
+          type: number
+          title: Cutoff Threshold
+          description: Cutoff Threshold Temperature
+          default: 30
+        start_season:
+          type: string
+          title: Start Season
+          description: mm-dd
+          default: 01-01
+        end_season:
+          type: string
+          title: End Season
+          description: mm-dd
+          default: 12-31
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2001
+        end_year:
+          type: integer
+          title: End Year
+          default: 2020
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportGrowingDegreeDaysClimatologies
+      description: Base Model for ExportGrowingDegreeDaysClimatologies
+    ExportCountClimatologies:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        operator:
+          type: string
+          title: Operator
+          default: threshold_gte
+        output:
+          type: string
+          title: Output
+          default: counts
+        value_1:
+          type: string
+          title: Value 1
+          default: '25'
+        value_2:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Value 2
+          default: ''
+        start_season:
+          type: string
+          title: Start Season
+          description: mm-dd
+          default: 01-01
+        end_season:
+          type: string
+          title: End Season
+          description: mm-dd
+          default: 12-31
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2001
+        end_year:
+          type: integer
+          title: End Year
+          default: 2020
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportCountClimatologies
+      description: Base Model for ExportCountsClimatologies
+    ExportGrowingDegreeDaysAnomalies:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable_tmax:
+          type: string
+          title: Variable Tmax
+          description: Tmax variable name
+          default: tmmx
+        variable_tmin:
+          type: string
+          title: Variable Tmin
+          description: Tmin variable name
+          default: tmmn
+        base_threshold:
+          type: string
+          title: Base Threshold
+          description: Base Threshold Temperature
+          default: 10
+        cutoff_threshold:
+          type: number
+          title: Cutoff Threshold
+          description: Cutoff Threshold Temperature
+          default: 30
+        calculation:
+          type: string
+          title: Calculation
+          description: Anomaly calculation
+          default: anom
+        start_date:
+          type: string
+          title: Start Date
+          description: yyyy-mm-dd
+          default: '2010-01-01'
+        end_date:
+          type: string
+          title: End Date
+          description: yyyy-mm-dd
+          default: '2010-12-31'
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2001
+        end_year:
+          type: integer
+          title: End Year
+          default: 2020
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportGrowingDegreeDaysAnomalies
+      description: Base Model for ExportGrowingDegreeDaysAnomalies
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ExportStdIndex:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        distribution:
+          type: string
+          title: Distribution
+          description: Distribution name
+          default: nonparametric
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: eddi
+        forecast_model:
+          type: string
+          title: Forecast Model
+          description: Forecast model
+          default: ''
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+          description: Start date
+          default: '2010-06-01'
+        end_date:
+          type: string
+          format: date
+          title: End Date
+          description: Start date
+          default: '2010-06-30'
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2016
+        end_year:
+          type: integer
+          title: End Year
+          default: 2018
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportStdIndex
+      description: Base Model for ExportStdIndex
+    ExportPercentiles:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        forecast_model:
+          type: string
+          title: Forecast Model
+          description: Forecast model
+          default: ''
+        temporal_statistic:
+          type: string
+          title: Temporal Statistic
+          description: temporal aggregation
+          default: mean
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+          description: Start date
+          default: '2010-06-01'
+        end_date:
+          type: string
+          format: date
+          title: End Date
+          description: Start date
+          default: '2010-06-30'
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2016
+        end_year:
+          type: integer
+          title: End Year
+          default: 2018
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportPercentiles
+      description: Base Model for ExportPercentiles
+    ExportStdIndexDistribution:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        distribution:
+          type: string
+          title: Distribution
+          description: Distribution name
+          default: nonparametric
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: eddi
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+          description: Start date
+          default: '2010-06-01'
+        end_date:
+          type: string
+          format: date
+          title: End Date
+          description: Start date
+          default: '2010-06-30'
+        start_season:
+          type: string
+          title: Start Season
+          description: mm-dd
+          default: 01-01
+        end_season:
+          type: string
+          title: End Season
+          description: mm-dd
+          default: 12-31
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2016
+        end_year:
+          type: integer
+          title: End Year
+          default: 2018
+        years:
+          type: integer
+          title: Years
+          default: 1
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportStdIndexDistribution
+      description: Base Model for ExportStdIndexDistribution
+    ExportDateThresholdAnomalies:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        operator:
+          type: string
+          title: Operator
+          default: threshold_max
+        occurrence:
+          type: string
+          title: Occurrence
+          default: first
+        value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Value
+          default: ''
+        calculation:
+          type: string
+          title: Calculation
+          description: Anomaly calculation
+          default: anom
+        start_date:
+          type: string
+          title: Start Date
+          description: yyyy-mm-dd
+          default: '2010-01-01'
+        end_date:
+          type: string
+          title: End Date
+          description: yyyy-mm-dd
+          default: '2010-12-31'
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2001
+        end_year:
+          type: integer
+          title: End Year
+          default: 2020
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportDateThresholdAnomalies
+      description: Base Model for ExportDateThresholdAnomalies
+    ExportDegreeDaysMannKendall:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmean
+        dd_type:
+          type: string
+          title: Dd Type
+          description: heating or cooling
+          default: hdd
+        value:
+          type: number
+          title: Value
+          description: standard threshold
+          default: 18.3
+        calculation:
+          type: string
+          title: Calculation
+          description: Kendall calculation
+          default: mk_tau
+        p_value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: P Value
+          default: 0.5
+        start_season:
+          type: string
+          title: Start Season
+          description: mm-dd
+          default: 01-01
+        end_season:
+          type: string
+          title: End Season
+          description: mm-dd
+          default: 12-31
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2001
+        end_year:
+          type: integer
+          title: End Year
+          default: 2020
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportDegreeDaysMannKendall
+      description: Base Model for ExportDegreeDaysMannKendall
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ExportRanks:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        forecast_model:
+          type: string
+          title: Forecast Model
+          description: Forecast model
+          default: ''
+        temporal_statistic:
+          type: string
+          title: Temporal Statistic
+          description: temporal aggregation
+          default: mean
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+          description: Start date
+          default: '2010-06-01'
+        end_date:
+          type: string
+          format: date
+          title: End Date
+          description: Start date
+          default: '2010-06-30'
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2016
+        end_year:
+          type: integer
+          title: End Year
+          default: 2018
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+        precision:
+          type: string
+          title: Precision
+          default: '0.0000001'
+      type: object
+      title: ExportRanks
+      description: Base Model for ExportPercentiles
+    ExportDateThresholdClimatologies:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        operator:
+          type: string
+          title: Operator
+          default: threshold_max
+        occurrence:
+          type: string
+          title: Occurrence
+          default: first
+        value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Value
+          default: ''
+        start_season:
+          type: string
+          title: Start Season
+          description: mm-dd
+          default: 01-01
+        end_season:
+          type: string
+          title: End Season
+          description: mm-dd
+          default: 12-31
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2001
+        end_year:
+          type: integer
+          title: End Year
+          default: 2020
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportDateThresholdClimatologies
+      description: Base Model for ExportDateThresholdClimatologies
+    ExportCountMannKendall:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        operator:
+          type: string
+          title: Operator
+          default: threshold_gte
+        output:
+          type: string
+          title: Output
+          default: counts
+        value_1:
+          type: string
+          title: Value 1
+          default: '25'
+        value_2:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Value 2
+          default: ''
+        calculation:
+          type: string
+          title: Calculation
+          description: Kendall calculation
+          default: mk_tau
+        p_value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: P Value
+          default: 0.5
+        start_season:
+          type: string
+          title: Start Season
+          description: mm-dd
+          default: 01-01
+        end_season:
+          type: string
+          title: End Season
+          description: mm-dd
+          default: 12-31
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2001
+        end_year:
+          type: integer
+          title: End Year
+          default: 2020
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportCountMannKendall
+      description: Base Model for ExportCountMannKendall
+    ExportClimatologies:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        temporal_statistic:
+          type: string
+          title: Temporal Statistic
+          description: temporal aggregation
+          default: mean
+        start_season:
+          type: string
+          title: Start Season
+          description: mm-dd
+          default: 08-01
+        end_season:
+          type: string
+          title: End Season
+          description: mm-dd
+          default: 10-31
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2016
+        end_year:
+          type: integer
+          title: End Year
+          default: 2018
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportClimatologies
+      description: Base Model for ExportClimatologies
+    ExportCountAnomalies:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        operator:
+          type: string
+          title: Operator
+          default: threshold_gte
+        output:
+          type: string
+          title: Output
+          default: counts
+        value_1:
+          type: string
+          title: Value 1
+          default: '25'
+        value_2:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Value 2
+          default: ''
+        calculation:
+          type: string
+          title: Calculation
+          description: Anomaly calculation
+          default: anom
+        start_date:
+          type: string
+          title: Start Date
+          description: yyyy-mm-dd
+          default: '2010-01-01'
+        end_date:
+          type: string
+          title: End Date
+          description: yyyy-mm-dd
+          default: '2010-12-31'
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2001
+        end_year:
+          type: integer
+          title: End Year
+          default: 2020
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportCountAnomalies
+      description: Base Model for ExportCountsAnomalies
+    ExportAnomalies:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        forecast_model:
+          type: string
+          title: Forecast Model
+          description: Forecast model
+          default: ''
+        temporal_statistic:
+          type: string
+          title: Temporal Statistic
+          description: temporal aggregation
+          default: mean
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+          description: Start date
+          default: '2010-06-01'
+        end_date:
+          type: string
+          format: date
+          title: End Date
+          description: Start date
+          default: '2010-06-30'
+        calculation:
+          type: string
+          title: Calculation
+          description: Anomaly calculation
+          default: anom
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2016
+        end_year:
+          type: integer
+          title: End Year
+          default: 2018
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportAnomalies
+      description: Base Model for ExportAnomalies
+    ExportDateThreshold:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        operator:
+          type: string
+          title: Operator
+          default: threshold_max
+        occurrence:
+          type: string
+          title: Occurrence
+          default: first
+        value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Value
+          default: ''
+        start_date:
+          type: string
+          title: Start Date
+          description: yyyy-mm-dd
+          default: '2010-01-01'
+        end_date:
+          type: string
+          title: End Date
+          description: yyyy-mm-dd
+          default: '2010-12-31'
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportDateThreshold
+      description: Base Model for ExportDateThreshold
+    ExportMannKendall:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        temporal_statistic:
+          type: string
+          title: Temporal Statistic
+          description: temporal aggregation
+          default: mean
+        start_date:
+          type: string
+          format: date
+          title: Start Date
+          description: Start date
+          default: '2010-06-01'
+        end_date:
+          type: string
+          format: date
+          title: End Date
+          description: Start date
+          default: '2010-06-30'
+        calculation:
+          type: string
+          title: Calculation
+          description: Kendall calculation
+          default: mk_tau
+        p_value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: P Value
+          default: 0.5
+        start_season:
+          type: string
+          title: Start Season
+          description: mm-dd
+          default: 08-01
+        end_season:
+          type: string
+          title: End Season
+          description: mm-dd
+          default: 10-31
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2016
+        end_year:
+          type: integer
+          title: End Year
+          default: 2018
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportMannKendall
+      description: Base Model for ExportMannKendall
+    ExportCounts:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        operator:
+          type: string
+          title: Operator
+          default: threshold_gte
+        output:
+          type: string
+          title: Output
+          default: counts
+        value_1:
+          type: string
+          title: Value 1
+          default: '25'
+        value_2:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Value 2
+          default: ''
+        start_date:
+          type: string
+          title: Start Date
+          description: yyyy-mm-dd
+          default: '2010-01-01'
+        end_date:
+          type: string
+          title: End Date
+          description: yyyy-mm-dd
+          default: '2010-12-31'
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportCounts
+      description: Base Model for ExportCounts
+    ExportGrowingDegreeDaysMannKendall:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable_tmax:
+          type: string
+          title: Variable Tmax
+          description: Tmax variable name
+          default: tmmx
+        variable_tmin:
+          type: string
+          title: Variable Tmin
+          description: Tmin variable name
+          default: tmmn
+        base_threshold:
+          type: string
+          title: Base Threshold
+          description: Base Threshold Temperature
+          default: 10
+        cutoff_threshold:
+          type: number
+          title: Cutoff Threshold
+          description: Cutoff Threshold Temperature
+          default: 30
+        calculation:
+          type: string
+          title: Calculation
+          description: Kendall calculation
+          default: mk_tau
+        p_value:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: P Value
+          default: 0.5
+        start_season:
+          type: string
+          title: Start Season
+          description: mm-dd
+          default: 01-01
+        end_season:
+          type: string
+          title: End Season
+          description: mm-dd
+          default: 12-31
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2001
+        end_year:
+          type: integer
+          title: End Year
+          default: 2020
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportGrowingDegreeDaysMannKendall
+      description: Base Model for ExportGrowingDegreeDaysMannKendall
+    ExportDegreeDaysAnomalies:
+      properties:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmean
+        dd_type:
+          type: string
+          title: Dd Type
+          description: heating or cooling
+          default: hdd
+        value:
+          type: number
+          title: Value
+          description: standard threshold
+          default: 18.3
+        calculation:
+          type: string
+          title: Calculation
+          description: Anomaly calculation
+          default: anom
+        start_date:
+          type: string
+          title: Start Date
+          description: yyyy-mm-dd
+          default: '2010-01-01'
+        end_date:
+          type: string
+          title: End Date
+          description: yyyy-mm-dd
+          default: '2010-12-31'
+        start_year:
+          type: integer
+          title: Start Year
+          default: 2001
+        end_year:
+          type: integer
+          title: End Year
+          default: 2020
+        bounding_box:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Bounding Box
+          description: '[SW Lon, SW Lat, NE Lon, NE Lat]'
+          default: ''
+        map_mask:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Map Mask
+          default: ''
+        export_path:
+          type: string
+          title: Export Path
+          description: Export path to Google Cloud Bucket
+          default: ncei-nidis/demo_image
+        export_projection:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Projection
+          default: ''
+        export_resolution:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Resolution
+          default: ''
+        priority:
+          anyOf:
+          - type: integer
+            maximum: 9999.0
+            minimum: 1.0
+          - type: 'null'
+          title: Priority
+          description: Export job priority (1-9999)
+      type: object
+      title: ExportDegreeDaysAnomalies
+      description: Base Model for ExportDegreeDaysAnomalies
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: Authorization

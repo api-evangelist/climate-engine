@@ -1,0 +1,1535 @@
+openapi: 3.2.0
+info:
+  title: 'Climate Engine API v1: climate-engine-pro Zonal Stats API'
+  version: 0.1.0
+tags:
+- name: zonal_stats
+paths:
+  /zonal_stats/pixel_count/coordinates:
+    post:
+      tags:
+      - zonal_stats
+      summary: Pixel Count Coordinates Post
+      description: Zonal Statistics Pixel Count for Points or Polygons
+      operationId: pixel_count_coordinates_post_zonal_stats_pixel_count_coordinates_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PixelCountCoordinates'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /zonal_stats/pixel_count/feature_collection:
+    post:
+      tags:
+      - zonal_stats
+      summary: Pixel Count Feature Collection Post
+      description: Zonal Statistics Pixel Count for Earth Engine FeatureCollection
+      operationId: pixel_count_feature_collection_post_zonal_stats_pixel_count_feature_collection_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PixelCountFeatureCollection'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /zonal_stats/pixel_count/timeseries/coordinates:
+    post:
+      tags:
+      - zonal_stats
+      summary: Pixel Count Timeseries Coordinates Post
+      description: Zonal Stats Timeseries Pixel Count for Polygon
+      operationId: pixel_count_timeseries_coordinates_post_zonal_stats_pixel_count_timeseries_coordinates_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PixelCountTimeseriesCoordinates'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /zonal_stats/pixel_count/timeseries/feature_collection:
+    post:
+      tags:
+      - zonal_stats
+      summary: Pixel Count Timeseries Feature Collection Post
+      description: Zonal Stats Timeseries Pixel Count for Earth Engine FeatureCollection
+      operationId: pixel_count_timeseries_feature_collection_post_zonal_stats_pixel_count_timeseries_feature_collection_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PixelCountTimeseriesFeatureCollection'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /zonal_stats/static_dataset/coordinates:
+    post:
+      tags:
+      - zonal_stats
+      summary: Static Dataset Coordinates Post
+      description: Zonal Statistics for Points or Polygons over static (time-independent) dataset
+      operationId: static_dataset_coordinates_post_zonal_stats_static_dataset_coordinates_post
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: coordinates
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '[[-121.61,38.78]]'
+          title: Coordinates
+      - name: simplify_geometry
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: None
+          title: Simplify Geometry
+      - name: buffer
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+      - name: area_reducer
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Area Reducer
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: EH
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ERisk
+          title: Variable
+      - name: mask_image_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Mask Image Id
+      - name: mask_band
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Mask Band
+      - name: mask_value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+      - name: export_path
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Path
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /zonal_stats/static_dataset/feature_collection:
+    post:
+      tags:
+      - zonal_stats
+      summary: Static Dataset Feature Collection Post
+      description: Zonal Statistics for Earth Engine FeatureCollection over static (time-independent) dataset
+      operationId: static_dataset_feature_collection_post_zonal_stats_static_dataset_feature_collection_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StaticDatasetFeatureCollection'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /zonal_stats/temporal_dataset/coordinates:
+    get:
+      tags:
+      - zonal_stats
+      summary: Temporal Dataset Coordinates Get
+      description: Zonal Statistics for Points or Polygons over temporal (time-dependent) dataset
+      operationId: temporal_dataset_coordinates_get_zonal_stats_temporal_dataset_coordinates_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: coordinates
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '[[[-122.06, 39.16], [-122.06, 37.76], [-120.45, 37.76], [-120.45, 39.16]]]'
+          title: Coordinates
+      - name: simplify_geometry
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: None
+          title: Simplify Geometry
+      - name: buffer
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+      - name: area_reducer
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Area Reducer
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: mask_image_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Mask Image Id
+      - name: mask_band
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Mask Band
+      - name: mask_value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-30'
+          title: End Date
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: export_path
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Path
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /zonal_stats/temporal_dataset/feature_collection:
+    get:
+      tags:
+      - zonal_stats
+      summary: Temporal Feature Collection Get
+      description: Zonal Statistics for Earth Engine FeatureCollection over temporal (time dependent) dataset
+      operationId: temporal_feature_collection_get_zonal_stats_temporal_dataset_feature_collection_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: feature_collection_asset_id
+        in: query
+        required: false
+        schema:
+          type: string
+          default: blm_ga_nv
+          title: Feature Collection Asset Id
+      - name: sub_choices
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Sub Choices
+      - name: filter_by
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Filter By
+      - name: simplify_geometry
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: None
+          title: Simplify Geometry
+      - name: buffer
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+      - name: area_reducer
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Area Reducer
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: mask_image_id
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Mask Image Id
+      - name: mask_band
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Mask Band
+      - name: mask_value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-30'
+          title: End Date
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: export_path
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Path
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /zonal_stats/group_by/coordinates:
+    post:
+      tags:
+      - zonal_stats
+      summary: Group By Coordinates Post
+      description: Zonal Statistics Group By for Points or Polygons
+      operationId: group_by_coordinates_post_zonal_stats_group_by_coordinates_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupByCoordinates'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /zonal_stats/group_by/feature_collection:
+    post:
+      tags:
+      - zonal_stats
+      summary: Group By Feature Collection Post
+      description: Zonal Statistics Group By for Earth Engine FeatureCollection
+      operationId: group_by_feature_collection_post_zonal_stats_group_by_feature_collection_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GroupByFeatureCollection'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /zonal_stats/count/coordinates:
+    post:
+      tags:
+      - zonal_stats
+      summary: Count Coordinates Post
+      description: Zonal Statistics for Points or Polygons over temporal (time-dependent) dataset
+      operationId: count_coordinates_post_zonal_stats_count_coordinates_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CountCoordinates'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /zonal_stats/count/feature_collection:
+    post:
+      tags:
+      - zonal_stats
+      summary: Count Feature Collection Post
+      description: Zonal Statistics for Earth Engine FeatureCollection over temporal (time dependent) dataset
+      operationId: count_feature_collection_post_zonal_stats_count_feature_collection_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CountFeatureCollection'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    PixelCountTimeseriesFeatureCollection:
+      properties:
+        feature_collection_asset_id:
+          type: string
+          title: Feature Collection Asset Id
+          description: Earth Engine FeatureCollection ID or Climate Engine Asset from [Climate Engine Assets](https://docs.climateengine.org/docs/build/html/climate_engine_assets.html)
+          default: blm_ga_nv
+        sub_choices:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Choices
+          description: Column attribute values, e.g. Little Owyhee
+          default: ''
+        filter_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filter By
+          description: 'Column attribute in the asset to use as filter: e.g. Name'
+          default: ''
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET_DROUGHT
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: spi180d
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        bins:
+          type: string
+          title: Bins
+          description: Bins to use in calculations
+          default: '[-2.5, -2, -1.5, -1, -0.5, 0.5, 1, 1.5, 2, 2.5]'
+        start_date:
+          type: string
+          title: Start Date
+          default: '2010-06-01'
+        end_date:
+          type: string
+          title: End Date
+          default: '2010-06-30'
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: PixelCountTimeseriesFeatureCollection
+      description: Model for zonal_stats/pixel_count/timeseries/feature_collection
+    GroupByFeatureCollection:
+      properties:
+        feature_collection_asset_id:
+          type: string
+          title: Feature Collection Asset Id
+          description: Earth Engine FeatureCollection ID or Climate Engine Asset from [Climate Engine Assets](https://docs.climateengine.org/docs/build/html/climate_engine_assets.html)
+          default: blm_ga_nv
+        sub_choices:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Choices
+          description: Column attribute values, e.g. Little Owyhee
+          default: ''
+        filter_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filter By
+          description: 'Column attribute in the asset to use as filter: e.g. Name'
+          default: ''
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        area_reducer:
+          type: string
+          title: Area Reducer
+          description: Statistic over region
+          default: sum
+        group_img_id:
+          type: string
+          title: Group Img Id
+          description: Image Id
+          default: GRIDMET/DROUGHT/20200105
+        group_band:
+          type: string
+          title: Group Band
+          description: Group BandName
+          default: spi1y
+        group_img_type:
+          type: string
+          title: Group Img Type
+          description: What type of data is the group set
+          default: continuous
+        summary_img_id:
+          type: string
+          title: Summary Img Id
+          description: Image Id
+          default: CIESIN/GPWv411/GPW_Population_Count/gpw_v4_population_count_rev11_2020_30_sec
+        summary_band:
+          type: string
+          title: Summary Band
+          description: Summary BandName
+          default: population_count
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        bins:
+          type: string
+          title: Bins
+          description: Bins to use in calculations
+          default: '[-2.5, -2, -1.5, -1, -0.5, 0.5, 1, 1.5, 2, 2.5]'
+        scale_img:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Scale Img
+          description: What image to use as the reduce scale
+          default: ''
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: GroupByFeatureCollection
+      description: Model for zonal_stats/pixel_count/feature_collection
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PixelCountTimeseriesCoordinates:
+      properties:
+        coordinates:
+          type: string
+          title: Coordinates
+          description: polygon coordinates, see [Formatting Coordinates](https://support.climateengine.org/article/152-formatting-coordinates-for-api-requests)
+          default: '[[[-122.06, 39.16], [-122.06, 37.76], [-120.45, 37.76], [-120.45, 39.16]]]'
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET_DROUGHT
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: spi180d
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        bins:
+          type: string
+          title: Bins
+          description: Bins to use in calculations
+          default: '[-2.5, -2, -1.5, -1, -0.5, 0.5, 1, 1.5, 2, 2.5]'
+        start_date:
+          type: string
+          title: Start Date
+          default: '2010-06-01'
+        end_date:
+          type: string
+          title: End Date
+          default: '2010-06-30'
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: PixelCountTimeseriesCoordinates
+      description: Model for pixel_count/timeseries/coordinates
+    PixelCountCoordinates:
+      properties:
+        coordinates:
+          type: string
+          title: Coordinates
+          description: polygon coordinates, see [Formatting Coordinates](https://support.climateengine.org/article/152-formatting-coordinates-for-api-requests)
+          default: '[[[-122.06, 39.16], [-122.06, 37.76], [-120.45, 37.76], [-120.45, 39.16]]]'
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET_DROUGHT
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: spi180d
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        bins:
+          type: string
+          title: Bins
+          description: Bins to use in calculations
+          default: '[-2.5, -2, -1.5, -1, -0.5, 0.5, 1, 1.5, 2, 2.5]'
+        end_date:
+          type: string
+          title: End Date
+          default: '2010-06-30'
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: PixelCountCoordinates
+      description: Model for zonal_stats/pixel_count/coordinates
+    CountFeatureCollection:
+      properties:
+        feature_collection_asset_id:
+          type: string
+          title: Feature Collection Asset Id
+          description: Earth Engine FeatureCollection ID or Climate Engine Asset from [Climate Engine Assets](https://docs.climateengine.org/docs/build/html/climate_engine_assets.html)
+          default: blm_ga_nv
+        sub_choices:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Choices
+          description: Column attribute values, e.g. Little Owyhee
+          default: ''
+        filter_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filter By
+          description: 'Column attribute in the asset to use as filter: e.g. Name'
+          default: ''
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        area_reducer:
+          type: string
+          title: Area Reducer
+          description: Statistic over region
+          default: mean
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        operator:
+          type: string
+          title: Operator
+          description: Threshold operator
+          default: threshold_gte
+        output:
+          type: string
+          title: Output
+          description: Output type
+          default: counts
+        value_1:
+          type: number
+          title: Value 1
+          default: 25
+        value_2:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Value 2
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        start_date:
+          type: string
+          title: Start Date
+          default: '2010-06-01'
+        end_date:
+          type: string
+          title: End Date
+          default: '2010-06-30'
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: CountFeatureCollection
+      description: Model for zonal_stats/count/feature_collection
+    StaticDatasetFeatureCollection:
+      properties:
+        feature_collection_asset_id:
+          type: string
+          title: Feature Collection Asset Id
+          description: Earth Engine FeatureCollection ID or Climate Engine Asset from [Climate Engine Assets](https://docs.climateengine.org/docs/build/html/climate_engine_assets.html)
+          default: blm_ga_nv
+        sub_choices:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Choices
+          description: Column attribute values, e.g. Little Owyhee
+          default: ''
+        filter_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filter By
+          description: 'Column attribute in the asset to use as filter: e.g. Name'
+          default: ''
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        area_reducer:
+          type: string
+          title: Area Reducer
+          description: Statistic over region
+          default: mean
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: EH
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: ERisk
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: StaticDatasetFeatureCollection
+      description: Model for zonal_stats/static_dataset/feature_collection
+    GroupByCoordinates:
+      properties:
+        coordinates:
+          type: string
+          title: Coordinates
+          description: polygon coordinates, see [Formatting Coordinates](https://support.climateengine.org/article/152-formatting-coordinates-for-api-requests)
+          default: '[[[-122.06, 39.16], [-122.06, 37.76], [-120.45, 37.76], [-120.45, 39.16]]]'
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        area_reducer:
+          type: string
+          title: Area Reducer
+          description: Statistic over region
+          default: sum
+        group_img_id:
+          type: string
+          title: Group Img Id
+          description: Image Id
+          default: GRIDMET/DROUGHT/20200105
+        group_band:
+          type: string
+          title: Group Band
+          description: Group BandName
+          default: spi1y
+        group_img_type:
+          type: string
+          title: Group Img Type
+          description: What type of data is the group set
+          default: continuous
+        summary_img_id:
+          type: string
+          title: Summary Img Id
+          description: Image Id
+          default: CIESIN/GPWv411/GPW_Population_Count/gpw_v4_population_count_rev11_2020_30_sec
+        summary_band:
+          type: string
+          title: Summary Band
+          description: Summary BandName
+          default: population_count
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        bins:
+          type: string
+          title: Bins
+          description: Bins to use in calculations
+          default: '[-2.5, -2, -1.5, -1, -0.5, 0.5, 1, 1.5, 2, 2.5]'
+        scale_img:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Scale Img
+          description: What image to use as the reduce scale
+          default: ''
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: GroupByCoordinates
+      description: Model for zonal_stats/pixel_count/coordinates
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    CountCoordinates:
+      properties:
+        coordinates:
+          type: string
+          title: Coordinates
+          description: polygon coordinates, see [Formatting Coordinates](https://support.climateengine.org/article/152-formatting-coordinates-for-api-requests)
+          default: '[[[-122.06, 39.16], [-122.06, 37.76], [-120.45, 37.76], [-120.45, 39.16]]]'
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        area_reducer:
+          type: string
+          title: Area Reducer
+          description: Statistic over region
+          default: mean
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: tmmx
+        operator:
+          type: string
+          title: Operator
+          description: Threshold operator
+          default: threshold_gte
+        output:
+          type: string
+          title: Output
+          description: Output type
+          default: counts
+        value_1:
+          type: number
+          title: Value 1
+          default: 25
+        value_2:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Value 2
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        start_date:
+          type: string
+          title: Start Date
+          default: '2010-06-01'
+        end_date:
+          type: string
+          title: End Date
+          default: '2010-06-30'
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: CountCoordinates
+      description: Model for zonal_stats/count/coordinates
+    PixelCountFeatureCollection:
+      properties:
+        feature_collection_asset_id:
+          type: string
+          title: Feature Collection Asset Id
+          description: Earth Engine FeatureCollection ID or Climate Engine Asset from [Climate Engine Assets](https://docs.climateengine.org/docs/build/html/climate_engine_assets.html)
+          default: blm_ga_nv
+        sub_choices:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Choices
+          description: Column attribute values, e.g. Little Owyhee
+          default: ''
+        filter_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filter By
+          description: 'Column attribute in the asset to use as filter: e.g. Name'
+          default: ''
+        simplify_geometry:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+          default: None
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET_DROUGHT
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: spi180d
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        bins:
+          type: string
+          title: Bins
+          description: Bins to use in calculations
+          default: '[-2.5, -2, -1.5, -1, -0.5, 0.5, 1, 1.5, 2, 2.5]'
+        end_date:
+          type: string
+          title: End Date
+          default: '2010-06-30'
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: PixelCountFeatureCollection
+      description: Model for zonal_stats/pixel_count/feature_collection
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: Authorization

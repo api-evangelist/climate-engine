@@ -1,28 +1,19 @@
 openapi: 3.2.0
 info:
   title: 'Climate Engine API v1: climate-engine-pro Timeseries API'
-  description: On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.
-  termsOfService: https://www.climateengine.com
-  contact:
-    name: Climate Engine
-    url: https://support.climateengine.org
   version: 0.1.0
-servers:
-- url: https://api.climateengine.org
-  description: Climate Engine production API
-security:
-- APIKeyHeader: []
 tags:
 - name: Time Series
-  description: Native, interannual, standard-index, and regression time series.
 paths:
   /timeseries/native/coordinates:
     post:
-      operationId: timeseriesNativeCoordinates
       tags:
       - Time Series
-      summary: Native Coordinates
-      description: Generates a raw (native) time series for a dataset over point or polygon coordinates.
+      summary: Native Coordinates Post
+      description: Native Time Series for Points or Polygons
+      operationId: native_coordinates_post_timeseries_native_coordinates_post
+      security:
+      - APIKeyHeader: []
       requestBody:
         required: true
         content:
@@ -31,20 +22,25 @@ paths:
               $ref: '#/components/schemas/NativeCoordinates'
       responses:
         '200':
-          description: Native time series.
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
           content:
             application/json:
               schema:
-                type: object
-        '422':
-          $ref: '#/components/responses/ValidationError'
+                $ref: '#/components/schemas/HTTPValidationError'
   /timeseries/native/feature_collection:
     post:
-      operationId: timeseriesNativeFeatureCollection
       tags:
       - Time Series
-      summary: Native Feature Collection
-      description: Generates a raw (native) time series for a dataset reduced over a GeoJSON feature collection.
+      summary: Native Feature Collection Post
+      description: Native Time Series for Earth Engine FeatureCollection
+      operationId: native_feature_collection_post_timeseries_native_feature_collection_post
+      security:
+      - APIKeyHeader: []
       requestBody:
         required: true
         content:
@@ -53,213 +49,1165 @@ paths:
               $ref: '#/components/schemas/NativeFeatureCollection'
       responses:
         '200':
-          description: Native time series.
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
           content:
             application/json:
               schema:
-                type: object
-        '422':
-          $ref: '#/components/responses/ValidationError'
-  /timeseries/native/forecasts/coordinates:
-    post:
-      operationId: timeseriesNativeForecastCoordinates
-      tags:
-      - Time Series
-      summary: Forecast Coordinates
-      description: Generates a forecast time series over point coordinates.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NativeCoordinates'
-      responses:
-        '200':
-          description: Forecast time series.
-          content:
-            application/json:
-              schema:
-                type: object
-        '422':
-          $ref: '#/components/responses/ValidationError'
-  /timeseries/interannual/coordinates:
-    post:
-      operationId: timeseriesInterannualCoordinates
-      tags:
-      - Time Series
-      summary: Interannual Coordinates
-      description: Generates an interannual time series over point coordinates.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NativeCoordinates'
-      responses:
-        '200':
-          description: Interannual time series.
-          content:
-            application/json:
-              schema:
-                type: object
-        '422':
-          $ref: '#/components/responses/ValidationError'
-  /timeseries/regression/coordinates:
-    post:
-      operationId: timeseriesRegressionCoordinates
-      tags:
-      - Time Series
-      summary: Regression Coordinates
-      description: Generates a regression time series between two variables over point coordinates.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NativeCoordinates'
-      responses:
-        '200':
-          description: Regression time series.
-          content:
-            application/json:
-              schema:
-                type: object
-        '422':
-          $ref: '#/components/responses/ValidationError'
+                $ref: '#/components/schemas/HTTPValidationError'
   /timeseries/standard_index/coordinates:
     post:
-      operationId: timeseriesStandardIndexCoordinates
       tags:
       - Time Series
-      summary: Standard Index Coordinates
-      description: Generates a standardized-index (e.g. SPI/SPEI) time series over point coordinates.
+      summary: Standard Index Coordinates Post
+      description: Standard Index Time Series for Points dn Polygons
+      operationId: standard_index_coordinates_post_timeseries_standard_index_coordinates_post
+      security:
+      - APIKeyHeader: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NativeCoordinates'
+              $ref: '#/components/schemas/StandardIndexCoordinates'
       responses:
         '200':
-          description: Standard index time series.
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/HTTPValidationError'
+  /timeseries/standard_index/feature_collection:
+    post:
+      tags:
+      - Time Series
+      summary: Standard Index Feature Collection Post
+      description: Standard Index Time Series for Earth Engine FeatureCollection
+      operationId: standard_index_feature_collection_post_timeseries_standard_index_feature_collection_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StandardIndexFeatureCollection'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
         '422':
-          $ref: '#/components/responses/ValidationError'
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /timeseries/interannual/coordinates:
+    post:
+      tags:
+      - Time Series
+      summary: Interannual Coordinates Post
+      description: Summary Time Series for Points or Polygons
+      operationId: interannual_coordinates_post_timeseries_interannual_coordinates_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InterannualCoordinates'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /timeseries/interannual/feature_collection:
+    post:
+      tags:
+      - Time Series
+      summary: Interannual Feature Collection Post
+      description: Summary Time Series for Earth Engine FeatureCollection
+      operationId: interannual_feature_collection_post_timeseries_interannual_feature_collection_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InterannualFeatureCollection'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /timeseries/regression/coordinates:
+    post:
+      tags:
+      - Time Series
+      summary: Regression Coordinates Post
+      description: Regression Time Series for Points dn Polygons
+      operationId: regression_coordinates_post_timeseries_regression_coordinates_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegressionCoordinates'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /timeseries/regression/feature_collection:
+    post:
+      tags:
+      - Time Series
+      summary: Regression Feature Collection Post
+      description: Regression Time Series for Earth Engine FeatureCollection
+      operationId: regression_feature_collection_post_timeseries_regression_feature_collection_post
+      security:
+      - APIKeyHeader: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegressionFeatureCollection'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    NativeCoordinates:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
       type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    InterannualFeatureCollection:
+      properties:
+        feature_collection_asset_id:
+          type: string
+          title: Feature Collection Asset Id
+          description: Earth Engine FeatureCollection ID or Climate Engine Asset from [Climate Engine Assets](https://docs.climateengine.org/docs/build/html/climate_engine_assets.html)
+          default: blm_ga_nv
+        sub_choices:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Choices
+          description: Column attribute values, e.g. Little Owyhee
+          default: ''
+        filter_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filter By
+          description: 'Column attribute in the asset to use as filter: e.g. Name'
+          default: ''
+        simplify_geometry:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        area_reducer:
+          type: string
+          title: Area Reducer
+          description: Area reducer
+          default: mean
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable names
+          default: tmmn, tmmx
+        compute_trends:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Compute Trends
+          description: 'Comma seperated trends to be computed. Options: polyfit, sens_slope'
+          default: ''
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        start_day:
+          type: integer
+          title: Start Day
+          default: '01'
+        end_day:
+          type: integer
+          title: End Day
+          default: '30'
+        start_month:
+          type: integer
+          title: Start Month
+          default: '01'
+        end_month:
+          type: integer
+          title: End Month
+          default: '12'
+        start_year:
+          type: integer
+          title: Start Year
+          default: '1991'
+        end_year:
+          type: integer
+          title: End Year
+          default: '2020'
+        temporal_statistic:
+          type: string
+          title: Temporal Statistic
+          description: Temporal aggregation
+          default: mean
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: InterannualFeatureCollection
+    StandardIndexCoordinates:
       properties:
         coordinates:
           type: string
           title: Coordinates
-          description: Point or polygon coordinates as a JSON-encoded array.
+          description: point or polygon coordinates, see [Formatting Coordinates](https://support.climateengine.org/article/152-formatting-coordinates-for-api-requests)
           default: '[[-121.61,38.78]]'
         simplify_geometry:
-          type:
-          - integer
-          - 'null'
+          anyOf:
+          - type: integer
+          - type: 'null'
           title: Simplify Geometry
-          description: maxError in meters for ee.Feature.simplify.
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
         buffer:
-          type:
-          - integer
-          - 'null'
+          anyOf:
+          - type: integer
+          - type: 'null'
           title: Buffer
-          description: Buffer in meters.
+          description: Buffer in meters
         area_reducer:
           type: string
           title: Area Reducer
+          description: Area reducer
           default: mean
         dataset:
           type: string
           title: Dataset
+          description: Dataset name
+          default: PRISM_MONTHLY_4km
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: spi
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        start_date:
+          type: string
+          title: Start Date
+          description: ''
+          default: '2018-01-01'
+        end_date:
+          type: string
+          title: End Date
+          description: ''
+          default: '2018-01-02'
+        start_year:
+          type: integer
+          title: Start Year
+          default: '1991'
+        end_year:
+          type: integer
+          title: End Year
+          default: '2020'
+        accumulation:
+          type: string
+          title: Accumulation
+          description: ''
+          default: '3'
+        distribution:
+          type: string
+          title: Distribution
+          description: ''
+          default: gamma
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: StandardIndexCoordinates
+    InterannualCoordinates:
+      properties:
+        coordinates:
+          type: string
+          title: Coordinates
+          description: point or polygon coordinates, see [Formatting Coordinates](https://support.climateengine.org/article/152-formatting-coordinates-for-api-requests)
+          default: '[[-121.61,38.78]]'
+        simplify_geometry:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        area_reducer:
+          type: string
+          title: Area Reducer
+          description: Area reducer
+          default: mean
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
           default: GRIDMET
         variable:
           type: string
           title: Variable
+          description: Variable names
           default: tmmn, tmmx
         compute_trends:
-          type:
-          - string
-          - 'null'
+          anyOf:
+          - type: string
+          - type: 'null'
           title: Compute Trends
-          description: 'Comma-separated trends to compute. Options: polyfit, sens_slope.'
+          description: 'Comma seperated trends to be computed. Options: polyfit, sens_slope'
           default: ''
-        start_date:
-          type:
-          - string
-          - 'null'
-          title: Start Date
-        end_date:
-          type:
-          - string
-          - 'null'
-          title: End Date
-    NativeFeatureCollection:
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        start_day:
+          type: integer
+          title: Start Day
+          default: '01'
+        end_day:
+          type: integer
+          title: End Day
+          default: '30'
+        start_month:
+          type: integer
+          title: Start Month
+          default: '01'
+        end_month:
+          type: integer
+          title: End Month
+          default: '12'
+        start_year:
+          type: integer
+          title: Start Year
+          default: '1991'
+        end_year:
+          type: integer
+          title: End Year
+          default: '2020'
+        temporal_statistic:
+          type: string
+          title: Temporal Statistic
+          description: Temporal aggregation
+          default: mean
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
       type: object
+      title: InterannualCoordinates
+    RegressionFeatureCollection:
       properties:
-        feature_collection_id:
-          type:
-          - string
-          - 'null'
-          title: Feature Collection Id
-          description: Earth Engine feature collection asset ID.
+        feature_collection_asset_id:
+          type: string
+          title: Feature Collection Asset Id
+          description: Earth Engine FeatureCollection ID or Climate Engine Asset from [Climate Engine Assets](https://docs.climateengine.org/docs/build/html/climate_engine_assets.html)
+          default: blm_ga_nv
+        sub_choices:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Choices
+          description: Column attribute values, e.g. Little Owyhee
+          default: ''
+        filter_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filter By
+          description: 'Column attribute in the asset to use as filter: e.g. Name'
+          default: ''
+        simplify_geometry:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        area_reducer:
+          type: string
+          title: Area Reducer
+          description: Area reducer
+          default: mean
         dataset:
           type: string
           title: Dataset
+          description: Dataset name
+          default: LANDSAT_TOA
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: NDVI
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        start_day:
+          type: integer
+          title: Start Day
+          default: '01'
+        end_day:
+          type: integer
+          title: End Day
+          default: '30'
+        start_month:
+          type: integer
+          title: Start Month
+          default: '01'
+        end_month:
+          type: integer
+          title: End Month
+          default: '12'
+        start_year:
+          type: integer
+          title: Start Year
+          default: '2016'
+        end_year:
+          type: integer
+          title: End Year
+          default: '2017'
+        temporal_statistic:
+          type: string
+          title: Temporal Statistic
+          description: Temporal aggregation
+          default: mean
+        var2_dataset:
+          type: string
+          title: Var2 Dataset
+          description: Second Dataset name
+          default: GRIDMET
+        var2_variable:
+          type: string
+          title: Var2 Variable
+          description: Second Variable name
+          default: pr
+        var2_mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Var2 Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        var2_mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Var2 Mask Band
+          description: Band name to use in mask image
+          default: ''
+        var2_mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Var2 Mask Value
+          description: Mask value.
+        var2_start_day:
+          type: integer
+          title: Var2 Start Day
+          default: '01'
+        var2_end_day:
+          type: integer
+          title: Var2 End Day
+          default: '30'
+        var2_start_month:
+          type: integer
+          title: Var2 Start Month
+          default: '01'
+        var2_end_month:
+          type: integer
+          title: Var2 End Month
+          default: '12'
+        var2_temporal_statistic:
+          type: string
+          title: Var2 Temporal Statistic
+          description: Temporal aggregation
+          default: sum
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: RegressionFeatureCollection
+    NativeCoordinates:
+      properties:
+        coordinates:
+          type: string
+          title: Coordinates
+          description: point or polygon coordinates, see [Formatting Coordinates](https://support.climateengine.org/article/152-formatting-coordinates-for-api-requests)
+          default: '[[-121.61,38.78]]'
+        simplify_geometry:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        area_reducer:
+          type: string
+          title: Area Reducer
+          description: Area reducer
+          default: mean
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
           default: GRIDMET
         variable:
           type: string
           title: Variable
+          description: Variable names
           default: tmmn, tmmx
+        forecast_model:
+          type: string
+          title: Forecast Model
+          description: Forecast model
+          default: ''
+        start_date:
+          type: string
+          title: Start Date
+          description: ''
+          default: '2018-01-01'
+        end_date:
+          type: string
+          title: End Date
+          description: ''
+          default: '2018-01-02'
+        compute_trends:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Compute Trends
+          description: 'Comma seperated trends to be computed. Options: polyfit, sens_slope'
+          default: ''
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: NativeCoordinates
+    RegressionCoordinates:
+      properties:
+        coordinates:
+          type: string
+          title: Coordinates
+          description: point or polygon coordinates, see [Formatting Coordinates](https://support.climateengine.org/article/152-formatting-coordinates-for-api-requests)
+          default: '[[-121.61,38.78]]'
+        simplify_geometry:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
         area_reducer:
           type: string
           title: Area Reducer
+          description: Area reducer
           default: mean
-        start_date:
-          type:
-          - string
-          - 'null'
-          title: Start Date
-        end_date:
-          type:
-          - string
-          - 'null'
-          title: End Date
-    HTTPValidationError:
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: LANDSAT_TOA
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: NDVI
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        start_day:
+          type: integer
+          title: Start Day
+          default: '01'
+        end_day:
+          type: integer
+          title: End Day
+          default: '30'
+        start_month:
+          type: integer
+          title: Start Month
+          default: '01'
+        end_month:
+          type: integer
+          title: End Month
+          default: '12'
+        start_year:
+          type: integer
+          title: Start Year
+          default: '2016'
+        end_year:
+          type: integer
+          title: End Year
+          default: '2017'
+        temporal_statistic:
+          type: string
+          title: Temporal Statistic
+          description: Temporal aggregation
+          default: mean
+        var2_dataset:
+          type: string
+          title: Var2 Dataset
+          description: Second Dataset name
+          default: GRIDMET
+        var2_variable:
+          type: string
+          title: Var2 Variable
+          description: Second Variable name
+          default: pr
+        var2_mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Var2 Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        var2_mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Var2 Mask Band
+          description: Band name to use in mask image
+          default: ''
+        var2_mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Var2 Mask Value
+          description: Mask value.
+        var2_start_day:
+          type: integer
+          title: Var2 Start Day
+          default: '01'
+        var2_end_day:
+          type: integer
+          title: Var2 End Day
+          default: '30'
+        var2_start_month:
+          type: integer
+          title: Var2 Start Month
+          default: '01'
+        var2_end_month:
+          type: integer
+          title: Var2 End Month
+          default: '12'
+        var2_temporal_statistic:
+          type: string
+          title: Var2 Temporal Statistic
+          description: Temporal aggregation
+          default: sum
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
       type: object
-      title: HTTPValidationError
+      title: RegressionCoordinates
+    HTTPValidationError:
       properties:
         detail:
-          type: array
           items:
             $ref: '#/components/schemas/ValidationError'
-    ValidationError:
-      type: object
-      title: ValidationError
-      properties:
-        loc:
           type: array
-          items:
-            type: string
-        msg:
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    NativeFeatureCollection:
+      properties:
+        feature_collection_asset_id:
           type: string
-        type:
+          title: Feature Collection Asset Id
+          description: Earth Engine FeatureCollection ID or Climate Engine Asset from [Climate Engine Assets](https://docs.climateengine.org/docs/build/html/climate_engine_assets.html)
+          default: blm_ga_nv
+        sub_choices:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Choices
+          description: Column attribute values, e.g. Little Owyhee
+          default: ''
+        filter_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filter By
+          description: 'Column attribute in the asset to use as filter: e.g. Name'
+          default: ''
+        simplify_geometry:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        area_reducer:
           type: string
-  responses:
-    ValidationError:
-      description: Validation error.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/HTTPValidationError'
+          title: Area Reducer
+          description: Area reducer
+          default: mean
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: GRIDMET
+        variable:
+          type: string
+          title: Variable
+          description: Variable names
+          default: tmmn, tmmx
+        forecast_model:
+          type: string
+          title: Forecast Model
+          description: Forecast model
+          default: ''
+        start_date:
+          type: string
+          title: Start Date
+          description: ''
+          default: '2018-01-01'
+        end_date:
+          type: string
+          title: End Date
+          description: ''
+          default: '2018-01-02'
+        compute_trends:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Compute Trends
+          description: 'Comma seperated trends to be computed. Options: polyfit, sens_slope'
+          default: ''
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: NativeFeatureCollection
+    StandardIndexFeatureCollection:
+      properties:
+        feature_collection_asset_id:
+          type: string
+          title: Feature Collection Asset Id
+          description: Earth Engine FeatureCollection ID or Climate Engine Asset from [Climate Engine Assets](https://docs.climateengine.org/docs/build/html/climate_engine_assets.html)
+          default: blm_ga_nv
+        sub_choices:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Sub Choices
+          description: Column attribute values, e.g. Little Owyhee
+          default: ''
+        filter_by:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Filter By
+          description: 'Column attribute in the asset to use as filter: e.g. Name'
+          default: ''
+        simplify_geometry:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Simplify Geometry
+          description: maxError in meters, see [ee.Feature.simplify](https://developers.google.com/earth-engine/apidocs/ee-feature-simplify)
+        buffer:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Buffer
+          description: Buffer in meters
+        area_reducer:
+          type: string
+          title: Area Reducer
+          description: Area reducer
+          default: mean
+        dataset:
+          type: string
+          title: Dataset
+          description: Dataset name
+          default: PRISM_MONTHLY_4km
+        variable:
+          type: string
+          title: Variable
+          description: Variable name
+          default: spi
+        mask_image_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Image Id
+          description: Asset ID of the mask image
+          default: ''
+        mask_band:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Mask Band
+          description: Band name to use in mask image
+          default: ''
+        mask_value:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Mask Value
+          description: Mask value.
+        start_date:
+          type: string
+          title: Start Date
+          description: ''
+          default: '2018-01-01'
+        end_date:
+          type: string
+          title: End Date
+          description: ''
+          default: '2018-01-02'
+        start_year:
+          type: integer
+          title: Start Year
+          default: '1991'
+        end_year:
+          type: integer
+          title: End Year
+          default: '2020'
+        accumulation:
+          type: string
+          title: Accumulation
+          description: ''
+          default: '3'
+        distribution:
+          type: string
+          title: Distribution
+          description: ''
+          default: gamma
+        export_path:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Path
+          description: Google Cloud Bucket Export Path
+          default: ''
+        export_format:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Export Format
+          description: 'Export Format: json or csv'
+          default: ''
+      type: object
+      title: StandardIndexFeatureCollection
   securitySchemes:
     APIKeyHeader:
       type: apiKey
       in: header
       name: Authorization
-      description: API key issued by the Climate Engine team, sent in the Authorization header. Request a key from the ClimateEngine.org team.

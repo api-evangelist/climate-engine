@@ -1,93 +1,1186 @@
 openapi: 3.2.0
 info:
   title: 'Climate Engine API v1: climate-engine-pro Metadata API'
-  description: On-demand geospatial processing of satellite and gridded climate datasets on Google Earth Engine. The Climate Engine REST API returns timeseries, map tiles (mapid), asynchronous raster exports, zonal statistics, pre-built reports, and dataset metadata over point coordinates and GeoJSON feature collections. Datasets include Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS, and many more.
-  termsOfService: https://www.climateengine.com
-  contact:
-    name: Climate Engine
-    url: https://support.climateengine.org
   version: 0.1.0
-servers:
-- url: https://api.climateengine.org
-  description: Climate Engine production API
-security:
-- APIKeyHeader: []
 tags:
 - name: Metadata
-  description: Dataset dates, variables, county names, and raster classifications.
 paths:
   /metadata/dataset_dates:
     get:
-      operationId: metadataDatasetDates
       tags:
       - Metadata
-      summary: Metadata Dataset Dates
-      description: Returns the available date range for a dataset.
+      summary: Metadata Dataset Dates Get
+      description: Get the min and max dates for a dataset
+      operationId: metadata_dataset_dates_get_metadata_dataset_dates_get
+      security:
+      - APIKeyHeader: []
       parameters:
-      - $ref: '#/components/parameters/Dataset'
-      - $ref: '#/components/parameters/ExportFormat'
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
       responses:
         '200':
-          description: Date range for the dataset.
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/HTTPValidationError'
   /metadata/dataset_variables:
     get:
-      operationId: metadataDatasetVariables
       tags:
       - Metadata
-      summary: Metadata Dataset Variables
-      description: Returns the variables available for a dataset.
+      summary: Metadata Dataset Variables Get
+      description: Get the variables for a datase
+      operationId: metadata_dataset_variables_get_metadata_dataset_variables_get
+      security:
+      - APIKeyHeader: []
       parameters:
-      - $ref: '#/components/parameters/Dataset'
-      - $ref: '#/components/parameters/ExportFormat'
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
       responses:
         '200':
-          description: Variables available for the dataset.
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/HTTPValidationError'
   /metadata/county_names:
     get:
-      operationId: metadataCountyNames
       tags:
       - Metadata
-      summary: County Names
-      description: Returns county names usable as predefined feature regions.
+      summary: County Names Get
+      description: Get county names
+      operationId: county_names_get_metadata_county_names_get
+      security:
+      - APIKeyHeader: []
       parameters:
-      - $ref: '#/components/parameters/ExportFormat'
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+          default: OR
+          title: State
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
       responses:
         '200':
-          description: County names.
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/HTTPValidationError'
+  /metadata/raster/percentiles/values:
+    get:
+      tags:
+      - Metadata
+      summary: Percentiles Values Get
+      description: Gets percentiles for values
+      operationId: percentiles_values_get_metadata_raster_percentiles_values_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '[-127.32,22.73,-57.44,49.19]'
+          title: Bounding Box
+      - name: scale
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 4000
+          title: Scale
+      - name: percentiles
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: '[0, 5, 10, 25, 50, 75, 90, 95, 100]'
+          title: Percentiles
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-30'
+          title: End Date
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /metadata/raster/percentiles/climatologies:
+    get:
+      tags:
+      - Metadata
+      summary: Percentiles Climatologies Get
+      description: Gets percentiles for climatologies
+      operationId: percentiles_climatologies_get_metadata_raster_percentiles_climatologies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '[-127.32,22.73,-57.44,49.19]'
+          title: Bounding Box
+      - name: scale
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 4000
+          title: Scale
+      - name: percentiles
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: '[0, 5, 10, 25, 50, 75, 90, 95, 100]'
+          title: Percentiles
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 08-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 10-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /metadata/raster/percentiles/anomalies:
+    get:
+      tags:
+      - Metadata
+      summary: Percentiles Anomalies Get
+      description: Gets percentiles for anomalies
+      operationId: percentiles_anomalies_get_metadata_raster_percentiles_anomalies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '[-127.32,22.73,-57.44,49.19]'
+          title: Bounding Box
+      - name: scale
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 4000
+          title: Scale
+      - name: percentiles
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: '[0, 5, 10, 25, 50, 75, 90, 95, 100]'
+          title: Percentiles
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: anom
+          title: Calculation
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-30'
+          title: End Date
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /metadata/raster/percentiles/standard_index:
+    get:
+      tags:
+      - Metadata
+      summary: Percentiles Std Index Get
+      description: Gets percentiles for standard index
+      operationId: percentiles_std_index_get_metadata_raster_percentiles_standard_index_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: distribution
+        in: query
+        required: false
+        schema:
+          type: string
+          default: nonparametric
+          title: Distribution
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: eddi
+          title: Variable
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-30'
+          title: End Date
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '[-121.7,38.3,-120.1,38.9]'
+          title: Bounding Box
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
+      - name: scale
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 4000
+          title: Scale
+      - name: percentiles
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: '[0, 5, 10, 25, 50, 75, 90, 95, 100]'
+          title: Percentiles
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /metadata/raster/percentiles/mann_kendall:
+    get:
+      tags:
+      - Metadata
+      summary: Percentiles Mann Kendall Get
+      description: Gets percentiles for mann kendall
+      operationId: percentiles_mann_kendall_get_metadata_raster_percentiles_mann_kendall_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '[-127.32,22.73,-57.44,49.19]'
+          title: Bounding Box
+      - name: scale
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 4000
+          title: Scale
+      - name: percentiles
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: '[0, 5, 10, 25, 50, 75, 90, 95, 100]'
+          title: Percentiles
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 08-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 10-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mk_tau
+          title: Calculation
+      - name: p_value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: 0.5
+          title: P Value
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /metadata/raster/statistics/values:
+    get:
+      tags:
+      - Metadata
+      summary: Stats Values Get
+      description: Gets raster statistics for values
+      operationId: stats_values_get_metadata_raster_statistics_values_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '[-127.32,22.73,-57.44,49.19]'
+          title: Bounding Box
+      - name: scale
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 4000
+          title: Scale
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-30'
+          title: End Date
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /metadata/raster/statistics/climatologies:
+    get:
+      tags:
+      - Metadata
+      summary: Stats Climatologies Get
+      description: Gets raster statistics for climatologies
+      operationId: stats_climatologies_get_metadata_raster_statistics_climatologies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '[-127.32,22.73,-57.44,49.19]'
+          title: Bounding Box
+      - name: scale
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 4000
+          title: Scale
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 08-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 10-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /metadata/raster/statistics/anomalies:
+    get:
+      tags:
+      - Metadata
+      summary: Stats Anomalies Get
+      description: Gets raster statistics for anomalies
+      operationId: stats_anomalies_get_metadata_raster_statistics_anomalies_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '[-127.32,22.73,-57.44,49.19]'
+          title: Bounding Box
+      - name: scale
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 4000
+          title: Scale
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: anom
+          title: Calculation
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-30'
+          title: End Date
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /metadata/raster/statistics/standard_index:
+    get:
+      tags:
+      - Metadata
+      summary: Stats Standard Index Get
+      description: Gets raster statistics for standard index
+      operationId: stats_standard_index_get_metadata_raster_statistics_standard_index_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: distribution
+        in: query
+        required: false
+        schema:
+          type: string
+          default: nonparametric
+          title: Distribution
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: eddi
+          title: Variable
+      - name: start_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-01'
+          title: Start Date
+      - name: end_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '2010-06-30'
+          title: End Date
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '[-121.7,38.3,-120.1,38.9]'
+          title: Bounding Box
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
+      - name: scale
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 4000
+          title: Scale
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /metadata/raster/statistics/mann_kendall:
+    get:
+      tags:
+      - Metadata
+      summary: Stats Mann Kendall Get
+      description: Gets raster statistics for mann kendall
+      operationId: stats_mann_kendall_get_metadata_raster_statistics_mann_kendall_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: dataset
+        in: query
+        required: false
+        schema:
+          type: string
+          default: GRIDMET
+          title: Dataset
+      - name: variable
+        in: query
+        required: false
+        schema:
+          type: string
+          default: tmmx
+          title: Variable
+      - name: temporal_statistic
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mean
+          title: Temporal Statistic
+      - name: export_format
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: ''
+          title: Export Format
+      - name: bounding_box
+        in: query
+        required: false
+        schema:
+          type: string
+          default: '[-127.32,22.73,-57.44,49.19]'
+          title: Bounding Box
+      - name: scale
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          default: 4000
+          title: Scale
+      - name: start_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 08-01
+          title: Start Season
+      - name: end_season
+        in: query
+        required: false
+        schema:
+          type: string
+          default: 10-31
+          title: End Season
+      - name: start_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2016
+          title: Start Year
+      - name: end_year
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 2018
+          title: End Year
+      - name: calculation
+        in: query
+        required: false
+        schema:
+          type: string
+          default: mk_tau
+          title: Calculation
+      - name: p_value
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          default: 0.5
+          title: P Value
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
 components:
-  parameters:
-    ExportFormat:
-      name: export_format
-      in: query
-      required: false
-      schema:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
         type:
-        - string
-        - 'null'
-      description: Optional response/export format.
-    Dataset:
-      name: dataset
-      in: query
-      required: false
-      schema:
-        type: string
-        default: GRIDMET
-      description: Dataset name (e.g. GRIDMET, ERA5, MODIS, CHIRPS).
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     APIKeyHeader:
       type: apiKey
       in: header
       name: Authorization
-      description: API key issued by the Climate Engine team, sent in the Authorization header. Request a key from the ClimateEngine.org team.
