@@ -162,6 +162,8 @@ apis:
   humanURL: https://api.climateengine.org/docs
   baseURL: https://api.climateengine.org
   tags:
+  - Zonal Stats
+  tags_raw:
   - zonal_stats
   properties:
   - type: OpenAPI
