@@ -1,4 +1,4 @@
-# Climate Engine (climate-engine)
+# Climate Engine
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,160 +66,124 @@
 
 Climate Engine is a geospatial climate and remote-sensing data platform that runs on Google Earth Engine. Its commercial REST API (api.climateengine.org) provides on-demand processing of satellite and gridded climate datasets - Landsat, Sentinel, MODIS, GRIDMET, ERA5, CHIRPS and more - returning timeseries, map tiles, zonal statistics, and pre-built reports over points, polygons, and feature collections.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/climate-engine/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/climate-engine/refs/heads/main/apis.yml)
+**Areas:** Climate · Geospatial · Remote Sensing · Satellite · Earth Observation
 
-## Tags
+## Climate Engine on APIs.io
 
-- Climate
-- Geospatial
-- Remote Sensing
-- Satellite
-- Earth Observation
+Everything profiled for Climate Engine is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/climate-engine/](https://apis.io/providers/climate-engine/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (6)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Climate Engine Home API](https://apis.io/apis/climate-engine/climate-engine-home-api/) — Key validation, expiration, and user quotas.
+- [Climate Engine Metadata API](https://apis.io/apis/climate-engine/climate-engine-metadata-api/) — Dataset dates, variables, county names, and raster classifications.
+- [Climate Engine Raster API](https://apis.io/apis/climate-engine/climate-engine-raster-api/) — Earth Engine map IDs and asynchronous raster exports.
+- [Climate Engine Reports API](https://apis.io/apis/climate-engine/climate-engine-reports-api/) — Pre-built drought, vegetation, and site characterization reports.
+- [Climate Engine Zonal Statistics API](https://apis.io/apis/climate-engine/climate-engine-zonal-statistics-api/) — Statistics reduced over coordinates and feature collections.
+- [Climate Engine Time Series API](https://apis.io/apis/climate-engine/climate-engine-time-series-api/) — Native, interannual, standard-index, and regression time series.
 
-## APIs
+### Published properties
 
-### Climate Engine Timeseries API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Generates native, interannual, standard-index, and regression time series for climate and remote-sensing datasets over point coordinates and GeoJSON feature collections, with optional forecast variants.
+#### Agentic access (1)
 
-- **Human URL:** [https://api.climateengine.org/docs](https://api.climateengine.org/docs)
-- **Base URL:** `https://api.climateengine.org`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Climate Engine Agentic Access](https://apis.io/agentic-access/climate-engine/climate-engine-agentic-access/)
 
-- Timeseries
-- Climate
-- Remote Sensing
+#### Collections (7)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://support.climateengine.org/article/12-climate-engine-apis)
-- [API Reference](https://api.climateengine.org/docs)
-- [OpenAPI](openapi/climate-engine-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/climate-engine.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/climate-engine.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Climate Engine API v1: climate-engine-pro](https://apis.io/collections/climate-engine/open-climate-engine/)
+- [Climate Engine API v1: climate-engine-pro Home API](https://apis.io/collections/climate-engine/open-climate-engine-home-api/)
+- [Climate Engine API v1: climate-engine-pro Home Metadata API](https://apis.io/collections/climate-engine/open-climate-engine-metadata-api/)
+- [Climate Engine API v1: climate-engine-pro Home Raster API](https://apis.io/collections/climate-engine/open-climate-engine-raster-api/)
+- [Climate Engine API v1: climate-engine-pro Home Reports API](https://apis.io/collections/climate-engine/open-climate-engine-reports-api/)
+- [Climate Engine API v1: climate-engine-pro Home Timeseries API](https://apis.io/collections/climate-engine/open-climate-engine-timeseries-api/)
+- [Climate Engine API v1: climate-engine-pro Home Zonal Statistics API](https://apis.io/collections/climate-engine/open-climate-engine-zonal-statistics-api/)
 
-### Climate Engine Zonal Statistics API
+#### Security (2)
 
-Computes pixel counts, static- and temporal-dataset statistics, group-by aggregations, and category counts reduced over coordinates or feature-collection geometries.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://api.climateengine.org/docs](https://api.climateengine.org/docs)
-- **Base URL:** `https://api.climateengine.org`
+- [Climate Engine Authentication](https://apis.io/security/climate-engine/climate-engine-authentication/)
+- [Climate Engine Domain Security](https://apis.io/security/climate-engine/climate-engine-domain-security/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Zonal Statistics
-- Aggregation
-- Geospatial
+Published plans, tiers and prices.
 
-#### Properties
+- [Climate Engine Plans Pricing](https://apis.io/plans/climate-engine/climate-engine-plans-pricing/)
 
-- [Documentation](https://support.climateengine.org/article/12-climate-engine-apis)
-- [API Reference](https://api.climateengine.org/docs)
-- [OpenAPI](openapi/climate-engine-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/climate-engine.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/climate-engine.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Climate Engine Raster API
+Published request limits.
 
-Returns Earth Engine map IDs for tile rendering and queues asynchronous raster export jobs across values, anomalies, percentiles, standard index, degree days, and Mann-Kendall trend products, including forecast variants.
+- [Climate Engine Rate Limits](https://apis.io/rate-limits/climate-engine/climate-engine-rate-limits/)
 
-- **Human URL:** [https://api.climateengine.org/docs](https://api.climateengine.org/docs)
-- **Base URL:** `https://api.climateengine.org`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Maps
-- Raster
-- Tiles
-- Export
+- [Climate Engine Finops](https://apis.io/finops/climate-engine/climate-engine-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://support.climateengine.org/article/12-climate-engine-apis)
-- [API Reference](https://api.climateengine.org/docs)
-- [OpenAPI](openapi/climate-engine-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/climate-engine.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/climate-engine.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### Climate Engine Reports API
-
-Produces pre-built site characterization, drought, and vegetation production reports over coordinates or feature collections.
-
-- **Human URL:** [https://api.climateengine.org/docs](https://api.climateengine.org/docs)
-- **Base URL:** `https://api.climateengine.org`
-
-#### Tags
-
-- Reports
-- Drought
-- Vegetation
-
-#### Properties
-
-- [Documentation](https://support.climateengine.org/article/12-climate-engine-apis)
-- [API Reference](https://api.climateengine.org/docs)
-- [OpenAPI](openapi/climate-engine-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/climate-engine.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/climate-engine.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Climate Engine Dataset Catalog API
-
-Exposes dataset metadata - available dates, variables, county names, and the percentile and statistic classifications used to color and classify raster products.
-
-- **Human URL:** [https://api.climateengine.org/docs](https://api.climateengine.org/docs)
-- **Base URL:** `https://api.climateengine.org`
-
-#### Tags
-
-- Metadata
-- Catalog
-- Datasets
-
-#### Properties
-
-- [Documentation](https://docs.climateengine.org)
-- [API Reference](https://api.climateengine.org/docs)
-- [OpenAPI](openapi/climate-engine-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/climate-engine.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/climate-engine.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Climate Engine Account API
-
-Validates API keys, reports key expiration, and returns the authenticated user's quota usage and limits.
-
-- **Human URL:** [https://api.climateengine.org/docs](https://api.climateengine.org/docs)
-- **Base URL:** `https://api.climateengine.org`
-
-#### Tags
-
-- Account
-- API Key
-- Quotas
-
-#### Properties
-
-- [Documentation](https://support.climateengine.org/article/144-api-quota-policy)
-- [API Reference](https://api.climateengine.org/docs)
-- [OpenAPI](openapi/climate-engine-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/climate-engine.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/climate-engine.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/climate-engine)
 - [Website](https://www.climateengine.com)
 - [Documentation](https://docs.climateengine.org)
-- [Plans](plans/climate-engine-plans-pricing.yml)
-- [Rate Limits](rate-limits/climate-engine-rate-limits.yml)
-- [Fin Ops](finops/climate-engine-finops.yml)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 24.4** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 49.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 25.0 |
+| Access clarity | 5.3 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/climate-engine/](https://apis.io/providers/climate-engine/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Climate Engine: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/climate-engine/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
